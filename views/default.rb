@@ -1,11 +1,10 @@
-module Application
+module Pages
 	
 	module Views
 	
 		class Default
 			
 			include Waves::Views::Mixin
-			include Application::ResponseMixin
 		
 		end
 	
