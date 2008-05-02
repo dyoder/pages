@@ -1,0 +1,8 @@
+css = []
+css << 'required' if @required
+css << @size if @size
+options = { :class => css.join(' '), :name => @name }.merge(@options||{})
+
+div.property :id => @name do
+  label @label; textarea(options) { @value }; p.help { text @help }
+end

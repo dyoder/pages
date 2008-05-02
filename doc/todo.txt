@@ -1,0 +1,22 @@
+- docs
+- features
+  - add auto-save
+  - turn off stack reporting in browser
+    - replace with generic error message
+    - redirect to /home ... ? or back ... ?
+  - field validation / required fields
+  - comment support for stories
+  - theme development / selection
+  - user registration 
+  - change password
+  - wiki support
+  - mailing list support
+  - bulk image upload support
+  - why was memcached crashing?
+  - members / permissions
+  - e-commerce maintenance
+- sites
+  - relaunch vixby.com on waves
+  - fix use of javascript for layout (OCEAN)
+  - what about galleries when no javascript ... ?
+- open source?

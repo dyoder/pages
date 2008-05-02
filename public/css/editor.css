@@ -1,0 +1,34 @@
+div.header { float: left; }
+div.buttons { float: left; padding-top: 30px; font-size: 13px; font-weight: bold; }
+div.buttons a { margin-left: 30px; cursor: pointer; }
+div.buttons div.confirmation { display: inline; margin-left: 20px; }
+div.main { clear: both; float: left; width: 725px; margin-right: 10px; }
+div.sidebar { float: left; width: 275px; font-size: 11px;  }
+div.sidebar, div.main { height: 600px; margin-bottom: 20px;
+  border: 1px solid #ccc; padding: 20px 10px 10px 10px;
+  overflow-y: scroll; }
+
+div.property { margin-bottom: 20px; }
+p.help { margin-bottom: 0; }
+label { font-weight: bold; }
+
+div.property input,
+div.property textarea,
+div.property select {
+  display: block; padding: 5px; width: 200px;
+  border: 1px solid #ccc; font-family: 'Lucida Sans Typewriter', courier;
+}
+
+div.sidebar div.property input,
+div.sidebar div.property textarea,
+div.sidebar div.property select { float: left; width: 150px; font-size: 11px;  }
+div.sidebar label { float: left; width: 75px; text-align: right; 
+  margin-right: 10px; padding-top: 5px; }
+div.sidebar p.help { clear: both; margin-left: 85px; 
+  font-size: 11px; }
+
+div.main div.property input.text { width: 500px; }
+div.main div.property textarea { width: 650px; }
+div.main p.help { font-size: 14px; color: #666; }
+
+div.property.preview img { display: block; border: 1px solid #ccc; padding: 10px; }

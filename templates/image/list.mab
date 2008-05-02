@@ -1,0 +1,11 @@
+view :image, :quick_add
+ul do
+  @images.sort_by(&:title).each do |image|
+    li do
+      a :href => "/admin/image/#{image.name}/" do
+        img :src => "/images/#{image.file}?size=thumb", 
+          :title => image.title, :alt => image.title
+      end
+    end
+  end
+end

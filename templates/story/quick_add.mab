@@ -1,0 +1,16 @@
+div.quick_add do 
+  a.open 'Add a new story.', :href => '#'
+  form.story :action => '/admin/story/', :method => 'post' do
+    a.close do
+      img :src => '/images/icons/lime/16x16/box_closed.png',
+        :height => '16', :width => '16'
+    end
+    properties do
+      property :label => 'Title', :name => 'story.title', :type => :text,
+        :value => '', :required => true,
+        :help => 'The title of the story will appear at the top of the story, ' <<
+            'in the browser title bar, and in search results.'
+    end
+    buttons [{ :label => 'Add Story', :type => :submit }]
+  end
+end

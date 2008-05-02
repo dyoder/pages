@@ -1,0 +1,11 @@
+div.property :id => @name.gsub(/\./,'-') do
+  label @label
+  input({ 
+    :type => :text, 
+    :class => @required ? 'date required' : 'date' ,
+    :name => @name, :value => @value 
+  }.merge( @options||{} ) )
+  p.help do
+    text @help
+  end
+end

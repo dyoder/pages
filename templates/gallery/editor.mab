@@ -1,0 +1,64 @@
+layout :admin, :title => 'Edit Gallery', :name => 'gallery-editor', 
+  :styles => %w( base editor container ), 
+  :scripts => %w( 
+    jquery.ui-1.0/ui.mouse 
+    jquery.ui-1.0/ui.draggable jquery.ui-1.0/ui.draggable.ext 
+    jquery.ui-1.0/ui.droppable jquery.ui-1.0/ui.droppable.ext
+    jquery.blockUI base editor container 
+  ) do
+  form :action => url, :method => 'POST' do 
+    buttons [
+      { :label => 'Save Changes', :type => :submit },
+      { :label => 'Delete This Gallery', :type => :delete, :href => url }
+    ]
+    div.main do
+      properties do
+        property :label => 'Title', :name => 'gallery.title', 
+          :type => :text, :value => @gallery.title,
+          :help => 'The title of the gallery will show up in captions.'
+        property :label => 'Display', :name => 'gallery.display',
+          :type => :choice, :value => @gallery.display,
+          :options => models[:gallery].displays, 
+          :help => 'This controls how you want to present the gallery - ' <<
+            'as a photo album where you can click on an image to zoom in, ' <<
+            'or as a slideshow, where the images display one at a time.'
+        div.property :id => 'gallery-images' do
+          label 'Images'
+          p.help 'Drag images in or out of the gallery.'
+          excluded = all(:image).map { |image| image.name } - @gallery.images
+          [ [ 'Gallery', @gallery.images ], [ 'Images', excluded ] ].each do | title, images |
+            ul.container do
+              h3 title
+              images.map { |name| find(:image,name) }.each do |image|
+                li do
+                  a :href => "##{image.name}" do
+                    img :src => "/images/#{image.file}?size=thumb"
+                  end
+                end
+              end # images
+            end # ul.container
+          end # array each
+        end # property
+      end # properties
+    end # div.main
+    div.sidebar do
+      properties do
+        property :label => 'Author', :name => 'gallery.author', :type => :choice,
+         :value => @gallery.author, :options => site.authors.map { |author| [ author, author ] },
+         :help => "'Author' is the person responsible for maintaining this content."
+        property :label => 'Published', :name => 'gallery.published', 
+         :type => 'date', :value => @gallery.published, 
+         :help => "When was this content first published? Just type in a date." <<
+           " <b>Example:</b> apr 12, 2007."
+        property :label => 'Tags', :type => 'text', 
+          :name => 'gallery.tags', :value => @gallery.tags,
+         :help => "Words you would associate with this content, separated by commas." <<
+           " <b>Example:</b> sports, basketball, Michael Jordan."
+        property :label => 'Summary', :type => 'textarea', :name => 'gallery.summary',
+         :size => :small, :value => @gallery.summary,
+         :help => "A short summary that can be used in sidebars or listings."
+      end
+    end
+  end
+end
+       

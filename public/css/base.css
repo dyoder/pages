@@ -1,0 +1,18 @@
+body { font-family: verdana, sans-serf; }
+div.page { margin: 10px; }
+h1 { color: #666; font-size: 30px; }
+h2 { color: #666; font-size: 20px; }
+h3, h4 { color: #333; font-size: 15px; }
+p,li { color: #333; font-size: 15px; }
+h1,h2,h3,p,li { margin-bottom: 20px; }
+a, a:visited { text-decoration: none; color: #060; }
+a:hover { color: #693; }
+img { border: none; }
+input.text, input.password, textarea { border: 1px solid #ccc; padding: 5px; color: #333;
+  font-size: 14px; font-family: 'Lucida Sans Typewriter', courier; }
+textarea.small { height: 100px; width: 90%;}
+textarea.medium { height: 200px; width: 90%;}
+textarea.large { height: 400px; width: 90%;}
+p.error { color: #933; }
+div.footer { clear: both; width: 1075px; margin-top: 20px; padding-top: 20px;
+  border-top: 1px solid #ccc; text-align: center; font-size: 10px; color: #999; }

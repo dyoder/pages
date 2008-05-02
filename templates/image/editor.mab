@@ -1,0 +1,46 @@
+layout :admin, :title => 'Edit Image', :name => 'image-editor', :styles => %w( base editor ), 
+  :scripts => %w( jquery.blockUI base editor ) do
+  form :action => url, :method => 'POST', :enctype => 'multipart/form-data' do 
+    buttons [
+      { :label => 'Save Changes', :type => :submit },
+      { :label => 'Delete This Image', :type => :delete, :href => url }
+    ]
+    div.main do
+      properties do
+        property :label => 'Title', :name => 'image.title', 
+          :type => :text, :value => @image.title,
+          :help => 'The title of the image will show up in captions.'
+        property :label => 'Upload', :name => 'image.file', :type => :file, :value => @image.file,
+          :help => "Click 'browse' to select a new file for this image."
+        if @image.file
+          div.property.preview do
+            label 'Preview'
+            img :src => "/images/#{@image.file}?size=medium"
+          end
+        end
+      end
+    end
+    div.sidebar do
+      properties do
+        property :label => 'Gallery', :name => 'image.gallery', 
+          :type => :choice, :value => @image.gallery, 
+          :options => ( all(:gallery).map { |g| [ g.title, g.name ] } + [ 'None' ] ),
+          :help => "Select a gallery for this image."
+        property :label => 'Author', :name => 'image.author', :type => :choice,
+          :value => @image.author, :options => site.authors.map { |author| [ author, author ] },
+          :help => "'Author' is the person responsible for maintaining this content."
+        property :label => 'Published', :name => 'image.published', 
+          :type => 'date', :value => @image.published, 
+          :help => "When was this content first published? Just type in a date." <<
+            " <b>Example:</b> apr 12, 2007."
+        property :label => 'Tags', :type => 'text', :name => 'image.tags', :value => @image.tags,
+          :help => "Words you would associate with this content, separated by commas." <<
+            " <b>Example:</b> sports, basketball, Michael Jordan."
+        property :label => 'Summary', :type => 'textarea', :name => 'image.summary',
+          :size => :small, :value => @image.summary,
+          :help => "A short summary that can be used in sidebars or listings."
+      end
+    end
+  end
+end
+  

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version='2.0'
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:wfw="http://wellformedweb.org/CommentAPI/" 
+    xmlns:dc="http://purl.org/dc/elements/1.1/" 
+    xmlns:atom="http://www.w3.org/2005/Atom">
+
+  <channel>
+    <title><%= @blog.title %></title>
+    <link><%= url %></link>
+    <description><%= @blog.subtitle %></description>
+    <language>en</language>
+    
+    <% 
+      @blog.entries.map { |name| models[ :story ].find( domain, name ) }.
+      sort_by(&:published).reverse.each do | entry | 
+    %>
+      <item>
+        <title><%= entry.title %></title>
+        <link><%= "http://#{domain}/#{entry.name}" %></link>
+        <pubDate><%= entry.published.strftime('%a, %d %b %Y %H:%M:%S %z') %></pubDate>
+        <description>
+          <%= format :content => entry.summary, :format => entry.format %>
+        </description>
+      </item>
+    <% end %>
+  </channel>
+</rss>

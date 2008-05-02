@@ -1,0 +1,56 @@
+doctype :html4_strict
+html do
+
+  head do
+    self << story( :head )
+    case @gallery[:display]
+    when 'Slideshow'
+      link :type => 'text/css', :rel => 'stylesheet', :href => '/css/slideshow.css'
+      script :type => 'text/javascript', :src => '/javascript/jquery.cycle.pack.js'
+      script :type => 'text/javascript', :src => '/javascript/slideshow.js'
+    when 'Album'
+      link :type => 'text/css', :rel => 'stylesheet', :href => '/css/thickbox.css'
+      script :type => 'text/javascript', :src => '/javascript/thickbox-compressed.js'
+      link :type => 'text/css', :rel => 'stylesheet', :href => '/css/album.css'
+    end
+  end
+  
+  body do
+    div.page do 
+
+      [ :banner, :sidebar ].each { |name| self << story( name ) rescue nil }
+
+      div.main.gallery :id => @name do
+    
+        h1 @gallery.title if @gallery.title?
+
+        images = ( @gallery.images || [] ).map { |name| find( :image, name ) }
+        case @gallery[:display]
+        when 'Slideshow'
+          div.frame do
+            div.slide.loading do
+              img :src => '/images/loading.gif'
+            end
+            images.each do | image |
+              div.slide do
+                img :src => "/images/#{image.file}?size=medium" if image
+              end
+            end
+          end
+        when 'Album'
+          images.each do |image|
+            a.thickbox :href => "/images/#{image.file}?size=large" do
+              img.thumbnail :src => "/images/#{image.file}?size=small"
+            end
+          end
+        end
+      end
+      
+      div.footer do
+        story :footer
+      end
+    end
+
+  end
+  
+end

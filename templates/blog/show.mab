@@ -1,0 +1,9 @@
+layout :show, :title => @blog.title do
+
+  div.main.blog :id => @name do
+  
+    view( :blog, :content, :blog => @blog )
+    
+  end
+
+end

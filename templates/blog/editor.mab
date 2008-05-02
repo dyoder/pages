@@ -1,0 +1,55 @@
+layout :admin, :title => 'Edit Blog', :name => 'blog-editor', 
+  :styles => %w( base editor container ), 
+  :scripts => %w( 
+    jquery.ui-1.0/ui.mouse 
+    jquery.ui-1.0/ui.draggable jquery.ui-1.0/ui.draggable.ext 
+    jquery.ui-1.0/ui.droppable jquery.ui-1.0/ui.droppable.ext
+    jquery.blockUI base editor container 
+  ) do
+  form :action => url, :method => 'POST' do 
+    buttons [
+      { :label => 'Save Changes', :type => :submit },
+      { :label => 'Delete This Blog', :type => :delete, :href => url }
+    ]
+    div.main do
+      properties do
+        property :label => 'Title', :name => 'blog.title', 
+          :type => :text, :value => @blog.title,
+          :help => 'The title of the blog will show up in captions.'
+        div.property :id => 'blog-entries' do
+          label 'Images'
+          p.help 'Drag stories in or out of your blog.'
+          excluded = all(:story).map { |story| story.name } - @blog.entries
+          [ [ 'Blog', @blog.entries ], [ 'Stories', excluded ] ].each do | title, stories |
+            ul.container do
+              h3 title
+              stories.map { | name | find( :story, name ) }.each do | story |
+                li do
+                  a story.title, :href => "##{story.name}"
+                end
+              end # images
+            end # ul.container
+          end # array each
+        end # property
+      end # properties
+    end # div.main
+    div.sidebar do
+      properties do
+        property :label => 'Author', :name => 'blog.author', :type => :choice,
+          :value => @blog.author, :options => site.authors.map { |author| [ author, author ] },
+          :help => "'Author' is the person responsible for maintaining this content."
+        property :label => 'Published', :name => 'blog.published', 
+          :type => 'date', :value => @blog.published,
+          :help => "When was this content first published? Just type in a date." <<
+            " <b>Example:</b> apr 12, 2007."
+        property :label => 'Tags', :type => 'text', 
+          :name => 'blog.tags', :value => @blog.tags,
+          :help => "Words you would associate with this content, separated by commas." <<
+            " <b>Example:</b> sports, basketball, Michael Jordan."
+        property :label => 'Summary', :type => 'textarea', :name => 'blog.summary',
+          :size => :small, :value => @blog.summary,
+          :help => "A short summary that can be used in sidebars or listings."
+      end
+    end
+  end
+end

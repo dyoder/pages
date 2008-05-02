@@ -1,0 +1,15 @@
+div.quick_add do 
+  a.open 'Add a new blog.', :href => '#'
+  form.blog :action => '/admin/blog/', :method => 'post' do
+    a.close do
+      img :src => '/images/icons/lime/16x16/box_closed.png',
+        :height => '16', :width => '16'end
+    properties do
+      property :label => 'Title', :name => 'blog.title', :type => :text,
+        :value => '', :required => true,
+        :help => 'The title of the blog will appear at the top of the blog, ' <<
+            'in the browser title bar, and in search results.'
+    end
+    buttons [{ :label => 'Add Blog', :type => :submit }]
+  end
+end

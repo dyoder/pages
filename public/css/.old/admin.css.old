@@ -1,0 +1,109 @@
+* { margin: 0; padding: 0; }
+body { margin-left: 40px; width: 1000px; padding: 10px; font-family: verdana; font-size: 12px; background: white; }
+h1 { margin-bottom: 10px; color: #666; float: left; font-size: 20px; width: 300px;}
+h2, h3 { color: #999; margin-bottom: 10px; }
+a, a:visited, a:hover { color: #393; } 
+a, a:visited { text-decoration: none; }
+a:hover { text-decoration: underline; }
+div.header { margin: 5px; padding: 5px; }
+p.warning { clear: both; color: #993; }
+div.dialog { display: none; }
+div.page#admin p { margin: 10px 0 10px 0; }
+div.page#admin div.add { margin-top: 10px; margin-bottom: 10px;}
+div.page#admin div.add form { display: none; 
+  padding: 5px; border: 1px solid #ccc; }
+div.page#admin div.add form a.close { float: right; border: 1px solid #ccc; 
+  padding: 0px 3px; margin-top: -2px; cursor: pointer; }
+div.page#admin div.add div.property { margin-bottom: 4px;}
+div.page#admin div.add label { margin: 0 5px; 
+  font-weight: bold; font-size: 11px; color: #666; }
+div.page#admin div.add input { 
+  margin: 0 5px; padding: 5px; 
+  width: 150px; border: 1px solid #999; 
+  font-size: 11px; }
+div.page#admin div.add div.buttons input {
+  width: 90px; font-size: 10px; padding: 2px;
+}
+input.error { background-color: #fcc; }
+div.page#admin div.add p { margin: 5px; float: none;
+  font-size: 11px; }
+div.page#admin div.list#images { width: 200px; }
+div.page#admin div.list { overflow: hidden; }
+div.page#admin div.list li, #editor ul.container li { display: block; clear: both; 
+  margin-left: 0; }
+div.page#admin div.list#images li, div.gallery#editor ul.container li  { display: block; 
+  clear: none; float: left; margin-left: 0; padding: 2px; height: 54px; }
+div.list#images a:hover img, div.gallery#editor a:hover img { border: 1px solid #393; }
+div.list#images img, div.gallery#editor img { border: 1px solid white; 
+  width: 50px; height: 50px; }
+
+div#editor div.main { float: left; clear: both; width: 650px; margin: 5px; padding: 5px; 
+  border: 1px dotted #ccc; }
+#login div.main { width: 400px; }
+div.main div.properties { padding: 10px;}
+div.main div.property {}
+div.main label { clear: both; display: block; margin-bottom: 10px; padding-top: 5px;
+  font-weight: bold; font-size: 12px; color: #666; }
+div.main div.property input, 
+div.main div.property textarea,
+div.main div.property select { 
+  font-size: 12px;
+  display: block; margin-bottom: 10px; padding: 5px; 
+  border: 1px solid #333; }
+div.main div.property #wysiwyg_container { margin: 10px; }
+#wysiwyg_container iframe { padding: 10px; }
+div.image#editor div.property img { display: block; margin: 10px; padding: 10px; border: 1px solid #ccc; }
+
+p.help, p.error { clear: both; float: left; 
+  font-size: 10px; color: #999; }
+div.page#admin p.help { float: none; }
+form p { margin-bottom: 20px; }
+p.error { color: #f99;}
+
+div.main #title input { width: 380px; }
+div.main #content textarea { width: 600px; height: 450px;
+  font-family: 'Lucida Sans Typewriter', 'Courier New', courier; }
+div.main #email input { width: 200px; }
+div.main #password input { width: 200px; }
+div.main select { width: 200px;}
+  
+div.sidebar { float: left; width: 280px; border: 1px dotted #ccc; margin: 5px; padding: 5px; }
+
+div.sidebar div.property { float: left; }
+div.sidebar label { float: left; width: 90px; margin: 5px; padding-top: 5px;
+  font-weight: bold; font-size: 11px; text-align: right; color: #666; }
+div.sidebar div.property input, 
+  div.sidebar div.property textarea,
+  div.sidebar div.property select  { 
+  float: left; margin: 5px; padding: 5px; 
+  width: 150px; border: 1px solid #333; 
+  font-size: 11px; }
+div.sidebar p.help { clear: both; float: left; margin-left: 105px; margin-bottom: 10px;
+  font-size: 10px; color: #999; }
+div.sidebar #summary textarea { height: 150px;
+  font-family: 'Lucida Sans Typewriter', 'Courier New', courier; }
+div.header div.buttons { float: left; width: 400px;
+  margin-bottom: 10px; padding-bottom: 10px; 
+  text-align: left; }
+div.header div.confirmation { display: inline; margin-left: 20px; }
+div.page#login div.buttons { clear: both; margin: 5px; padding-top: 20px;}
+div.buttons input { padding: 5px; }
+div.buttons input, div.buttons a { 
+  margin-right: 10px;
+  font-size: 11px; font-weight: bold; 
+  cursor: pointer; font-weight: bold; }
+form.site div.buttons input  { float: left; margin-top: 20px; }
+form.site div.buttons a { float: left; margin-top: 20px; }
+div.sidebar div.buttons a {}
+div.list div.properties { padding: 0; }
+div.list { float: left; margin: 10px; padding: 10px;
+  width: 200px; height: 540px; border: 1px solid #ccc; }
+div.list#site { clear: both; }
+div.list#site div.property#site_description textarea { height: 200px;
+	font-family: 'Lucida Sans Typewriter', 'Courier New', courier; }
+
+div.list#blogs, div.list#galleries { height: 250px; }
+
+#editor ul.container:first { clear: both; } /* actually implemented in javascript */
+#editor ul.container { float: left; width: 290px; border: 1px solid #ccc; padding: 5px;
+  margin: 2px; min-height: 100px; }

@@ -1,0 +1,7 @@
+ul.container, ul.container li { margin: 0; padding: 0; display: block; }
+ul.container:first { clear: both; } /* actually implemented in javascript */
+ul.container { float: left; width: 290px; border: 1px solid #ccc; padding: 5px;
+  margin: 2px; min-height: 100px; }
+#gallery-editor ul.container li { display: inline; }
+#gallery-editor ul.container img { border: 1px solid white; 
+  width: 50px; height: 50px; }

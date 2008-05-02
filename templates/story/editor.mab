@@ -1,0 +1,45 @@
+layout :admin, :title => 'Edit Story', :name => 'story-editor', :styles => %w( base editor ), 
+  :scripts => %w( jquery.blockUI tiny_mce/tiny_mce base editor wysiwyg ) do
+  form :action => url, :method => 'POST' do
+    buttons [
+      { :label => 'Save Changes', :type => :submit },
+      { :label => 'Delete This Story', :type => :delete, :href => url }
+    ]
+    div.main do
+      properties do
+        property :label => 'Title', :name => 'story.title', 
+          :type => :text, :value => ( @story.title if @story.title? ),
+          :help => "The title will show up in the title bar of the browser window and " <<
+            "be displayed as the top-level heading at the beginning of the story. You " <<
+            "can leave it blank if you want."
+        property :label => 'Content', :name => 'story.content', :size => :large,
+          :type => :textarea, :value => @story.content, :options => { :id => 'wysiwyg' }
+      end
+    end
+    div.sidebar do
+      properties do
+        unless @story.format == 'mab' 
+          property :label => 'Format', :name => 'story.format', :type => :choice, 
+            :value => @story.format, :options => models[:story].formats,
+            :help => "Use 'Formatted Text' unless you know what you're doing. :)"
+        end
+        property :label => 'Author', :name => 'story.author', :type => :choice,
+          :value => @story.author, :options => site.authors.map { |author| [ author, author ] },
+          :help => "'Author' is the person responsible for maintaining this content."
+        property :label => 'Blog', :name => 'story.blog', :type => :choice, :value => @story.blog, 
+          :options => ( all(:blog).map { |blog| [ blog.title, blog.name ] } + [ 'None' ] ),
+          :help => "Select a blog if you want this story to appear as one of its entries."
+        property :label => 'Published', :name => 'story.published', 
+          :type => 'date', :value => @story.published, 
+          :help => "When was this content first published? Just type in a date." <<
+            "<br/><b>Example:</b> apr 12, 2007."
+        property :label => 'Tags', :type => 'text', :name => 'story.tags', :value => @story.tags,
+          :help => "Words you would associate with this story, separated by commas." <<
+            "<br/><b>Example:</b> sports, basketball, Michael Jordan."
+        property :label => 'Summary', :type => 'textarea', :name => 'story.summary',
+          :size => :small, :value => @story.summary,
+          :help => "A short summary that can be used in sidebars or listings."
+      end
+    end
+  end
+end

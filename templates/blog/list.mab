@@ -1,0 +1,8 @@
+view :blog, :quick_add
+ul do
+  @blogs.select { |blog| blog.format != 'mab' }.sort_by(&:title).each do |blog|
+    li do
+      a blog.title, :href => "/admin/blog/#{blog.name}/"
+    end
+  end
+end

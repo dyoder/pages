@@ -1,0 +1,25 @@
+doctype :html4_strict
+html do
+  head do
+    title "Vixby Pages: #{@title}"
+    ( @styles || [] ).each do | path |
+      link :rel => 'stylesheet', :type => 'text/css', :href => "/css/#{path}.css"
+    end
+    script :type => 'text/javascript', :src => '/javascript/jquery-1.2.1.pack.js'
+    ( @scripts || [] ).each do | path |
+      script :type => 'text/javascript', :src => "/javascript/#{path}.js"
+    end
+  end
+  body do
+    div.page :id => @name do
+      div.header do
+        h1 @title; p.subtitle @subtitle if @subtitle
+      end
+      layout_content
+      div.footer do
+        text "Copyright 2005-8 Vixby.com and Dan Yoder<br/>" <<
+          "All Rights Reserved Worldwide"
+      end
+    end
+  end
+end

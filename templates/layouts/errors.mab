@@ -1,0 +1,16 @@
+doctype( :html4_transitional )
+html do
+  head do
+    title '404: Not Found'
+    style do
+      text 'body { background: #cc3; padding: 20px; font-family: verdana, sans-serif; }'
+      text 'h1 { font-size: 60px; font-weight: bold; }'
+      text 'p { font-size: 24px; }'
+    end
+  end
+  
+  body do
+    layout_content
+  end
+  
+end

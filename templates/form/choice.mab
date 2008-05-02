@@ -1,0 +1,13 @@
+div.property :id => @name.gsub(/\./,'-') do
+  label @label
+  select :name => @name do
+    @options.each do |label,value|
+      attrs = { :value => value }
+      attrs[:selected] = 'selected' if @value == value
+      option label, attrs
+    end
+  end
+  p.help do
+    text @help
+  end
+end

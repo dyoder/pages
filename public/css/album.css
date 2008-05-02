@@ -1,0 +1,3 @@
+a.thickbox img { border: 1px solid black; }
+a.thickbox:hover img { border: 1px solid white; }
+img.thumbnail { height: 75px; width: 75px; border: none; }

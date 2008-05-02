@@ -1,0 +1,9 @@
+div.quick_add form { margin-top: 10px; padding: 10px; border: 1px solid #ccc; display: none; }
+div.quick_add a.open, div.quick_add a.submit { font-weight: bold; font-size: 12px; }
+div.quick_add a.close { display: block; float: right; cursor: pointer; }
+div.quick_add label,
+div.quick_add input.text { float: left; }
+div.quick_add label { font-weight: bold; font-size: 11px; 
+  margin-top: 5px; margin-right: 5px; }
+div.quick_add p { clear: both; margin-top: 10px; font-size: 11px; color: #666; }
+div.quick_add p.error { color: #933; }

@@ -1,0 +1,59 @@
+layout :show, :title => @catalog.title do
+
+  # sandbox id
+  # merchant_id = '838614473088474'
+  merchant_id = site['merchant-id']
+  checkout_url = "https://checkout.google.com/cws/v2/Merchant/#{merchant_id}/checkoutForm"
+  checkout_button_url = 'http://checkout.google.com/buttons/buy.gif'+
+    "?merchant_id=#{merchant_id}&w=117&h=48&style=white&variant=text&loc=en_US"
+
+  div.main.catalog :id => @catalog.name do
+
+    h1 @catalog.title if @catalog.title?
+
+    @catalog.products.map { |name| find( :product, name ) }.
+    sort_by(&:price).each do |product|
+
+      div.product do
+
+        h2 product.title
+        
+        image = find( :image, product.image )
+        a.image :href => "/images/#{image.file}" do
+          img :src => "/images/#{image.file}?size=thumb"
+          p 'Click to enlarge.'
+        end
+
+        div.overview do 
+        
+          format( :content => product.description, :format => product.format )
+
+          p do 
+            # numeric formatting regex from tom copeland
+            strong 'Price:' 
+            text '$'<< product.price.to_s.gsub(/(\d\d$)/,'.\1').
+              gsub(/(\d)(?=\d{3}+(?:\.|$))(\d{3}\..*)?/,'\1,\2')
+          end
+
+          form :method => 'post', :action => @checkout_url do
+            input :type => 'hidden', :name => 'item_name_1', :value => product.title
+            input :type => 'hidden', :name => 'item_description_1', :value => product.summary
+            input :type => 'hidden', :name => 'item_quantity_1', :value => '1'
+            input :type => 'hidden', :name => 'item_price_1', 
+              :value => product.price.to_s.gsub(/(\d\d$)/,'.\1')
+            if product.shipping && product.shipping != 0
+              input :type => 'hidden', :name => 'ship_method_name_1', :value => 'USPS'
+              input :type => 'hidden', :name => 'ship_method_price_1', 
+                :value => product.shipping
+            end
+            input :type => 'hidden', :name => '_charset_', :value => 'utf-8'
+            input :type => 'image', :name => 'Google Checkout', :src => checkout_button_url
+          end
+        end
+
+      end
+    end
+    
+  end
+
+end

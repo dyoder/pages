@@ -1,0 +1,8 @@
+view :gallery, :quick_add
+ul do
+  @galleries.select { |gallery| gallery.format != 'mab' }.sort_by(&:title).each do |gallery|
+    li do
+      a gallery.title, :href => "/admin/gallery/#{gallery.name}/"
+    end
+  end
+end

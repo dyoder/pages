@@ -1,0 +1,92 @@
+$(document).ready( function() {
+  
+  $('input[type="submit"]').each( function() {
+    $(this).replaceWith("<a class='submit' href='#'>"+$(this).val()+"</a>");
+  });
+  $('input[type="password"]').blur( function() {
+    $(this).parents('form').submit();
+  })
+
+  if ( $.fn.draggable ) {
+    $("div.gallery#editor a.submit, div.blog#editor a.submit").click( function(){
+      var list = $('#editor ul.container:first').find('a').map( function() {
+        return $(this).attr('href').split('#')[1];
+      }).get().join(', ');
+      $("div.gallery#editor input[name='selected'],"+
+        "div.blog#editor input[name='selected']").val( '[' + list + ']' );
+    });
+    $('ul.container:first').css({clear: 'both'})
+    $('ul.container li').draggable({helper:'clone'});
+    $('ul.container').droppable({
+     accept: 'li', tolerance: 'touch', drop: function(ev,ui) {
+       $(this).append( ui.draggable.element );
+     }
+    });
+  }
+  
+  $('div.buttons a.submit').click( function() {
+    var form = $(this).parents('form');
+    var failed = form.find('.required')
+      .filter( function() { return $(this).val() == '' ; } )
+      .addClass('error')
+      .after("<p class='error'>Required field.</p>");
+    if ( failed.size() == 0 ) { form.submit(); }
+    return false;
+  });
+  
+  
+  $('#site, #stories, #images').each( function() {
+    if ( this.scrollHeight > 580 ) {
+      $(this).css({'overflow-y': 'scroll'});
+    } 
+  });
+  $('#galleries, #blogs').each( function() {
+    if ( this.scrollHeight > 290 ) {
+      $(this).css({'overflow-y': 'scroll'});
+    } 
+  });
+  $('div.list').hover( function() {
+    $(this).css({ border: '1px solid #333'});
+    $(this).find('h2, h3').css({color: '#333' });
+  }, function() {
+    $(this).find('h2, h3').css({color: '#999' });
+    $(this).css({ border: '1px solid #999'});
+  });
+  
+  $('a.delete').click( function() {
+    var href = $(this).attr('href');
+    $(this).hide();
+    $(this).after(
+     "<div class='confirmation'>Delete: are you sure? " +
+     "<a class='yes'>Yes</a> " +
+     "<a class='no'>No</a></div>"
+    );
+    $('a.yes').click( function() {
+      var el = this;
+      $.blockUI("Okay, just a second ...", 
+        { 'font-weight': 'bold', border: 'none' });
+      $.ajax({ 
+        type: 'delete', 
+        url: href, 
+        success: function() { 
+          window.location = '/admin';
+        },
+        error: function() {
+          $.unblockUI();
+          $(el).parent().after("Delete failed.")
+        }
+      });
+    });
+    $('a.no').click( function() {
+      $(this).parent().hide();
+      $('a.delete').show();
+    });
+    return false; // don't load href
+  });
+  $("input[type='file']").keypress( function(e) { return false; });
+  $('input.date').change( function(e) {
+    var date = Date.parse( $(this).val() );
+    if ( date === null ) { date = Date.today(); }
+    $(this).val( date.toString('yyyy-MM-dd'));
+  });
+});

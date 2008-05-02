@@ -1,0 +1,8 @@
+view :story, :quick_add
+ul do
+  @stories.sort_by(&:title).each do |story|
+    li do
+      a story.title, :href => "/admin/story/#{story.name}/"
+    end
+  end
+end

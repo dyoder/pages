@@ -1,0 +1,4 @@
+div.gallery div.frame { width: 580px; height: 440px;
+  background: black; border: 1px solid #666; }
+div.gallery div.frame div.slide { display: none; float: none; }
+

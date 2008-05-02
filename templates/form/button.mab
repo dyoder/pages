@@ -1,0 +1,6 @@
+case @type
+when :submit
+  input.submit :type => :submit, :value => @label
+else
+  a @label, :class => @type, :href => ( @href || '#' )
+end

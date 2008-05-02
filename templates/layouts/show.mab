@@ -1,0 +1,16 @@
+doctype( :html4_strict )
+html do 
+  head do
+    story( :head, :title => @title )
+  end
+	body do
+		div.page do
+	    story( :banner )
+      story( :sidebar )
+      layout_content
+		  div.footer do
+        story( :footer )
+      end
+		end
+	end
+end

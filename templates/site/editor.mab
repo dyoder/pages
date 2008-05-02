@@ -1,0 +1,12 @@
+form.editor :action => '/admin', :method => 'post' do
+  properties do
+    property :label => 'Title', :name => 'site.title', :type => :text, 
+      :value => site.title, :required => true,
+      :help => 'The title is how your site will display in listings, like search results.'
+    property :label => 'Description', :name => 'site.description', :type => :textarea, 
+      :value => site.description, :required => true, :size => :small,
+      :help => 'The description displays in search results and helps ' <<
+        'people determine whether to "click-through" to view your site.'
+    buttons [{ :label => 'Save Changes', :type => :submit }]
+  end
+end

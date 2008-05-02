@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="71"
+   name=""
+   committed-date="2007-10-17T06:42:14.339286Z"
+   url="https://date-js.googlecode.com/svn/trunk/javascripts/cruiser"
+   last-author="dan@zeraweb.com"
+   kind="dir"
+   uuid="e6b069e5-fb39-0410-9f54-274de4e414d8"
+   revision="83"/>
+<entry
+   committed-rev="51"
+   name="core.js"
+   text-time="2007-10-02T18:56:43.000000Z"
+   committed-date="2007-10-01T09:24:54.228763Z"
+   checksum="ee2d54f354c02ed92132cb89f6252e1e"
+   last-author="geoff@coolite.com"
+   kind="file"
+   prop-time="2007-10-02T18:56:43.000000Z"/>
+<entry
+   committed-rev="71"
+   name="enumerable.js"
+   text-time="2007-10-16T22:55:34.000000Z"
+   committed-date="2007-10-17T06:42:14.339286Z"
+   checksum="817e9da772bdda2d639c7733ed47af2b"
+   last-author="dan@zeraweb.com"
+   kind="file"
+   prop-time="2007-10-02T18:56:43.000000Z"/>
+<entry
+   committed-rev="71"
+   name="parsing.js"
+   text-time="2007-10-17T01:23:24.000000Z"
+   committed-date="2007-10-17T06:42:14.339286Z"
+   checksum="d5a464e9068e7bbe7d45ac1a793e2f99"
+   last-author="dan@zeraweb.com"
+   kind="file"
+   prop-time="2007-10-02T18:56:43.000000Z"/>
+</wc-entries>

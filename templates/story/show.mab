@@ -1,0 +1,5 @@
+layout :show, :title => @story.title do
+  div.main.story :id => @story.name do
+    view( :story, :content, :story => @story )
+  end
+end
