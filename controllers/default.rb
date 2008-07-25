@@ -1,29 +1,34 @@
 module Pages
-	
+
 	module Controllers
-	
+		
 		class Default
 			
 			include Waves::Controllers::Mixin
+			include Pages::ResponseMixin
 			
-			def attributes; params[model_name.singular.intern]; end
+			class Assigns ; include Attributes ; end
 			
-			def all; model.all; end
-
-			def find( name ); model[ :name => name ] or not_found; end
-		
-			def create; model.create( attributes ); end
-		
-			def update( name )
-			  instance = find( name )
-			  instance.set( attributes )
-			  instance.save_changes
+			def assigns ; @assigns ||= create_assigns ; end
+			alias _model model ; def model ; _model[:db/domain/model_name] ; end
+			def create ; model.create( create_assigns.to_h ) ; end
+			def find( name ) ; model.find( domain, name ) or not_found ; end
+			def update( name ) ; find( name ).assign( assigns.to_h ).save ; end
+			def delete( name ) ; find( name ).delete ; end
+			
+			private
+			
+			def create_assigns
+			  Assigns.new( params[ model_name.singular.intern ] ).instance_eval do
+			    name = title.downcase.gsub(/\s+/,'-').gsub(/[^\w\-]/,'') if ( name.nil? || name.empty? )
+  			  published = Date.today ; self
+			  end
 			end
-		
-			def delete( name ); find( name ).destroy; end
-			
+									
 		end
-
+		
 	end
 
 end
+			
+			

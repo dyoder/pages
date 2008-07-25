@@ -1,13 +1,10 @@
-require 'extensions/all'
-require 'lib/image'
-
-module Application
+module Pages
   
-	module Controllers 
-	  
-		class Image < Application::Controllers::Default
-						
-			def get( path )
+  module Controllers
+  
+    class Image < Default
+      
+      def get( path )
 				path = resolve( path )
 				( params[:size] ? resize( path, params[:size] ) : ::Image.read( path ) ).to_blob
 			end
@@ -27,7 +24,7 @@ module Application
 					end
 					path or not_found
 				else
-					image = model.find( domain, path )
+					image = model[ :db / domain ].find( path )
 					response.content_type = image.content_type
 					:db / domain / :file / image.file
 				end

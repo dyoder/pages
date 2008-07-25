@@ -1,8 +1,8 @@
-module Application
+module Pages
 	
 	module Models 
 		
-		class Blog < Application::Models::Default
+		class Blog < Default
 			
 			def entries=( rval )
 				case rval

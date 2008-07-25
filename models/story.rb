@@ -1,4 +1,4 @@
-module Application
+module Pages
 	
 	module Models 
 		
@@ -17,7 +17,7 @@ module Application
 
 			def blog=( name )
 				unless name.nil? or name.empty?
-				  x = Models::Blog.find( domain, name )
+				  x = self.class.find( domain, name )
 					unless x.entries.include?( self.name )
 						x.entries << self.name
 						x.save

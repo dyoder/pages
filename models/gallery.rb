@@ -1,8 +1,8 @@
-module Application
+module Pages
 	
 	module Models 
 		
-		class Gallery < Application::Models::Default
+		class Gallery < Default
 			
       DISPLAYS = [ ['Album', 'Album' ], ['Slideshow','Slideshow'] ]
       

@@ -1,2 +1,4 @@
-h1 '404'
-p %q( That URL does not exist on this server. )
+layout :errors do
+  h1 '404'
+  p %q( That URL does not exist on this server. )
+end

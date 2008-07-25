@@ -1,13 +1,20 @@
 module Pages
-	module Helpers
-		module Default
-			attr_reader :request, :content
-			include Waves::ResponseMixin
-			include Waves::Helpers::Common
-			include Waves::Helpers::Formatting
-			include Waves::Helpers::Model
-			include Waves::Helpers::View
-			include Waves::Helpers::Form
+  module Helpers
+    module Default
+      
+      def model( name )
+        Waves.application.models[ name ][ :db / domain / name ]
+      end
+      
+      def show( model, name, assigns = {} )
+			  assigns[ model ] = find( model, name )
+			  view( model, :content, assigns ) if assigns[ model ]
+			end
+			
+			def story( name, assigns = {} )
+			  show( :story, name, assigns )
+			end
+			
 		end
 	end
 end

@@ -1,8 +1,8 @@
-module Application
+module Pages
 	
 	module Models 
 		
-		class Image < Application::Models::Default
+		class Image < Default
 			
 			def file=( f )
 			  case f
@@ -20,7 +20,7 @@ module Application
 
 			def gallery=( name )
 				unless gallery.nil? or gallery.empty?
-					gallery = Models::Gallery.find( domain, name )
+					gallery = self.class.find( name )
 					unless gallery.entries.include?( self.name )
 						gallery.entries << self.name
 						gallery.save

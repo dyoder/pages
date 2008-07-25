@@ -1,11 +1,8 @@
-module Application
-  
+module Pages
   module Controllers
-    
-    
-    class Media < Application::Controllers::Default
+    class Media < Default
       
-      def resource( media, name )
+      def get( media, name )
   		  data = [ :public / media / name, 
   		            :db / domain / :file / name, 
   		            :db / domain / :theme / name ].each do |path|
@@ -15,8 +12,5 @@ module Application
       end
 
     end
-    
   end
-  
 end
-      
