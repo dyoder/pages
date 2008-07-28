@@ -17,16 +17,16 @@ module Pages
       #
       
       with :resource => :image do
-        action( :favicon, :get => [ 'favicon.ico' ] ) { action( :get, 'favicon.ico' ) }
-        action( :get, :get => [ 'images', 'get', :pathname ] ) { action( :get, pathname ) }
+        response( :favicon, :get => [ 'favicon.ico' ] ) { action( :get, 'favicon.ico' ) }
+        response( :get, :get => [ 'images', 'get', :pathname ] ) { action( :get, pathname ) }
       end
       
       with :resource => :media do
-        action( :get, :get => [ :media => /#{media}/, :path => /#{path}/ ] ) { action( :get, media, path ) }
+        response( :get, :get => [ :media => /#{media}/, :path => /#{path}/ ] ) { action( :get, media, path ) }
       end
       
       # special rule to handle rss blog feed
-      action( :feed, :resource => :blog, :get => [ 'blog', { :name => /#{name}/ } ], :accepts => :rss ) do
+      response( :feed, :resource => :blog, :get => [ 'blog', { :name => /#{name}/ } ], :accepts => :rss ) do
         action( :find, name ) and render( :feed )
       end
       
@@ -36,25 +36,25 @@ module Pages
             
       with :resource => :site do
         # make the user is logged in before doing any admin functions
-        before :authenticated, :any => [ 'admin', true ]
+        before :authenticated, :path => [ 'admin', true ]
         # show the login page / process the login info
-        action( :login, :get => [ 'login' ] ) { render( :login ) }
-        action :authenticate, :post => [ 'login' ]
+        response( :login, :get => [ 'login' ] ) { render( :login ) }
+        response :authenticate, :post => [ 'login' ]
         # main site administration page
-        action( :main, :get => [ 'admin' ] ) { render( :main ) }
-        action :update, :post => [ 'admin' ]
+        response( :main, :get => [ 'admin' ] ) { render( :main ) }
+        response :update, :post => [ 'admin' ]
       end
       
-      action :add, :post => [ 'admin', { :resource => /#{resource}/ } ]
-      action :update, :post => [ 'admin', { :resource => /#{resource}/ }, :name ]
-      action :delete, :delete => [ 'admin', { :resource => /#{resource}/ }, :name ]
-      action :edit, :get => [ 'admin', { :resource => /#{resource}/ }, :name ]
-      action :show, :get => [ :resource, :name ]
+      response :add, :post => [ 'admin', { :resource => /#{resource}/ } ]
+      response :update, :post => [ 'admin', { :resource => /#{resource}/ }, :name ]
+      response :delete, :delete => [ 'admin', { :resource => /#{resource}/ }, :name ]
+      response :edit, :get => [ 'admin', { :resource => /#{resource}/ }, :name ]
+      response :show, :get => [ :resource, :name ]
 
       # defaults to story
       with :resource => :story do
-        action :show, :get => [ :name ]
-        action :home, :get => []
+        response :show, :get => [ :name ]
+        response :home, :get => []
       end
 
     end
