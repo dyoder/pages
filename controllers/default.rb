@@ -12,7 +12,7 @@ module Pages
 			def assigns ; @assigns ||= create_assigns ; end
 			alias _model model ; def model ; _model[:db/domain/model_name] ; end
 			def create ; model.create( create_assigns.to_h ) ; end
-			def find( name ) ; model.find( domain, name ) or not_found ; end
+			def find( name ) ; model.find( name ) or not_found ; end
 			def update( name ) ; find( name ).assign( assigns.to_h ).save ; end
 			def delete( name ) ; find( name ).delete ; end
 			

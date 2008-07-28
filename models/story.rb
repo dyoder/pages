@@ -2,7 +2,7 @@ module Pages
 	
 	module Models 
 		
-		class Story < Application::Models::Default
+		class Story < Default
 			
 			FORMATS = [ 
 			  ['Formatted Text','wysiwyg'],

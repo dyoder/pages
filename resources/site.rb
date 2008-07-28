@@ -2,7 +2,7 @@ module Pages
   
   module Resources
     
-    class Site
+    class Site < Default
       
       def authenticated
         redirect( paths.login ) unless session[:user]

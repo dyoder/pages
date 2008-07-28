@@ -15,6 +15,7 @@ module Pages
       # Supported Media Types
       # We could probably consolidate these into a single rule or 3 ...
       #
+      
       with :resource => :image do
         action( :favicon, :get => [ 'favicon.ico' ] ) { action( :get, 'favicon.ico' ) }
         action( :get, :get => [ 'images', 'get', :pathname ] ) { action( :get, pathname ) }
