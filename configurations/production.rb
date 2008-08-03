@@ -9,6 +9,7 @@ module Pages
       host '0.0.0.0'
       port 80
       handler ::Rack::Handler::Mongrel, :Host => host, :Port => port
+      synchronize? false
 
       application do
         run ::Waves::Dispatchers::Default.new

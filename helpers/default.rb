@@ -1,5 +1,7 @@
 module Pages
+  
   module Helpers
+    
     module Default
       
       include Waves::Helpers::Default
