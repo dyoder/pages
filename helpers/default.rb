@@ -7,7 +7,7 @@ module Pages
       include Waves::Helpers::Default
       
       def model( name )
-        Waves.application.models[ name ][ :db / domain / name ]
+        Waves.app::Models[ name ][ :db / domain / name ]
       end
       
       def show( model, name, assigns = {} )
