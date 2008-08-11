@@ -7,9 +7,8 @@ module Pages
       extend Waves::Mapping
       
       # Basic Patterns
-      name = '([\w\-\_\.\+\@]+)' ; path = '([\w\-\_\.\+\@\/]+)'
-			resource = '(story|image|gallery|blog|feed|product|catalog)'
-			media = '(javascript|flash|audio|css|video)'
+			RESOURCE = /^(story|image|gallery|blog|feed|product|catalog)$/
+			MEDIA = /^(javascript|flash|audio|css|video)$/
 			
       #
       # Supported Media Types
@@ -22,11 +21,11 @@ module Pages
       end
       
       with :resource => :media do
-        response( :get, :get => [ :media => /#{media}/, :path => /#{path}/ ] ) { action( :get, media, path ) }
+        response( :get, :get => [ { :media => MEDIA }, :asset ] ) { action( :get, media, asset ) }
       end
       
       # special rule to handle rss blog feed
-      response( :feed, :resource => :blog, :get => [ 'blog', { :name => /#{name}/ } ], :accepts => :rss ) do
+      response( :feed, :get => [ 'blog', :name ], :resource => :blog, :accepts => :rss ) do
         action( :find, name ) and render( :feed )
       end
       
@@ -45,11 +44,11 @@ module Pages
         response :update, :post => [ 'admin' ]
       end
       
-      response :add, :post => [ 'admin', { :resource => /#{resource}/ } ]
-      response :update, :post => [ 'admin', { :resource => /#{resource}/ }, :name ]
-      response :delete, :delete => [ 'admin', { :resource => /#{resource}/ }, :name ]
-      response :edit, :get => [ 'admin', { :resource => /#{resource}/ }, :name ]
-      response :show, :get => [ :resource, :name ]
+      response :add, :post => [ 'admin', { :resource => RESOURCE } ]
+      response :update, :post => [ 'admin', { :resource => RESOURCE }, :name ]
+      response :delete, :delete => [ 'admin', { :resource => RESOURCE }, :name ]
+      response :edit, :get => [ 'admin', { :resource => RESOURCE }, :name ]
+      response :show, :get => [ { :resource => RESOURCE }, :name ]
 
       # defaults to story
       with :resource => :story do

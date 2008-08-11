@@ -16,5 +16,3 @@ module Pages
     end
   end
 end
-
-debugger
