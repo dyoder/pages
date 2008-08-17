@@ -7,7 +7,7 @@ module Pages
       reloadable []
       log :level => :error, :output => ( :log / "pages.#{$$}" ), :rotation => :weekly
       host '0.0.0.0'
-      port 80
+      port 3000
       handler ::Rack::Handler::Mongrel, :Host => host, :Port => port
       synchronize? false
 

@@ -3,30 +3,21 @@ module Pages
 	module Models 
 		
 		class Image < Default
+		  
+		  include Functor::Method
+		  
+		  def associate( domain )
+  		  has_one :gallery, :class => Pages::Models::Gallery[ domain ]
+  		end
 			
-			def file=( f )
-			  case f
-		    when String
-		      set('file',f)
-		    when Hash
-		      unless f[:filename].empty?
-    				set( 'content_type',f[:type])
-    				puts "FILENAME",f[:filename]
-    				fname = set('file',"#{name}#{File.extname(f[:filename])}")
-    				FileUtils.cp( f[:tempfile].path, :db / domain / :file / fname ) 
-    			end
+      # TODO: This belongs in the controller!
+			functor( :file=, Hash ) do | file |
+	      unless f[:filename].empty?
+  				set( 'content_type',f[:type])
+  				puts "FILENAME",f[:filename]
+  				fname = set('file',"#{name}#{File.extname(f[:filename])}")
+  				FileUtils.cp( f[:tempfile].path, db.storage.path( fname ).gsub('/image/','/file/') ) 
   			end
-			end
-
-			def gallery=( name )
-				unless gallery.nil? or gallery.empty?
-					gallery = self.class.find( name )
-					unless gallery.entries.include?( self.name )
-						gallery.entries << self.name
-						gallery.save
-					end
-					set( :gallery, name )
-				end
 			end
 				
 		end

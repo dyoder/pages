@@ -17,11 +17,11 @@ module Pages
       
       with :resource => :image do
         response( :favicon, :get => [ 'favicon.ico' ] ) { action( :get, 'favicon.ico' ) }
-        response( :get, :get => [ 'images', 'get', :pathname ] ) { action( :get, pathname ) }
+        response( :get, :get => [ 'images', { :asset => true } ] ) { action( :get, asset * '/' ) }
       end
       
       with :resource => :media do
-        response( :get, :get => [ { :media => MEDIA }, :asset ] ) { action( :get, media, asset ) }
+        response( :get, :get => [ { :media => MEDIA }, { :asset => true } ] ) { action( :get, media, asset * '/' ) }
       end
       
       # special rule to handle rss blog feed
@@ -40,7 +40,7 @@ module Pages
         response( :login, :get => [ 'login' ] ) { render( :login ) }
         response :authenticate, :post => [ 'login' ]
         # main site administration page
-        response( :main, :get => [ 'admin' ] ) { render( :main ) }
+        response( :main, :get => [ 'admin' ] ) { render( :admin ) }
         response :update, :post => [ 'admin' ]
       end
       

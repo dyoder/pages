@@ -7,7 +7,6 @@ html do
 		div.page do
 	    story( :banner )
       story( :sidebar )
-      debugger
       layout_content
 		  div.footer do
         story( :footer )

@@ -19,11 +19,11 @@ layout :admin, :title => 'Edit Blog', :name => 'blog-editor',
         div.property :id => 'blog-entries' do
           label 'Images'
           p.help 'Drag stories in or out of your blog.'
-          excluded = all(:story).map { |story| story.name } - @blog.entries
+          excluded = all(:story) - @blog.entries
           [ [ 'Blog', @blog.entries ], [ 'Stories', excluded ] ].each do | title, stories |
             ul.container do
               h3 title
-              stories.map { | name | find( :story, name ) }.each do | story |
+              stories.each do | story |
                 li do
                   a story.title, :href => "##{story.name}"
                 end

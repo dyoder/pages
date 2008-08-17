@@ -1,11 +1,13 @@
 module Pages
   module Controllers
-    class Site < Default
+    class Site < Waves::Controllers::Base
       
+      include Pages::ResponseMixin
+			
 			def authenticate
 				admin = site.administrators.find do |admin| 
-					( admin['email'] == assigns.email )  && 
-						( admin['password'] == assigns.password )
+					( admin['email'] == attributes[:email] )  && 
+						( admin['password'] == attributes[:password] )
 				end
 				if admin
   				session[:user] = admin['email']

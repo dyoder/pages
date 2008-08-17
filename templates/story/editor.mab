@@ -8,7 +8,7 @@ layout :admin, :title => 'Edit Story', :name => 'story-editor', :styles => %w( b
     div.main do
       properties do
         property :label => 'Title', :name => 'story.title', 
-          :type => :text, :value => ( @story.title if @story.title? ),
+          :type => :text, :value => @story.title,
           :help => "The title will show up in the title bar of the browser window and " <<
             "be displayed as the top-level heading at the beginning of the story. You " <<
             "can leave it blank if you want."
@@ -20,7 +20,7 @@ layout :admin, :title => 'Edit Story', :name => 'story-editor', :styles => %w( b
       properties do
         unless @story.format == 'mab' 
           property :label => 'Format', :name => 'story.format', :type => :choice, 
-            :value => @story.format, :options => models[:story].formats,
+            :value => @story.format, :options => model( :story ).formats,
             :help => "Use 'Formatted Text' unless you know what you're doing. :)"
         end
         property :label => 'Author', :name => 'story.author', :type => :choice,

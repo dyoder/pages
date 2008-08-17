@@ -4,12 +4,13 @@ module Pages
 		
 		class Blog < Default
 		  
-			def entries=( rval )
-				case rval
-				when String then set( :entries, rval.split(/\s*,\s*/) )
-				else set( :entries, rval )
-				end
-			end
+		  include Functor::Method
+		  
+		  def self.associate( domain )
+  		  has_many :entries, :class => Pages::Models::Story[ domain ]
+  		end
+		  
+			functor( :entries=, String ) { set( :entries, rval.split(',').map{ |name| name.strip } ) }
 			
 		end
 		

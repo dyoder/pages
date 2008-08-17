@@ -10,7 +10,7 @@ module Pages
 			class Assigns ; include Attributes ; end
 			
 			def assigns ; @assigns ||= create_assigns ; end
-			alias _model model ; def model ; _model[:db/domain/model_name] ; end
+			alias_method :_model, :model ; def model ; _model( model_name ) ; end
 			def create ; model.create( create_assigns.to_h ) ; end
 			def find( name ) ; model.find( name ) or not_found ; end
 			def update( name ) ; find( name ).assign( assigns.to_h ).save ; end

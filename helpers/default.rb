@@ -5,10 +5,7 @@ module Pages
     module Default
       
       include Waves::Helpers::BuiltIn
-      
-      def model( name ) ; app::Models[ name ][ :db / domain / name ] ; end
-      
-      def find( m, n ); model( m ).find(n) ; end
+      include Pages::ResponseMixin
       
       def show( model, name, assigns = {} )
 			  assigns[ model ] = find( model, name )
@@ -31,8 +28,14 @@ module Pages
 			
 			def mab( content ) ; markaby( content ) ; end
 			
-			def site ; Pages::Models::Site[ :db / domain ].find( 'site' ) ; end
-
+      def buttons( list )
+			  div.buttons do
+  			  list.each do |button|
+  			    self << view( :form, :button, button )
+  			  end
+  			end
+			end
+			
 		end
 	end
 end
