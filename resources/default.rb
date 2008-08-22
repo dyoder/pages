@@ -5,29 +5,25 @@ module Pages
     class Default < Waves::Resources::Base
             
       def add
-        action( :create ) and redirect( paths.show )
+        controller.create and redirect( paths.show )
       end
       
       def update
-        action( :update, name ) and redirect( paths( :site ).main )
+        controller.update( attributes.name ) and rediect( paths( :site ).admin )
       end
       
       def delete
-        action( :delete, name ) and redirect( paths( :site ).main )
+        controller.delete( attributes.name ) and redirect( paths( :site ).main )
       end
       
       def edit
-        action( :find, name ) and render( :editor )
+        view.edit( resource => controller.find( attributes.name ) )
       end
       
-      def show
-        action( :find, name ) and render( :show )
+      def show( name )
+        view.show( resource => controller.find( name or attributes.name ) )
       end
-      
-      def home
-        params['name'] = 'home' ; show
-      end
-      
+            
     end
     
   end

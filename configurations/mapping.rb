@@ -12,48 +12,47 @@ module Pages
 			
       #
       # Supported Media Types
-      # We could probably consolidate these into a single rule or 3 ...
       #
-      
-      with :resource => :image do
-        response( :favicon, :get => [ 'favicon.ico' ] ) { action( :get, 'favicon.ico' ) }
-        response( :get, :get => [ 'images', { :asset => true } ] ) { action( :get, asset * '/' ) }
+      before do
+        on( :any => [ 'admin', true ] ) { authenticated? }
       end
       
-      with :resource => :media do
-        response( :get, :get => [ { :media => MEDIA }, { :asset => true } ] ) { action( :get, media, asset * '/' ) }
+      on( :get => [ 'favicon.ico' ], :resource => :image, :as => :fav_icon ) { get( 'favicon.ico' ) }
+      
+      # special image handling to deal with image resizing
+      on( :get => [ 'images', { :asset => true } ], :as => :get ) { get( attributes.asset * '/' ) }
+      
+      # arbitrary media: video, audio, whichever
+      on( :get => [ { :media => MEDIA }, { :asset => true } ], :resource => :media, :as => :get ) do
+        get( attributes.media, attributes.asset * '/')
       end
       
-      # special rule to handle rss blog feed
-      response( :feed, :get => [ 'blog', :name ], :resource => :blog, :accepts => :rss ) do
-        action( :find, name ) and render( :feed )
+      # blogs feeds
+      on( :get => [ 'blog', :name ], :resource => :blog, :accepts => :rss, :as => :feed ) do
+         view.feed( :blog => controller.find( attributes.name ) )
       end
       
       #
       # Administration
       #
-            
-      with :resource => :site do
-        # make the user is logged in before doing any admin functions
-        before :authenticated, :path => [ 'admin', true ]
-        # show the login page / process the login info
-        response( :login, :get => [ 'login' ] ) { render( :login ) }
-        response :authenticate, :post => [ 'login' ]
-        # main site administration page
-        response( :main, :get => [ 'admin' ] ) { render( :admin ) }
-        response :update, :post => [ 'admin' ]
-      end
       
-      response :add, :post => [ 'admin', { :resource => RESOURCE } ]
-      response :update, :post => [ 'admin', { :resource => RESOURCE }, :name ]
-      response :delete, :delete => [ 'admin', { :resource => RESOURCE }, :name ]
-      response :edit, :get => [ 'admin', { :resource => RESOURCE }, :name ]
-      response :show, :get => [ { :resource => RESOURCE }, :name ]
+      with :resource => :site do
+        on( :get => [ 'login' ], :as => :login ) { view.login }
+        on( :post => [ 'login' ], :as => :authenticate ) { controller.authenticate }
+        on( :get => [ 'admin' ], :as => :admin ) { view.admin }
+        on( :post => [ 'admin' ], :as => :update ) { controller.update ; view.admin }
+      end
+           
+      on( :post => [ 'admin', { :resource => RESOURCE } ], :as => :add ) { add }
+      on( :post => [ 'admin', { :resource => RESOURCE }, :name ], :as => :update ) { update }
+      on( :delete => [ 'admin', { :resource => RESOURCE }, :name ], :as => :delete ) { delete }
+      on( :edit, :get => [ 'admin', { :resource => RESOURCE }, :name ], :as => :edit ) { edit }
+      on( :get => [ { :resource => RESOURCE }, :name ], :as => :show ) { show( attributes.name ) }
 
       # defaults to story
       with :resource => :story do
-        response :show, :get => [ :name ]
-        response :home, :get => []
+        on( :get => [ :name ], :as => :show ) { show( attributes.name ) }
+        on( :get => [], :as => :home ) { show( 'home' ) }
       end
 
     end
