@@ -17,11 +17,11 @@ module Pages
       end
       
       def edit
-        view.edit( resource => controller.find( attributes.name ) )
+        view.edit( singular => controller.find( query.name ) )
       end
       
       def show( name )
-        view.show( resource => controller.find( name or attributes.name ) )
+        view.show( singular => controller.find( name ))
       end
             
     end

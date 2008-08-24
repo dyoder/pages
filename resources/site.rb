@@ -4,7 +4,7 @@ module Pages
     
     class Site < Default
       
-      def authenticated
+      def authenticated?
         redirect( paths.login ) unless session[:user]
       end
       

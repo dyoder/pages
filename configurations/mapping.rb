@@ -7,52 +7,54 @@ module Pages
       extend Waves::Mapping
       
       # Basic Patterns
-			RESOURCE = /^(story|image|gallery|blog|feed|product|catalog)$/
-			MEDIA = /^(javascript|flash|audio|css|video)$/
+			MEDIA = { :media => /^(javascript|flash|audio|css|video)$/ }
+			RESOURCE = [{ :resource => /^(story|image|gallery|blog|feed|product|catalog)$/ }]
+			NAMED_RESOURCE = RESOURCE << :name
+			ADMIN = [ 'admin' ] ; LOGIN = [ 'login' ]
 			
       #
       # Supported Media Types
       #
-      before do
-        on( :any => [ 'admin', true ] ) { authenticated? }
-      end
       
-      on( :get => [ 'favicon.ico' ], :resource => :image, :as => :fav_icon ) { get( 'favicon.ico' ) }
+      on( :get => [ 'favicon.ico' ], :resource => :image, :as => :fav_icon ) { controller.get( 'favicon.ico' ) }
       
       # special image handling to deal with image resizing
-      on( :get => [ 'images', { :asset => true } ], :as => :get ) { get( attributes.asset * '/' ) }
+      on( :get => [ 'images', { :asset => true } ], :as => :get ) { controller.get( query.asset * '/' ) }
       
       # arbitrary media: video, audio, whichever
-      on( :get => [ { :media => MEDIA }, { :asset => true } ], :resource => :media, :as => :get ) do
-        get( attributes.media, attributes.asset * '/')
+      on( :get => [ MEDIA, { :asset => true } ], :resource => :media, :as => :get ) do
+        controller.get( query.media, query.asset * '/')
       end
       
-      # blogs feeds
-      on( :get => [ 'blog', :name ], :resource => :blog, :accepts => :rss, :as => :feed ) do
-         view.feed( :blog => controller.find( attributes.name ) )
+      # blog feeds
+      on( :get => [ 'blog', :name ], :resource => :blog, :as => :feed ) do
+         view.feed( :blog => controller.find( query.name ) )
       end
       
       #
       # Administration
       #
-      
+
       with :resource => :site do
-        on( :get => [ 'login' ], :as => :login ) { view.login }
-        on( :post => [ 'login' ], :as => :authenticate ) { controller.authenticate }
-        on( :get => [ 'admin' ], :as => :admin ) { view.admin }
-        on( :post => [ 'admin' ], :as => :update ) { controller.update ; view.admin }
+        before do
+          on( :any => ADMIN << true ) { authenticated? }
+        end
+        on(  :get   => LOGIN,   :as => :login )          { view.login }
+        on( :post   => LOGIN,   :as => :authenticate )   { controller.authenticate }
+        on(  :get   => ADMIN,   :as => :admin )          { view.admin }
+        on( :post   => ADMIN,   :as => :update )         { controller.update ; view.admin }
       end
-           
-      on( :post => [ 'admin', { :resource => RESOURCE } ], :as => :add ) { add }
-      on( :post => [ 'admin', { :resource => RESOURCE }, :name ], :as => :update ) { update }
-      on( :delete => [ 'admin', { :resource => RESOURCE }, :name ], :as => :delete ) { delete }
-      on( :edit, :get => [ 'admin', { :resource => RESOURCE }, :name ], :as => :edit ) { edit }
-      on( :get => [ { :resource => RESOURCE }, :name ], :as => :show ) { show( attributes.name ) }
+      
+      on(   :post   => ADMIN + RESOURCE,        :as => :add )
+      on(   :post   => ADMIN + NAMED_RESOURCE,  :as => :update )
+      on( :delete   => ADMIN + NAMED_RESOURCE,  :as => :delete )
+      on(    :get   => ADMIN + NAMED_RESOURCE,  :as => :edit )
+      on(    :get   => NAMED_RESOURCE,          :as => :show )
 
       # defaults to story
       with :resource => :story do
-        on( :get => [ :name ], :as => :show ) { show( attributes.name ) }
-        on( :get => [], :as => :home ) { show( 'home' ) }
+        on(   :get  => [ :name ],  :as => :show )
+        on(   :get  => [],         :as => :home )
       end
 
     end
