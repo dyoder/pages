@@ -9,7 +9,7 @@ module Pages
       # Basic Patterns
 			MEDIA = { :media => /^(javascript|flash|audio|css|video)$/ }
 			RESOURCE = [{ :resource => /^(story|image|gallery|blog|feed|product|catalog)$/ }]
-			NAMED_RESOURCE = RESOURCE << :name
+			NAMED_RESOURCE = RESOURCE + [ :name ]
 			ADMIN = [ 'admin' ] ; LOGIN = [ 'login' ]
 			
       #
@@ -19,7 +19,7 @@ module Pages
       on( :get => [ 'favicon.ico' ], :resource => :image, :as => :fav_icon ) { controller.get( 'favicon.ico' ) }
       
       # special image handling to deal with image resizing
-      on( :get => [ 'images', { :asset => true } ], :as => :get ) { controller.get( query.asset * '/' ) }
+      on( :get => [ 'images', { :asset => true } ], :resource => :image, :as => :get ) { controller.get( query.asset * '/' ) }
       
       # arbitrary media: video, audio, whichever
       on( :get => [ MEDIA, { :asset => true } ], :resource => :media, :as => :get ) do
@@ -37,7 +37,7 @@ module Pages
 
       with :resource => :site do
         before do
-          on( :any => ADMIN << true ) { authenticated? }
+          on( :any => ADMIN + [ true ] ) { authenticated? }
         end
         on(  :get   => LOGIN,   :as => :login )          { view.login }
         on( :post   => LOGIN,   :as => :authenticate )   { controller.authenticate }
@@ -54,7 +54,7 @@ module Pages
       # defaults to story
       with :resource => :story do
         on(   :get  => [ :name ],  :as => :show )
-        on(   :get  => [],         :as => :home )
+        on(   :get  => [],         :as => :show )
       end
 
     end

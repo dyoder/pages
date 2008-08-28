@@ -20,8 +20,8 @@ module Pages
         view.edit( singular => controller.find( query.name ) )
       end
       
-      def show( name )
-        view.show( singular => controller.find( name ))
+      def show
+        view.show( singular => controller.find( query.name || 'home' ) )
       end
             
     end
