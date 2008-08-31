@@ -4,18 +4,11 @@ module Pages
     
     class Site < Default
       
-      def authenticated?
-        redirect( paths.login ) unless session[:user]
-      end
-      
-      def authenticate
-        ( action( :authenticate ) and redirect( paths.main ) ) or 
-          render( :login, :retry => true )
-      end
-      
-      def update
-        action( :update, :site ) and redirect( paths.main )
-      end
+      before { redirect( paths.login ) unless session[:user] }
+      on( :get, :login => LOGIN ) { view.login }
+      on( :get, :admin => ADMIN ) { view.admin }
+      on( :post, :authenticate => LOGIN ) { controller.authenticate }
+      on( :post, :update => ADMIN ) { controller.update ; view.admin }
       
     end
     
