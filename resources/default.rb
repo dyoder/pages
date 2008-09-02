@@ -2,9 +2,7 @@ module Pages
   
   module Resources
     
-    class Default
-      
-      include Waves::Resources::Mixin
+    class Default < Waves::Resources::Base
       
 			with( :visitor ) do
 			  
