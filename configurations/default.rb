@@ -2,17 +2,19 @@ module Pages
   module Configurations
     class Development < Default
       
-      resources [
-        { :accepts => :image } => :image,
-        { :accepts => [ :css, :js ] } => :media,
-        { :accepts => :rss } => :blog,
-
-        [ :resource, { :rest => true } ] => :visitor,
-        [ :name ] => :story,
-
-        [ 'admin', :resource, { :rest => true }] => :author,
-        [ 'admin', { :rest => true } ] => :site
-      ]      
+      resources do
+        
+        mount :image, :accepts => :image
+        mount :media, :accepts => [ :css, :js ]
+        mount :blog, :accepts => :rss
+        
+        mount true, [ :resource, { :rest => true } ], :as => :visitor
+        mount :story, [ :name ], :as => :visitor
+        
+        mount true, [ 'admin', :resource, { :rest => true }], :as => :author
+        mount :site, [ 'admin', { :rest => true } ]
+        
+      end
       
     end
   end
