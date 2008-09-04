@@ -1,6 +1,6 @@
 module Pages
   module Configurations
-    class Development < Default
+    class Default
       
       resources do
         
