@@ -7,8 +7,7 @@ p.subtitle @blog.summary if @blog.summary
 
 div.entries do
 
- 	(@blog.entries||[]).map { |name| find( :story, name ) }.
-	sort_by(&:published).reverse[0..4].each do | entry |
+ 	@blog.entries.sort_by(&:published).reverse[0..4].each do | entry |
 	
 	  h2 do
 	    a entry.title, :href => "/#{entry.name}/"

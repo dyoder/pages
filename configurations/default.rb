@@ -3,9 +3,10 @@ module Pages
     class Default < Waves::Configurations::Default
             
       resources do
-        mount :image, :accepts => :image
-        mount :media, :accepts => [ :css, :js ]
-        mount :blog, :accepts => :rss
+        
+        mount :image, :accept => :image
+        mount :media, :accept => [ :css, :javascript ]
+        mount :blog, :accept => :rss
         
         mount true, [ :resource, { :rest => true } ], :as => :visitor
         mount :story, [ :name ], :as => :visitor
