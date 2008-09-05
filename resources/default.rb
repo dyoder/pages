@@ -23,8 +23,7 @@ module Pages
         end
 
         on( :get, :edit => [ :name ] ) do
-          debugger
-          view.edit( singular => controller.find( query.name ) )
+          view.editor( singular => controller.find( query.name ) )
         end
               
         on( :put, :add =>  [ :name ] ) do
