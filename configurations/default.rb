@@ -8,12 +8,12 @@ module Pages
         mount :media, :accept => [ :css, :javascript ]
         mount :blog, :accept => :rss
         
-        mount true, [ :resource, { :rest => true } ], :as => :visitor
-        mount :story, [ :name ], :as => :visitor
-        mount :story, [], :as => :visitor
-        
         mount true, [ 'admin', :resource, { :rest => true }], :as => :author
-        mount :site, [ 'admin', { :rest => true } ]
+        mount :site, [ 'admin' ], :as => :author
+        
+        mount true, [ :resource, { :rest => true }], :as => :visitor
+        mount :story, :as => :visitor
+        
         
       end
       

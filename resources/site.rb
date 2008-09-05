@@ -7,7 +7,7 @@ module Pages
       with( :author ) do
         before { redirect( paths( :site ).login ) unless session[:user]  }
         on( :get, :login => [ 'login' ] ) { view.login }
-        on( :get, :admin => [ 'admin' ] ) { view.admin }
+        on( :get, :admin => [] ) { view.admin }
         on( :post, :authenticate =>  [ 'login' ] ) { controller.authenticate }
         on( :put, :update =>  [ 'admin' ] ) { controller.update ; view.admin }
       end
