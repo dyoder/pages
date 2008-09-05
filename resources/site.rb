@@ -4,11 +4,13 @@ module Pages
     
     class Site < Default
       
-      before { redirect( paths.login ) unless session[:user] }
-      on( :get, :login => LOGIN ) { view.login }
-      on( :get, :admin => ADMIN ) { view.admin }
-      on( :post, :authenticate => LOGIN ) { controller.authenticate }
-      on( :post, :update => ADMIN ) { controller.update ; view.admin }
+      with( :author ) do
+        before { redirect( paths( :site ).login ) unless session[:user]  }
+        on( :get, :login => [ 'login' ] ) { view.login }
+        on( :get, :admin => [ 'admin' ] ) { view.admin }
+        on( :post, :authenticate =>  [ 'login' ] ) { controller.authenticate }
+        on( :put, :update =>  [ 'admin' ] ) { controller.update ; view.admin }
+      end
       
     end
     

@@ -6,7 +6,7 @@ module Pages
       
 			with( :visitor ) do
 			  
-			  on( :get, :show => [{ :name => :home }] )
+			  on( :get, :show => [{ :name => :home }] ) do
           view.show( singular => controller.find( query.name ) )
         end
         
