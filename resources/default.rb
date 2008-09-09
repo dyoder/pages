@@ -5,15 +5,7 @@ module Pages
     class Default
       include Waves::Resources::Mixin
       
-			with( :visitor ) do
-			  
-			  on( :get, :show => [{ :name => 'home' }] ) do
-          view.show( singular => controller.find( query.name ) )
-        end
-        
-      end
-      
-      with( :author ) do
+      with( :authenticated? => true ) do
         
         before do
           redirect( paths( :site ).login ) unless session[:user]  
@@ -37,6 +29,10 @@ module Pages
       
       end
             
+		  on( :get, :show => [{ :name => 'home' }] ) do
+        view.show( singular => controller.find( query.name ) )
+      end
+              
     end
     
   end

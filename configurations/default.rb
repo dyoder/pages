@@ -4,15 +4,15 @@ module Pages
             
       resources do
         
-        mount :image, :accept => :image
-        mount :media, :accept => [ :css, :javascript ]
-        mount :blog, :accept => :rss
+        direct :accept => :image, :to => :image
+        direct :accept => [ :css, :javascript ], :to => :media
+        direct :accept => :rss, :to => :blog
         
-        mount true, [ 'admin', :resource, { :rest => true }], :as => :author
-        mount :site, [ 'admin' ], :as => :author
+        direct [ 'admin', :resource, { :rest => true }], :through => :admin
+        direct [ 'admin' ], :to => :site
         
-        mount true, [ :resource, { :rest => true }], :as => :visitor
-        mount :story, :as => :visitor
+        direct [ :resource, { :rest => true }]
+        direct :story
         
         
       end
