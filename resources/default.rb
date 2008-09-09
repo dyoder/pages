@@ -7,14 +7,10 @@ module Pages
       
       with( :authenticated? => true ) do
         
-        before do
-          redirect( paths( :site ).login ) unless session[:user]  
-        end
-        
         on( :post, :update =>  [ :name ] ) do
           controller.update( query.name ) and redirect( paths( :site ).admin )
         end
-
+      
         on( :get, :edit => [ :name ] ) do
           view.editor( singular => controller.find( query.name ) )
         end

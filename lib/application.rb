@@ -5,3 +5,5 @@ module Pages
 	include Waves::Foundations::Default
 	#include Waves::Layers::ORM::Filebase  
 end
+
+Waves << Pages
