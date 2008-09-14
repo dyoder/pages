@@ -2,12 +2,12 @@ module Pages
   
   module Resources
     
-    class Media < Default
+    class Media
       
-      MEDIA = { :media => /^(javascript|flash|audio|css|video)$/ }
-			
-      on( :get, :get => [ MEDIA, { :asset => true } ] ) do
-        controller.get( query.media, query.asset * '/')
+      include Waves::Resources::Mixin
+      
+      on( :get, :get => [ :media, { :asset => true } ] ) do
+        controller.get( captured.media, captured.asset * '/')
       end
       
     end

@@ -14,7 +14,6 @@ module Pages
         direct [ :resource, { :rest => true }]
         direct :story
         
-        
       end
       
     end
