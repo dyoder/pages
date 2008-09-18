@@ -2,13 +2,19 @@ module Pages
   
   module Resources
     
-    class Site < Default
+    class Site
       
-      with( :author ) do
-        before { redirect( paths( :site ).login ) unless session[:user]  }
-        on( :get, :login => [ 'login' ] ) { view.login }
+      include Waves::Resources::Mixin
+      
+      class Paths < Waves::Resources::Paths
+        def self.login ; "/login" ; end
+      end
+      
+      on( :get, :login => [ 'login' ] ) { view.login }
+      on( :post, :authenticate =>  [ 'login' ] ) { controller.authenticate }
+
+      with( :traits => { :authenticated => true } ) do
         on( :get, :admin => [] ) { view.admin }
-        on( :post, :authenticate =>  [ 'login' ] ) { controller.authenticate }
         on( :put, :update =>  [ 'admin' ] ) { controller.update ; view.admin }
       end
       

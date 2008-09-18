@@ -3,9 +3,9 @@ module Pages
   module Resources
     
     class Blog < Default
-      
+
       on( :get, :feed => [ 'blog', :name ] ) do
-         view.feed( :blog => controller.find( query.name ) )
+        view.feed( :blog => controller.find( captured.name ) )
       end
       
     end

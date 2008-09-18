@@ -9,7 +9,7 @@ module Pages
         direct :accept => :rss, :to => :blog
         
         direct [ 'admin', :resource, { :rest => true }], :through => :admin
-        direct [ 'admin' ], :to => :site
+        direct [ 'admin' ], :to => :site, :through => :admin
         
         direct [ :resource, { :rest => true }]
         direct :story

@@ -3,9 +3,10 @@ module Pages
   module Resources
     
     class Default
+      
       include Waves::Resources::Mixin
       
-      with( :traits => { :authenticated? => true }) do
+      with( :traits => { :authenticated => true }) do
         
         on( :post, :update =>  [ :name ] ) do
           controller.update( captured.name ) and redirect( paths( :site ).admin )
