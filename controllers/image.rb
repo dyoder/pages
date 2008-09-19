@@ -15,6 +15,18 @@ module Pages
 				instance.delete
 			end
 			
+			# TODO: Add file upload support to controller (or resource)
+			# functor( :file=, Hash ) do | file |
+	    #   unless f[:filename].empty?
+  		# 		set( 'content_type',f[:type])
+  		# 		puts "FILENAME",f[:filename]
+  		# 		fname = set('file',"#{name}#{File.extname(f[:filename])}")
+  		# 		FileUtils.cp( f[:tempfile].path, db.storage.path( fname ).gsub('/image/','/file/') ) 
+  		# 	end
+			# end
+				
+      
+			
 			private
 			
 			def resolve( path )

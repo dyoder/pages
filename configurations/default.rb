@@ -12,6 +12,8 @@ module Pages
         direct [ 'admin' ], :to => :site, :through => :admin
         
         direct [ :resource, { :rest => true }]
+        
+        direct [ 'login'], :to => :site
         direct :story
         
       end

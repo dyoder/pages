@@ -10,8 +10,6 @@ module Pages
   		  has_many :entries, :class => Pages::Models::Story[ domain ]
   		end
 		  
-			functor( :entries=, String ) { set( :entries, rval.split(',').map{ |name| name.strip } ) }
-			
 		end
 		
 	end

@@ -5,7 +5,8 @@ module Pages
     class Admin < Waves::Resources::Delegate
       include Functor::Method
       before do
-        redirect( paths( :site ).login ) unless session[:user]
+        # redirect( paths( :site ).login ) unless session[:user]
+        redirect( '/login' ) unless session[ :user ]
         request.traits.waves.authenticated = true 
       end
       

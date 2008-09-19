@@ -23,8 +23,8 @@ html do
       div.main.gallery :id => @name do
     
         h1 @gallery.title if @gallery.title?
-
-        images = ( @gallery.images || [] ).map { |name| find( :image, name ) }
+        
+        images = @gallery.images
         case @gallery[:display]
         when 'Slideshow'
           div.frame do
