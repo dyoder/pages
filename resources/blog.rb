@@ -4,7 +4,7 @@ module Pages
     
     class Blog < Default
 
-      on( :get, :feed => [ 'blog', :name ] ) do
+      on( :get, { :feed => [ 'blog', :name ] }, { :accept => :rss }) do
         view.feed( :blog => controller.find( captured.name ) )
       end
       

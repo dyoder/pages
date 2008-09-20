@@ -7,12 +7,12 @@ module Pages
       include Waves::Resources::Mixin
 
       with( :traits => { :authenticated => true } ) do
-        on( :get, :admin => [] ) { view.admin }
-        on( :put, :update => [ 'admin' ] ) { controller.update ; view.admin }
+        on( :get, :admin => [ 'admin' ] ) { view.admin }
+        on( :put, :update => [ 'admin' ] ) { controller.update ; redirect( paths.admin ) }
       end
       
-      on( :get, [] ) { view.login }
-      on( :post, [] ) { controller.authenticate }
+      on( :get, :login => [ 'login' ] ) { view.login }
+      on( :post, :authenticate => [ 'login' ] ) { controller.authenticate }
 
     end
     
