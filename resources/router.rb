@@ -1,6 +1,6 @@
 module Pages
   module Resources
-    class Router
+    class Map
       include Waves::Resources::Mixin
       
       # default to story if nothing else matches
