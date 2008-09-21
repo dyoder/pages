@@ -19,7 +19,7 @@ module Pages
 			private
 			
 			def create_assigns
-			  Assigns.new( params[ model_name.singular.intern ] ).instance_eval do
+			  Assigns.new( query[ model_name.singular ] ).instance_eval do
 			    name = title.downcase.gsub(/\s+/,'-').gsub(/[^\w\-]/,'') if ( name.nil? || name.empty? )
   			  published = Date.today ; self
 			  end
