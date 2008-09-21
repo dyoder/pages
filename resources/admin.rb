@@ -2,12 +2,20 @@ module Pages
   
   module Resources
     
-    class Admin < Waves::Resources::Delegate
+    class Admin
       
-      before( [ 'admin', :resource, :rest => true ] ) do
+      include Waves::Resources::Mixin
+      
+      before( [ 'admin', { :rest => true } ] ) { authenticated? }
+      
+      on( true, [ 'admin' ] ) { to( :site ) }
+
+      on( true, [ 'admin', :resource, { :rest => true } ] ) { to( captured.resource ) }
+
+      private
+      
+      def authenticated?
         redirect( paths( :site ).login ) unless session[:user]
-        request.traits.authenticated = true 
-        to( capture.resource )
       end
       
     end
