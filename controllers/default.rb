@@ -7,9 +7,6 @@ module Pages
 			include Waves::Controllers::Mixin
 			include Pages::ResponseMixin
 			
-			class Assigns ; include Attributes ; end
-			
-			def assigns ; @assigns ||= create_assigns ; end
 			alias_method :_model, :model ; def model ; _model( model_name ) ; end
 			def create ; model.create( create_assigns.to_h ) ; end
 			def find( name ) ; model.find( name ) or not_found ; end
@@ -18,9 +15,9 @@ module Pages
 			
 			private
 			
-			def create_assigns
-			  Assigns.new( query[ model_name.singular ] ).instance_eval do
-			    name = title.downcase.gsub(/\s+/,'-').gsub(/[^\w\-]/,'') if ( name.nil? || name.empty? )
+			def assigns
+			  @assigns ||= query[ model_name ].instance_eval do
+			    key = title.downcase.gsub(/\s+/,'-').gsub(/[^\w\-]/,'') if ( key.nil? || key.empty? )
   			  published = Date.today ; self
 			  end
 			end

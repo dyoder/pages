@@ -8,6 +8,9 @@ module Pages
       
       # special URL just for login and authenticating
       on( [ :get, :post ], [ 'login' ] ) { to( :site ) }
+      
+      # another url for accessing admin page and updating site info
+      on( [ :get, :post ], [ 'admin' ] ) { to( :site ) }
 
       # otherwise assume we are matching against a resource
       on( true, [ :resource, { :rest => true } ] ) { to( captured.resource ) }

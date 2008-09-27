@@ -23,7 +23,7 @@ module Pages
       end
     
       on( :delete, :delete =>  [ 'admin', :resource, :name ] ) do
-        controller.delete( captured.name ) and redirect( paths( :site ).main )
+        controller.delete( captured.name ) and redirect( paths( :site ).admin )
       end
                 
       private
