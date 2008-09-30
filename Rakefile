@@ -3,12 +3,18 @@
 # Warning:  This file is clobbered when you update your
 # application with the waves script.  Accordingly, you may
 # wish to keep your tasks in .rb or .rake files in lib/tasks
+#!/usr/bin/env ruby
 require 'rubygems'
-lambda {
-  waves = ( ( WAVES if defined? WAVES ) || ENV['WAVES'] || 'waves' )
-  $:.unshift(File.join( waves, "lib" )) if File.exist? waves
-}.call
-require 'waves'
+waves = [
+    (WAVES if defined? WAVES), ENV[ 'WAVES'], './waves'
+].compact.map { |dir| File.join(dir, 'lib') }.find(&File.method(:directory?))
+if waves
+    $: << waves
+    waves = File.join( waves, 'waves' )
+else
+    waves = 'waves'
+end
+require waves
 
 begin
   require 'startup'
