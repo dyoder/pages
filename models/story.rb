@@ -18,7 +18,7 @@ module Pages
 			def self.formats
 			  FORMATS
 			end
-				
+							
 		end
 		
 	end
