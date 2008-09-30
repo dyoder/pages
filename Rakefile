@@ -17,7 +17,6 @@ end
 require waves
 
 begin
-  require 'startup'
   Waves::Console.load(:mode => ENV['mode'])
 
   # load tasks from waves framework
