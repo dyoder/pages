@@ -5,5 +5,3 @@ require 'lib/response_mixin'
 module Pages
 	include Waves::Foundations::Classic
 end
-
-Waves << Pages
