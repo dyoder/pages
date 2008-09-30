@@ -15,7 +15,11 @@ module Pages
 			
 			def title ; get( :title ) or '' ; end
 			
-			def published ; get( :published ) or Date.today ; end
+			def published
+			  rval = get( :published )
+			  return rval if rval.is_a? Date
+			  return Date.today
+			end
       
 		end
 		
