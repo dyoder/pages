@@ -20,7 +20,7 @@ begin
   Waves::Console.load(:mode => ENV['mode'])
 
   # load tasks from waves framework
-  %w( cluster generate gem ).each { |task| require "tasks/#{task}.rb" }
+  %w( manager generate gem ).each { |task| require "tasks/#{task}.rb" }
 
   # load tasks from this app's lib/tasks
   Dir["lib/tasks/*.{rb,rake}"].each { |task| require task }

@@ -5,14 +5,15 @@ module Pages
     class Production < Default
       
       reloadable []
-      log :level => :error, :output => ( :log / "pages.#{$$}" ), :rotation => :weekly
+      log :level => :error, :output => ( :log / 'log.out' ), :rotation => :weekly
       host '0.0.0.0'
-      port 3000
-      handler ::Rack::Handler::Mongrel, :Host => host, :Port => port
+      ports [ 3000, 3001, 3002 ]
 
       application do
         run ::Waves::Dispatchers::Default.new
       end
+
+      server Waves::Servers::Mongrel.new
 
     end
   end
