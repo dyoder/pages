@@ -1,3 +1,5 @@
+require 'caches/memcached'
+
 module Pages
   module Configurations
     class Development < Default
@@ -7,7 +9,7 @@ module Pages
       host '127.0.0.1'
       port 3000
 	    session :duration => 30.minutes, :path => './tmp/sessions'
-      
+	          
       application do
         use ::Rack::ShowExceptions
         run ::Waves::Dispatchers::Default.new
