@@ -18,7 +18,7 @@ module Pages
 			def assigns
 			  unless @assigns
 			    @assigns = query[ model_name ]
-			    @assigns.key  = title.downcase.gsub(/\s+/,'-').gsub(/[^\w\-]/,'') unless @assigns.key
+			    @assigns.key  = @assigns.title.downcase.gsub(/\s+/,'-').gsub(/[^\w\-]/,'') unless @assigns.key
   			  @assigns.published = Date.today unless @assigns.published ; self
 			  end
 			  return @assigns
