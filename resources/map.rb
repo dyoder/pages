@@ -4,7 +4,7 @@ module Pages
       include Waves::Resources::Mixin
       
       # default to story if nothing else matches
-      on( true ) { debugger ; to( :story ) }
+      on( true ) { to( :story ) }
       
       # otherwise assume we are matching against a resource
       on( true, [ :resource, { :rest => true } ] ) { to( captured.resource ) }
@@ -26,7 +26,6 @@ module Pages
       private
       
       def authenticated?
-        debugger
         redirect( paths( :site ).login ) unless session[:user]
       end
       
