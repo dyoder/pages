@@ -13,7 +13,7 @@ module Pages
         run ::Waves::Dispatchers::Default.new
       end
 
-      server Waves::Servers::Mongrel.new
+      server Waves::Servers::Mongrel
       
     end
   end

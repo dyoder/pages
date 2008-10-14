@@ -4,7 +4,7 @@ module Pages
       include Waves::Resources::Mixin
       
       # default to story if nothing else matches
-      on( true ) { to( :story ) }
+      on( true ) { debugger ; to( :story ) }
       
       # otherwise assume we are matching against a resource
       on( true, [ :resource, { :rest => true } ] ) { to( captured.resource ) }
@@ -21,7 +21,7 @@ module Pages
       on( :get, true, :accept => :rss ) { to( :blog ) }
       
       before( [ 'admin', { :rest => true } ] ) { authenticated? }
-      before( [ 'admin' ] ) { debugger ; authenticated? }
+      before( [ 'admin' ] ) { authenticated? }
       
       private
       
