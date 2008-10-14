@@ -7,7 +7,7 @@ module Pages
       reloadable []
       log :level => :info, :output => ( :log / 'log.out' )
       host '0.0.0.0'
-      ports [ 3000 ]
+      ports [ 2020, 2021, 2022 ]
 
       application do
         run ::Waves::Dispatchers::Default.new
