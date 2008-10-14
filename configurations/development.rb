@@ -1,5 +1,3 @@
-require 'caches/memcached'
-
 module Pages
   module Configurations
     class Development < Default
