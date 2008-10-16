@@ -4,8 +4,8 @@ module Pages
     
     module Default
       
-      include Pages::ResponseMixin
       include Waves::Helpers::Extended
+      include Pages::ResponseMixin
       
       def show( model, name, assigns = {} )
 			  assigns[ model ] = find( model, name )
