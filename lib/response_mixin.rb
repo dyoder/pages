@@ -1,6 +1,6 @@
 module Pages
   module ResponseMixin
-		def domain ; log.info "calling Pages::ResponseMixin#domain" ; request.domain.sub(/^www\./,'') ; end
+		def domain ; request.domain.sub(/^www\./,'') ; end
 		def site ; Pages::Models::Site[ domain ].find( :site ) ; end
     def model( name ) ; app::Models[ name ][ domain ]; end
     alias_method :models, :model

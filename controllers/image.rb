@@ -30,7 +30,6 @@ module Pages
 			private
 						
 			def resolve( path )
-			  log.info domain.inspect
 				unless File.extname( path ).empty?
 					path = [ :db / domain / :file / path, :public / :images / path  ].find do | path |
 					  File.exist?( path )
