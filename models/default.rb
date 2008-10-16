@@ -5,7 +5,6 @@ module Pages
     class Default
       
       def self.[]( domain ) 
-        domain.sub!(/^www\./,'')
 			  Class.new( self ) do
 			    include( Filebase::Model[ :db / domain / superclass.basename.snake_case ] )
 			    associate( domain )
