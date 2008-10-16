@@ -5,7 +5,7 @@ module Pages
     class Default
       
       def self.[]( domain ) 
-        domain.split('.')[-2,2]
+        domain = domain.split('.')[-2,2].join('.')
 			  Class.new( self ) do
 			    include( Filebase::Model[ :db / domain / superclass.basename.snake_case ] )
 			    associate( domain )
