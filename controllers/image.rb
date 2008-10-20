@@ -15,6 +15,7 @@ module Pages
 				instance.delete
 			end
 			
+			
 			# TODO: Add file upload support to controller (or resource)
 			# functor( :file=, Hash ) do | file |
 	    #   unless f[:filename].empty?
@@ -43,10 +44,11 @@ module Pages
 			end
 						
 			def resize( path, size )
-				size = ::Image::Dimensions[ size.intern ]
-				unless image = cached( path, size )
-					image = ::Image.read( path ).resize!( size )
-					cache( path, size, image )
+			  dimensions = size.split('x').map { |d| d.to_i }
+			  dimensions = ::Image::Dimensions[ size.intern ] if dimensions.length == 1
+				unless image = cached( path, dimensions )
+					image = ::Image.read( path ).resize!( dimensions )
+					cache( path, dimensions, image )
 				end
 				response.expires = ( Date.today + 365 ).strftime('%a, %d %b %Y 00:00:00 GMT')
 				image

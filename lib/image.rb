@@ -26,8 +26,6 @@ class Image
 		self
 	end
 		
-	def to_blob
-		@data
-	end
+	def to_blob ; @data ; end
 
 end

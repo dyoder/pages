@@ -13,7 +13,7 @@ module Pages
       DISPLAYS = [ ['Album', 'Album' ], ['Slideshow','Slideshow'] ]
       
 			def self.displays; DISPLAYS; end
-					
+			
 		end
 		
 	end

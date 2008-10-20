@@ -40,11 +40,11 @@ $(document).ready( function(){
   // one image in the slideshow, which is okay, because it is for a gallery
   var images = $('div.slide img'); var size = images.size();
   images.eq( ( size > 3 )? 3 : size ).load( function() { 
-    $('div.slide.loading').fadeOut(4000, function() { 
+    $('div.slide.loading').fadeOut(3000, function() { 
       $(this).remove();
-      $('div.slide:first-child').fadeIn(4000, function() {
+      $('div.slide:first-child').fadeIn(3000, function() {
         $('div.gallery div.frame').cycle({
-          fx:'fade', timeout: 5000, speed:2000
+          fx:'fade', timeout: 4000, speed:2000
         });
       });
     });
