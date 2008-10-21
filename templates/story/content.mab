@@ -1,6 +1,5 @@
-h1 @story.title if @story.title?
+h1 @story.title unless @story.title.empty?
 
-puts @story.inspect if @story.name == 'announce-0.7.0'
 unless @story.blog.nil? or @story.blog.empty?
   if @story.author and Date === @story.published
     p.byline do
