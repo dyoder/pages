@@ -12,6 +12,12 @@ module Pages
 
       application do
         run ::Waves::Dispatchers::Default.new
+	use Rack::Session::Cookie, :key => 'rack.session',
+        # :domain => 'foo.com',
+        :path => '/',
+        :expire_after => 2592000,
+        :secret => 'Change it'
+
       end
 
       server Waves::Servers::Mongrel
