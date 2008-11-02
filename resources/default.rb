@@ -11,7 +11,7 @@ module Pages
 		  on( :get, :show => [{ :name => 'home' }] ) { show }
 
       on( :post, :add =>  [ 'admin', :resource ] ) do
-        controller.create and redirect( paths.show )
+        redirect( paths.edit( controller.create['key'] ) )
       end
       
       on( :get, :edit => [ 'admin', :resource, :name ] ) do
