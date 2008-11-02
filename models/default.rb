@@ -14,7 +14,7 @@ module Pages
 			
 			def self.associate( domain ) ; end
 			
-			def title ; get( :title ) or '' ; end
+			def title ;  get( :title ) or '' ; end
 			
 			def published
 			  rval = get( :published )
