@@ -17,7 +17,7 @@ module Pages
       
       # before anything else, check the accepts headers and route accordingly
       on( :get, true, :accept => :image ) { to( :image ) }
-      on( :get, true, :accept => [ :css, :javascript ] ) { to( :media ) }
+      on( :get, true, :accept => [ :css, :javascript, :pdf ] ) { to( :media ) }
       on( :get, true, :accept => :rss ) { to( :blog ) }
       
       before( [ 'admin', { :rest => true } ] ) { authenticated? }
