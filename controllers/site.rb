@@ -11,6 +11,7 @@ module Pages
 				end
 				if admin
   				session[:user] = admin['email']
+				redirect(paths.admin)
   			end
 			end
 
