@@ -14,6 +14,12 @@ module Pages
 			
 			def self.associate( domain ) ; end
 			
+			def assign( assigns )
+			  assigns[ :key ] = assigns.title.downcase.gsub(/\s+/,'-').gsub(/[^\w\-]/,'') unless get( :key )
+			  assigns[ :published ] = Date.today unless assigns.published
+			  super( assigns )
+		  end
+		  
 			def title ;  get( :title ) or '' ; end
 			
 			def published
