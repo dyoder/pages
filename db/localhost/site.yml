@@ -1,0 +1,10 @@
+domain: localhost
+title: Pages
+name: pages-default
+description: description of the site.
+authors:
+  - Example
+administrators:
+  - name: Default
+    email: default@example.com
+    password: default
