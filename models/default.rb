@@ -5,6 +5,7 @@ module Pages
     class Default
       
       include Pages::ResponseMixin
+      
       def self.[]( domain ) 
 			  Class.new( self ) do
 			    include( Filebase::Model[ :db / domain / superclass.basename.snake_case ] )

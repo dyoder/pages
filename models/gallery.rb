@@ -4,8 +4,6 @@ module Pages
 		
 		class Gallery < Default
 			
-			include Functor::Method
-			
 			def self.associate( domain )
   			has_many :images, :class => Pages::Models::Image[ domain ]
   		end

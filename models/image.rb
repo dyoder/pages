@@ -4,8 +4,6 @@ module Pages
 		
 		class Image < Default
 		  
-		  include Functor::Method
-		  
 		  def associate( domain )
   		  has_one :gallery, :class => Pages::Models::Gallery[ domain ]
   		end
