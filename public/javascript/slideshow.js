@@ -28,7 +28,7 @@ $(document).ready( function(){
   
   // do the same thing for images on the load event to ensure that the
   // browser has the image actually loaded ...
-  $('div.slide > img:first-child').load( centerSlide );
+  //$('div.slide > img:first-child').load( centerSlide );
   
   // whent the img for the loading slide is itself loaded, go ahead
   // and show it while we wait for the rest of the images to load

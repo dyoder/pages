@@ -16,7 +16,7 @@
       %>
         <item>
           <title><%= entry.title %></title>
-          <link>http://<%= domain %>/<%= entry.name %>"</link>
+          <link>http://<%= domain %>/<%= entry.key %></link>
           <pubDate><%= entry.published.strftime('%a, %d %b %Y %H:%M:%S %z') %></pubDate>
           <description>
             <%= format :content => entry.summary, :format => entry.format %>

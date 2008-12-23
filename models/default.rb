@@ -33,6 +33,8 @@ module Pages
 			  return rval if rval.is_a? Date
 			  return Date.today
 			end
+
+			def name ; get( :key ) ; end
       
 		end
 		
