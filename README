@@ -1,0 +1,5 @@
+Pages expects to find FileBase datastores for each domain in a directory named "db". There is a starter config in example_db for localhost.  So to get up and running quickly, you can do this:
+
+  $ mkdir db
+  $ cp -pr example_db/localhost db/
+  
