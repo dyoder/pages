@@ -24,7 +24,7 @@ layout :admin, :title => 'Edit Image', :name => 'image-editor', :styles => %w( b
       properties do
         property :label => 'Gallery', :name => 'image.gallery', 
           :type => :choice, :value => @image.gallery, 
-          :options => ( all(:gallery).map { |g| [ g.title, g.name ] } + [ 'None' ] ),
+          :options => ( all(:gallery).map { |g| [ g.title, g.name ] } + [ [ 'None', '' ] ] ),
           :help => "Select a gallery for this image."
         property :label => 'Author', :name => 'image.author', :type => :choice,
           :value => @image.author, :options => site.authors.map { |author| [ author, author ] },
