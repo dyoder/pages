@@ -1,0 +1,12 @@
+/* formatting specific to comments */
+div.comments { margin-top: 40px; border-top: 1px solid silver; }
+div.comment { border-bottom: 1px solid silver; }
+div.comment p { font-size: 10pt; }
+div.comment p.byline { font-family: verdana, arial, sans-serif; font-size: 8pt; }
+
+/* formatting specific to the comment form */
+form.comment { height: 640px; width: 515px; 
+	background: url(http://studio.zeraweb.com/s/rectangle?w=516&h=648&r=12&c=060) no-repeat; }
+form.comment h1, form.comment h2, form.comment h3, 
+form.comment p, form.comment label { color: white; }
+form.comment *.value { color: #333; }
