@@ -8,7 +8,7 @@ layout :admin, :name => 'admin', :title => 'Site Administration',
     end
     div.stories.panel do
       h2 'Stories'
-      view( :story, :list, :stories => all(:story).select { |story| story.format != 'mab' } )
+      view( :story, :list, :stories => all(:story) )
     end
     div.images.panel do
       h2 'Images'

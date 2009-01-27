@@ -16,12 +16,13 @@ layout :admin, :title => 'Edit Gallery', :name => 'gallery-editor',
         property :label => 'Title', :name => 'gallery.title', 
           :type => :text, :value => @gallery.title,
           :help => 'The title of the gallery will show up in captions.'
-        property :label => 'Display', :name => 'gallery.display',
-          :type => :choice, :value => @gallery.display,
-          :options => models[:gallery].displays, 
-          :help => 'This controls how you want to present the gallery - ' <<
-            'as a photo album where you can click on an image to zoom in, ' <<
-            'or as a slideshow, where the images display one at a time.'
+		#TODO FIX THIS! models[:gallery] => ArgumentError Exception: (eval):15:in `models': wrong number of arguments (0 for 1)
+        #property :label => 'Display', :name => 'gallery.display',	
+        #  :type => :choice, :value => @gallery.display,
+        #  :options => models[:gallery].displays, 
+        #  :help => 'This controls how you want to present the gallery - ' <<
+        #    'as a photo album where you can click on an image to zoom in, ' <<
+        #    'or as a slideshow, where the images display one at a time.'
         div.property :id => 'gallery-images' do
           label 'Images'
           p.help 'Drag images in or out of the gallery.'

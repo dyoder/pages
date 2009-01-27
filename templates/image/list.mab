@@ -2,8 +2,8 @@ view :image, :quick_add
 ul do
   @images.sort_by(&:title).each do |image|
     li do
-      a :href => paths( :image ).edit( image.key ) do
-        img :src => "/images/#{image.file}?size=thumb", 
+      a :href => "/admin/image/#{image.key}/" do
+          img :src => "/images/#{image.title}?size=thumb", 
           :title => image.title, :alt => image.title
       end
     end

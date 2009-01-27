@@ -1,8 +1,9 @@
 module Pages
   module Controllers
-    class Site < Waves::Controllers::Base
+    class Site < Default
       
-      include Pages::ResponseMixin
+      include Waves::Controllers::Mixin
+			include Pages::ResponseMixin
 			
 			def authenticate
 				admin = site.administrators.find do |admin| 
@@ -14,8 +15,6 @@ module Pages
 				redirect(paths.admin)
   			end
 			end
-
-			def model ; _model[ :db / domain ] ; end
 
   	end
   	

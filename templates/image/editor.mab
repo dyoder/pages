@@ -10,12 +10,12 @@ layout :admin, :title => 'Edit Image', :name => 'image-editor', :styles => %w( b
         property :label => 'Title', :name => 'image.title', 
           :type => :text, :value => @image.title,
           :help => 'The title of the image will show up in captions.'
-        property :label => 'Upload', :name => 'image.file', :type => :file, :value => @image.file,
+        property :label => 'Upload', :name => 'image.file', :type => :file, :value => @image.attributes['file'][:filename],
           :help => "Click 'browse' to select a new file for this image."
-        if @image.file
+        if @image.attributes['file']
           div.property.preview do
             label 'Preview'
-            img :src => "/images/#{@image.file}?size=medium"
+            img :src => "/images/#{@image.attributes['file'][:filename]}?size=medium"
           end
         end
       end
