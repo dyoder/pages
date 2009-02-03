@@ -17,7 +17,7 @@ layout :admin, :title => 'Edit Blog', :name => 'blog-editor',
           :type => :text, :value => @blog.title,
           :help => 'The title of the blog will show up in captions.'
         div.property :id => 'blog-entries' do
-          label 'Images'
+          label 'Stories'
           p.help 'Drag stories in or out of your blog.'
           excluded = all(:story) - @blog.entries
           [ [ 'Blog', @blog.entries ], [ 'Stories', excluded ] ].each do | title, stories |
@@ -25,7 +25,8 @@ layout :admin, :title => 'Edit Blog', :name => 'blog-editor',
               h3 title
               stories.each do | story |
                 li do
-                  a story.title, :href => "##{story.name}"
+                  a story.title, :href => "/admin/story/#{story.name}/"
+#-nope need to hook up with jquery	property :name => 'blog.entries', :type => :text, :value => story.key
                 end
               end # images
             end # ul.container

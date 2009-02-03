@@ -16,24 +16,25 @@ layout :admin, :title => 'Edit Gallery', :name => 'gallery-editor',
         property :label => 'Title', :name => 'gallery.title', 
           :type => :text, :value => @gallery.title,
           :help => 'The title of the gallery will show up in captions.'
-		#TODO FIX THIS! models[:gallery] => ArgumentError Exception: (eval):15:in `models': wrong number of arguments (0 for 1)
-        #property :label => 'Display', :name => 'gallery.display',	
-        #  :type => :choice, :value => @gallery.display,
-        #  :options => models[:gallery].displays, 
-        #  :help => 'This controls how you want to present the gallery - ' <<
-        #    'as a photo album where you can click on an image to zoom in, ' <<
-        #    'or as a slideshow, where the images display one at a time.'
+        property :label => 'Display', :name => 'gallery.display',	
+          :type => :choice, :value => @gallery.display,
+          :options => models('gallery').displays, 
+          :help => 'This controls how you want to present the gallery - ' <<
+            'as a photo album where you can click on an image to zoom in, ' <<
+            'or as a slideshow, where the images display one at a time.'
         div.property :id => 'gallery-images' do
           label 'Images'
           p.help 'Drag images in or out of the gallery.'
+		  
           excluded = all(:image).map { |image| image.name } - @gallery.images
           [ [ 'Gallery', @gallery.images ], [ 'Images', excluded ] ].each do | title, images |
             ul.container do
               h3 title
               images.map { |name| find(:image,name) }.each do |image|
                 li do
-                  a :href => "##{image.name}" do
-                    img :src => "/images/#{image.file}?size=thumb"
+               
+                  a :href => "/image/#{image.name}" do
+                    img :src => "/images/#{image.name}?size=thumb"
                   end
                 end
               end # images

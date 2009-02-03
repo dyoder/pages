@@ -15,7 +15,6 @@ module Pages
 				instance.delete
 			end
 			
-			
 			# TODO: Add file upload support to controller (or resource)
 		  #functor( :file=, Hash ) do | file |
 	    #   unless f[:filename].empty?
@@ -37,9 +36,9 @@ module Pages
 					end
 					path or not_found
 				else
-					image = model[ :db / domain ].find( path )
-					response.content_type = image.content_type
-					:db / domain / :file / image.file
+				  image = app::Models[ model_name ][ domain ].find(path)
+					response.content_type = image.attributes['file'][:type]
+					image.filepath
 				end
 			end
 						
