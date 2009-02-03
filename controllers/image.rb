@@ -24,9 +24,8 @@ module Pages
 			    model_b.images.push(img)
 			    model_b.save
 			  end
-		    img
-		    # updating image entry !! FIX THIS - BREAKING THE FILE ON DISK
-		    # img.assign( query[ model_name ].to_h ).save
+		    # updating image entry
+		    img.assign( query[ model_name ].to_h ).save
 			end
 			
 			# TODO: Add file upload support to controller (or resource)

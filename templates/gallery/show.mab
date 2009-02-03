@@ -39,7 +39,7 @@ html do
           end
         when 'Album'
           images.each do |image|
-            a.thickbox :href => "/images/#{image.key}?size=large" do
+            a.thickbox :href => "/images/#{image.key}?size=medium" do
               img.thumbnail :src => "/images/#{image.key}?size=small"
             end
           end
