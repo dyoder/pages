@@ -5,13 +5,16 @@ module Pages
 		class Story < Default
 			
 			def update( name )
-			   #updating story entry
-			   find( name ).assign( query[ model_name ].to_h ).save
+			   str = find( name )
 			   #updating relation with blog 
-			   sel_b = query[ model_name ].to_h['blog']
-			   model_b = models('blog').find(sel_b)
-			   model_b.entries.push(find(name))
-			   model_b.save
+ 			   sel_b = query[ model_name ].to_h['blog']
+ 			   model_b = models('blog').find(sel_b)
+ 			   unless model_b.nil?
+ 			     model_b.entries.push( str )
+ 			     model_b.save
+ 			   end
+			   #updating story entry
+			   str.assign( query[ model_name ].to_h ).save
 			end
 			
 		end

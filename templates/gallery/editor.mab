@@ -25,21 +25,21 @@ layout :admin, :title => 'Edit Gallery', :name => 'gallery-editor',
         div.property :id => 'gallery-images' do
           label 'Images'
           p.help 'Drag images in or out of the gallery.'
-		  
-          excluded = all(:image).map { |image| image.name } - @gallery.images
+
+          excluded = all(:image) - @gallery.images
           [ [ 'Gallery', @gallery.images ], [ 'Images', excluded ] ].each do | title, images |
             ul.container do
               h3 title
-              images.map { |name| find(:image,name) }.each do |image|
+              images.each do |image|
                 li do
-               
-                  a :href => "/image/#{image.name}" do
-                    img :src => "/images/#{image.name}?size=thumb"
+                  a :href => "/admin/image/#{image.key}/" do
+                    img :src => "/images/#{image.key}?size=medium"
                   end
                 end
               end # images
             end # ul.container
           end # array each
+
         end # property
       end # properties
     end # div.main

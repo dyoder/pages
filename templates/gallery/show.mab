@@ -33,14 +33,14 @@ html do
             end
             images.each do | image |
               div.slide do
-                img :src => "/images/#{image.file}?size=medium" if image
+                img :src => "/images/#{image.key}?size=medium" if image
               end
             end
           end
         when 'Album'
           images.each do |image|
-            a.thickbox :href => "/images/#{image.file}?size=large" do
-              img.thumbnail :src => "/images/#{image.file}?size=small"
+            a.thickbox :href => "/images/#{image.key}?size=large" do
+              img.thumbnail :src => "/images/#{image.key}?size=small"
             end
           end
         end

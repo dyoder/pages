@@ -11,8 +11,22 @@ module Pages
 			
 			def delete( name )
 				instance = find( name )
-				clear_cache( instance )
+				# clear_cache( instance )
 				instance.delete
+			end
+			
+			def update( name )
+			  img = find(name)
+				# updating relation with gallery 
+			  sel_b = query[ model_name ].to_h['gallery']
+			  model_b = models('gallery').find(sel_b)
+			  unless model_b.nil?
+			    model_b.images.push(img)
+			    model_b.save
+			  end
+		    img
+		    # updating image entry !! FIX THIS - BREAKING THE FILE ON DISK
+		    # img.assign( query[ model_name ].to_h ).save
 			end
 			
 			# TODO: Add file upload support to controller (or resource)
@@ -36,7 +50,7 @@ module Pages
 					end
 					path or not_found
 				else
-				  image = app::Models[ model_name ][ domain ].find(path)
+				  image = app::Models[ model_name ][ domain ].find( path )
 					response.content_type = image.attributes['file'][:type]
 					image.filepath
 				end
@@ -44,13 +58,12 @@ module Pages
 						
 			def resize( path, size )
 			  dimensions = size.split('x').map { |d| d.to_i }
-			  dimensions = ::Image::Dimensions[ size.intern ] if dimensions.length == 1
-				unless image = cached( path, dimensions )
-					image = ::Image.read( path ).resize!( dimensions )
-					cache( path, dimensions, image )
-				end
-				response.expires = ( Date.today + 365 ).strftime('%a, %d %b %Y 00:00:00 GMT')
-				image
+        dimensions = ::Image::Dimensions[ size.intern ] if dimensions.length == 1
+        unless image = cached( path, dimensions )
+            image = ::Image.read( path ).resize!( dimensions )
+            # cache( path, dimensions, image )
+        end
+        image
 			end
 			
 			def cached( path, size )

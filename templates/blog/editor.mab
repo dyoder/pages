@@ -28,7 +28,7 @@ layout :admin, :title => 'Edit Blog', :name => 'blog-editor',
                   a story.title, :href => "/admin/story/#{story.name}/"
 #-nope need to hook up with jquery	property :name => 'blog.entries', :type => :text, :value => story.key
                 end
-              end # images
+              end # stories
             end # ul.container
           end # array each
         end # property
