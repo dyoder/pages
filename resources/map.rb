@@ -16,7 +16,7 @@ module Pages
       on( [ :get, :post ], [ 'login' ] ) { to( :site ) }
       
       # before anything else, check the accepts headers and route accordingly
-      on( :get, true, :accept => :image ) {   to( :image ) }
+      on( :get, true, :accept => :image ) { to( :image ) }
       on( :get, true, :accept => [ :css, :javascript, 'x-shockwave-flash' ] ) { to( :media ) }
       on( :get, true, :accept => :rss ) { to( :blog ) }
       
@@ -29,7 +29,6 @@ module Pages
       def authenticated?
         redirect( paths( :site ).login ) unless session[:user]
       end
-      
       
     end
   end

@@ -20,17 +20,18 @@ layout :admin, :title => 'Edit Blog', :name => 'blog-editor',
           label 'Stories'
           p.help 'Drag stories in or out of your blog.'
           excluded = all(:story) - @blog.entries
-          [ [ 'Blog', @blog.entries ], [ 'Stories', excluded ] ].each do | title, stories |
-            ul.container do
+
+          [ [ 'selected', 'Blog', @blog.entries ], [ 'excluded', 'Stories', excluded ] ].each do | name, title, stories |
+            ul(:class => name + ' container') do
               h3 title
               stories.each do | story |
-                li do
+                li(:id => "#{story.key}") do
                   a story.title, :href => "/admin/story/#{story.name}/"
-#-nope need to hook up with jquery	property :name => 'blog.entries', :type => :text, :value => story.key
                 end
               end # stories
             end # ul.container
           end # array each
+
         end # property
       end # properties
     end # div.main

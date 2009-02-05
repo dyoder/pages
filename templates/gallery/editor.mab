@@ -25,13 +25,13 @@ layout :admin, :title => 'Edit Gallery', :name => 'gallery-editor',
         div.property :id => 'gallery-images' do
           label 'Images'
           p.help 'Drag images in or out of the gallery.'
-
           excluded = all(:image) - @gallery.images
-          [ [ 'Gallery', @gallery.images ], [ 'Images', excluded ] ].each do | title, images |
-            ul.container do
+
+          [ [ 'selected', 'Gallery', @gallery.images ], [ 'excluded', 'Images', excluded ] ].each do | name, title, images |
+            ul(:class => name + ' container') do
               h3 title
               images.each do |image|
-                li do
+                li(:id => "#{image.key}") do
                   a :href => "/admin/image/#{image.key}/" do
                     img :src => "/images/#{image.key}?size=medium"
                   end
