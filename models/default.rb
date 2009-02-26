@@ -31,6 +31,7 @@ module Pages
 			def published
 			  rval = get( :published )
 			  return rval if rval.is_a? Date
+			  return Date.parse(rval) if rval.is_a? String
 			  return Date.today
 			end
 
