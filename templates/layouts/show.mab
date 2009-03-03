@@ -6,7 +6,7 @@ html do
 	body do
 		div.page do
 	    story( :banner )
-      story( :sidebar )
+        story( :sidebar )
       layout_content
 		  div.footer do
         story( :footer )

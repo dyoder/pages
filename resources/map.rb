@@ -17,7 +17,7 @@ module Pages
       
       # before anything else, check the accepts headers and route accordingly
       on( :get, [ 'images' , true ] ) { to( :image ) }
-      on( :get, true, :ext => [ :css, :js, :swf ] ) { to( :media ) }
+      on( :get, true, :ext => [ :css, :js, :swf, :gif, :png ] ) { to( :media ) }
       on( :get, true, :accept => :rss ) { to( :blog ) }
       
       # on( true ) { debugger }
