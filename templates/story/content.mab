@@ -1,10 +1,10 @@
 h1 @story.title unless @story.title.empty?
 
 unless @story.blog.nil? or @story.blog.empty?
-  if @story.author and Date === @story.published
+  if @story.author and (Date === @story.published or Time === @story.published)
     p.byline do
       text 'by '; span.author @story.author
-      text ' on '; span.date @story.published.strftime('%b %d, %Y')
+      text ' on '; span.date @story.published.strftime('%A, %b %d, %Y %H:%m %z')
     end
   end
 end

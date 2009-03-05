@@ -15,11 +15,11 @@
         @blog.entries.sort_by(&:published).reverse.each do | entry | 
       %>
         <item>
-          <title><%= entry.title %></title>
+		  <title><%= (format :content => entry.title, :format => entry.format).gsub(/<\/?p>/, '') %></title>
           <link>http://<%= domain %>/<%= entry.key %></link>
           <pubDate><%= entry.published.strftime('%a, %d %b %Y %H:%M:%S %z') %></pubDate>
           <description>
-            <%= format :content => entry.summary, :format => entry.format %>
+            <%= escape_html( format( :content => entry.summary, :format => entry.format ) ) %>
           </description>
         </item>
       <% end %>

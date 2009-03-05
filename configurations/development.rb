@@ -5,7 +5,7 @@ module Pages
       
       reloadable [ Pages ]
 	          
-      include Waves::Cache::RackCache
+      #include Waves::Cache::RackCache
       application.use Rack::Session::Cookie, :key => 'rack.session',
         # :domain => 'foo.com',
         :path => '/',
