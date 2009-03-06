@@ -1,3 +1,5 @@
+require 'simple-rss'
+require 'open-uri'
 module Pages
   
   module Helpers
@@ -24,6 +26,10 @@ module Pages
   			else
   			  options[:content]
   			end
+			end
+			
+			def feed( options )
+			    SimpleRSS.parse( open( options[:url] ) )
 			end
 			
 			def mab( content ) ; markaby( content ) ; end

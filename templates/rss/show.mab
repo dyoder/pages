@@ -1,0 +1,28 @@
+div.entries do
+	if @feed.entries[0].pubDate 	
+		sort_f = lambda { |x| x.pubDate }		#rss date is in pubDate tag
+	else
+	 	sort_f = lambda { |x| x.published }		#atom date is in published tag
+	end
+	
+	@feed.entries.sort_by { |f| sort_f.call(f) } .reverse[0..4].each do | entry |
+
+	  h2 do
+	    entry.title
+	  end
+	  
+	  div.content do
+		if entry.content.nil?
+	  		unescape_html( entry.description )	if entry.description
+		else
+	  		unescape_html( entry.content )		if entry.content
+		end
+	  end
+	
+	  p do
+        a 'More ...', :href => "#{entry.link}/"
+      end
+
+	end
+
+end

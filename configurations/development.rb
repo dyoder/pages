@@ -1,4 +1,4 @@
-require 'layers/rack/rack_cache'
+#require 'layers/rack/rack_cache'
 module Pages
   module Configurations
     class Development < Default
