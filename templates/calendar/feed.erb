@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version='2.0'
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:wfw="http://wellformedweb.org/CommentAPI/" 
+    xmlns:dc="http://purl.org/dc/elements/1.1/" 
+    xmlns:atom="http://www.w3.org/2005/Atom">
+
+    <channel>
+      <title><%= @calendar.title %></title>
+      <link><%= url %></link>
+      <description><%= @calendar.summary %></description>
+      <language>en</language>
+
+      <% 
+        @calendar.events.sort_by(&:date).reverse.each do | event | 
+      %>
+        <item>
+		  <title><%= (format :content => event.title, :format => event.format).gsub(/<\/?p>/, '') %></title>
+          <link>http://<%= domain %>/<%= event.key %></link>
+          <pubDate><%= event.date.strftime('%a, %d %b %Y %H:%M:%S %z') %></pubDate>
+          <description>
+            <%= escape_html( format( :content => event.content, :format => event.format ) ) %>
+          </description>
+        </item>
+      <% end %>
+
+    </channel>
+</rss>

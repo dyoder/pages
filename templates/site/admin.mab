@@ -14,13 +14,21 @@ layout :admin, :name => 'admin', :title => 'Site Administration',
       h2 'Images'
       view( :image, :list, :images => all(:image) )
     end
-    div.blogs.panel do
+	div.events.panel do
+      h2 'Events'
+      view( :event, :list, :events => all(:event) )
+    end
+	div.blogs.panel do
       h2 'Blogs'
       view( :blog, :list, :blogs => all(:blog) )
     end
     div.galleries.panel do
       h2 'Galleries'
       view( :gallery, :list, :galleries => all(:gallery) )
+    end
+	div.calendars.panel do
+      h2 'Calendars'
+      view( :calendar, :list, :calendars => all(:calendar) )
     end
   end
 end

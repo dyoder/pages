@@ -12,6 +12,7 @@ $(document).ready( function() {
       .addClass('error')
       .after("<p class='error'>Required field.</p>");
     if ( failed.size() == 0 ) {
+		// this is an hack!! horrible hack
 		if ($("ul.selected h3").length == 1) {
 	 		var tag = "";
 			if($('ul.selected h3')[0].textContent == "Gallery")

@@ -1,0 +1,9 @@
+layout :show, :title => @calendar.title do
+
+  div.main.calendar :id => @name do
+  
+    view( :calendar, :content, :calendar => @calendar )
+    
+  end
+
+end

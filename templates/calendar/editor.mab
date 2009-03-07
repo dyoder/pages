@@ -1,0 +1,49 @@
+layout :admin, :title => 'Edit Calendar', :name => 'calendar-editor', 
+  :styles => %w( base editor container ), 
+  :scripts => %w( 
+    jquery.ui-1.0/ui.mouse 
+    jquery.ui-1.0/ui.draggable jquery.ui-1.0/ui.draggable.ext 
+    jquery.ui-1.0/ui.droppable jquery.ui-1.0/ui.droppable.ext
+    jquery.blockUI base editor container 
+  ) do
+  form :action => url, :method => 'POST' do 
+    buttons [
+      { :label => 'Save Changes', :type => :submit },
+      { :label => 'Delete This Blog', :type => :delete, :href => url }
+    ]
+    div.main do
+      properties do
+        property :label => 'Title', :name => 'calendar.title', 
+          :type => :text, :value => @calendar.title
+        div.property :id => 'calendar-events' do
+          label 'Events'
+          p.help 'Drag events in or out of your blog.'
+          excluded = all(:event) - @calendar.events
+
+          [ [ 'selected', 'Calendar', @calendar.events ], [ 'excluded', 'Events', excluded ] ].each do | name, title, events |
+            ul(:class => name + ' container') do
+              h3 title
+              events.each do | event |
+                li(:id => "#{event.key}") do
+                  a event.title, :href => "/admin/event/#{event.name}/"
+                end
+              end # events
+            end # ul.container
+          end # array each
+
+        end # property
+      end # properties
+    end # div.main
+    div.sidebar do
+      properties do
+        property :label => 'Tags', :type => 'text', 
+          :name => 'calendar.tags', :value => @calendar.tags,
+          :help => "Words you would associate with this content, separated by commas." <<
+            " <b>Example:</b> conferences, meetings, mindshare."
+        property :label => 'Summary', :type => 'textarea', :name => 'calendar.summary',
+          :size => :small, :value => @calendar.summary,
+          :help => "A short summary that can be used in sidebars."
+      end
+    end
+  end
+end

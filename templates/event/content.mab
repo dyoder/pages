@@ -1,0 +1,10 @@
+h1 @event.title unless @event.title.empty?
+
+
+if (Date === @event.date or Time === @event.date)
+	p.byline do
+		text ' on '; span.date @event.date.strftime('%A, %b %d, %Y %H:%m %z')
+	end
+end
+
+format( :content => @event.content, :format => @event.format )
