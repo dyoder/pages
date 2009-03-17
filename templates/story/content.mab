@@ -8,5 +8,4 @@ unless @story.blog.nil? or @story.blog.empty?
     end
   end
 end
-
 format( :content => @story.content, :format => @story.format )

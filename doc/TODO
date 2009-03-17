@@ -4,8 +4,8 @@
   - turn off stack reporting in browser
     - replace with generic error message
     - redirect to /home ... ? or back ... ?
-  - field validation / required fields
-  - comment support for stories
+  - field validation
+  - comment support for stories - in progress
   - theme development / selection
   - user registration 
   - change password
@@ -23,8 +23,10 @@
 - open source?
 
 TODO - 3/5/2009 - above list is still valid
+
 - model
 	- relation has_one :x, is not validate/enforced/respected (I can associate a story to different blogs, which 				   brings to incongruence in the story model )
+	
 	- published method (and the alias date) is sort of an hack for supporting old Date type and new Time type.
 
 - controller
@@ -32,6 +34,10 @@ TODO - 3/5/2009 - above list is still valid
 	
 - view
 	- rethink the design of admin page. maybe is ok, but look to some alternative way to display categories. It doesn't seem to scale very well if we add lot of possible entries.
+	
 	- replace the horrible javascript hack in base.js (for posting the drag&drop box) with ajax call.
-	- the checkbox in stories and images editor with you can choose one blog/gallery doesn't have much sense.. and
+	
+	- the checkbox in stories and images editor where you can choose one blog/gallery doesn't have much sense.. and
 it complicates a lot the controller.update.
+
+	- gallery slideshow is not working.

@@ -37,8 +37,6 @@ module Pages
   		# 		FileUtils.cp( f[:tempfile].path, db.storage.path( fname ).gsub('/image/','/file/') ) 
   		# 	end
 		  #end
-				
-      
 			
 			private
 						

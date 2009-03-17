@@ -4,6 +4,7 @@ module Pages
 		
 		class Story < Default
 			
+			# this is need only because the story editor has a check box for choosing the related blog.
 			def update( name )
 			   str = find( name )
 			   #updating relation with blog 

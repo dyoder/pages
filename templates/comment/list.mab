@@ -1,0 +1,6 @@
+@comments.each do |comment|
+  div.comment do
+    textile comment.content
+    p.info "#{ comment.attribution }, at " + comment.published.strftime('%A, %b %d, %Y %H:%m %z')
+  end
+end
