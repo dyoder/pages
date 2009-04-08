@@ -1,28 +1,36 @@
-div.entries do
+# hack!! dependencies on SimpleRSS gem.. need to be more generic
+if @feed.is_a? SimpleRSS
 	if @feed.entries[0].pubDate 	
 		sort_f = lambda { |x| x.pubDate }		#rss date is in pubDate tag
 	else
 	 	sort_f = lambda { |x| x.published }		#atom date is in published tag
 	end
+		
+	div.feed.entries do
 	
-	@feed.entries.sort_by { |f| sort_f.call(f) } .reverse[0..4].each do | entry |
+		@feed.entries.sort_by { |f| sort_f.call(f) } .reverse[0..4].each do | entry |
 
-	  h2 do
-	    entry.title
-	  end
+	  		h2 do
+	    		entry.title
+	  		end
 	  
-	  div.content do
-		if entry.content.nil?
-	  		unescape_html( entry.description )	if entry.description
-		else
-	  		unescape_html( entry.content )		if entry.content
-		end
-	  end
+	  		div.content do
+			if entry.content.nil?
+	  			unescape_html( entry.description )	if entry.description
+			else
+	  			unescape_html( entry.content )		if entry.content
+			end
+	  		end
 	
-	  p do
-        a 'More ...', :href => "#{entry.link}/"
-      end
+	  		p do
+        		a 'More ...', :href => "#{entry.link}/"
+      		end
 
+		end
 	end
-
+else
+	div.feed.error do
+		p 'Feed ' << @feed << ' not available'
+	end
 end
+

@@ -11,8 +11,6 @@ module Pages
       on( true, [ 'admin', :resource ] ) { to( captured.resource ) }
 
       on( true, [ 'admin', :resource, { :rest => true } ] ) { to( captured.resource ) }
-
-      private
       
     end
     

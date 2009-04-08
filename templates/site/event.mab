@@ -1,0 +1,4 @@
+div.events.panel do
+  h2 'Events'
+  view( :event, :list, :events => all(:event) )
+end

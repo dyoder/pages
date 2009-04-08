@@ -1,0 +1,4 @@
+div.calendars.panel do
+  h2 'Calendars'
+  view( :calendar, :list, :calendars => all(:calendar) )
+end

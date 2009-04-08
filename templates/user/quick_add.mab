@@ -1,0 +1,15 @@
+div.quick_add do 
+  a.open 'Create a new user.', :href => '#'
+  form.user :action => '/admin/user/', :method => 'post' do
+    a.close do
+      img :src => '/images/icons/lime/16x16/box_closed.png',
+        :height => '16', :width => '16'
+    end
+    properties do
+      property :label => 'Username', :name => 'user.email', :type => :text,
+        :value => '', :required => true,
+		:help => 'This will be the unique username of the user. Might be appropriate to use an email address.'
+    end
+    buttons [{ :label => 'Create User', :type => :submit }]
+  end
+end

@@ -29,7 +29,11 @@ module Pages
 			end
 			
 			def feed( options )
+			  begin
 			    SimpleRSS.parse( open( options[:url] ) )
+			  rescue Exception => e
+			    options[:url]
+			  end
 			end
 			
 			def mab( content ) ; markaby( content ) ; end

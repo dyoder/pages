@@ -1,0 +1,4 @@
+div.stories.panel do
+  h2 'Stories'
+  view( :story, :list, :stories => all(:story) )
+end

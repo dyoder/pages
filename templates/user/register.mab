@@ -1,0 +1,33 @@
+layout :admin, :title => 'Register', :name => 'register',
+  :styles => %w( base ), :scripts => %w( base ) do
+
+  div.main :id => 'register' do
+    p.warning 'Sorry, email already in use.' if @retry
+    form :action =>request.url, :method => 'POST' do
+      properties do
+        property :label => 'Email', :type => 'text', 
+          :name => 'user.email', :value => ''
+        property :label => 'Password', :type => 'password', 
+          :name => 'user.password', :value => ''
+		property :label => 'Firstname', :type => 'text', 
+	      :name => 'user.firstname', :value => ''
+		property :label => 'Middle Initial', :type => 'text', 
+	      :name => 'user.middle', :value => ''
+		property :label => 'Lastname', :type => 'text', 
+	      :name => 'user.lastname', :value => ''
+		property :label => 'Address', :type => 'text', 
+	      :name => 'user.address', :value => ''
+		property :label => 'City', :type => 'text', 
+	      :name => 'user.city', :value => ''
+		property :label => 'State', :type => 'text', 
+	      :name => 'user.state', :value => ''
+		property :label => 'Zip', :type => 'text', 
+	      :name => 'user.zip', :value => ''
+		property :label => 'Phone Number', :type => 'text', 
+	      :name => 'user.phone', :value => ''
+		property :label => 'Role', :type => 'text', :name => 'user.role', :value => 'Member'
+      end
+      buttons [{ :label => 'Register', :type => :submit }]
+    end
+  end
+end

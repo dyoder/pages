@@ -1,0 +1,4 @@
+div.users.panel do
+  h2 'Users'
+  view( :user, :list, :users => all(:user) )
+end
