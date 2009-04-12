@@ -1,0 +1,11 @@
+layout :show, :title => @user.username do
+  div.main.profile :id => @user	.username do
+    view( :user, :content, :user => @user )
+  end  
+  user_layouts = site.send(session[:role])
+  div.main.user do
+	user_layouts.each{ |layout|
+		view( :site, layout.to_sym )
+	}	
+  end
+end

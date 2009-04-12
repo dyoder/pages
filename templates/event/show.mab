@@ -1,0 +1,5 @@
+layout :show, :title => @event.title do
+  div.main.event :id => @event.name do
+    view( :event, :content, :event => @event )
+  end
+end

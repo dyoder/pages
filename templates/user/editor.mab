@@ -1,0 +1,19 @@
+layout :admin, :title => 'Edit Profile', :name => 'user-editor', :styles => %w( base editor ), 
+  :scripts => %w( jquery.blockUI tiny_mce/tiny_mce base editor wysiwyg ) do
+  form :action => url, :method => 'POST' do
+    buttons [
+      { :label => 'Save Changes', :type => :submit },
+      { :label => 'Delete This User', :type => :delete, :href => url }
+    ]
+    div.main do
+      properties do
+        property :label => 'Email', :name => 'user.email', 
+          :type => :text, :value => @user.email, :required => true
+		property :label => 'Password', :name => 'user.password', 
+          :type => :password, :value => @user.password, :required => true
+		property :label => 'Role', :name => 'user.role',
+		  :type => :choice, :value => @user.role, :options => models('user').roles
+      end
+    end
+  end
+end

@@ -1,0 +1,4 @@
+div.blogs.panel do
+  h2 'Blogs'
+  view( :blog, :list, :blogs => all(:blog) )
+end

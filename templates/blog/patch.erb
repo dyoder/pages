@@ -1,0 +1,25 @@
+ <channel>
+-      <title><%= @blog.title %></title>
++      <title><%= Erubis::XmlHelper.escape_xml @blog.title %></title>
+       <link><%= url %></link>
+-      <description><%= @blog.subtitle %></description>
++      <description><%= Erubis::XmlHelper.escape_xml @blog.subtitle %></description>
+       <language>en</language>
+ 
+       <% 
+         @blog.entries.sort_by(&:published).reverse.each do | entry | 
+       %>
+         <item>
+-          <title><%= entry.title %></title>
++          <title><%= Erubis::XmlHelper.escape_xml entry.title %></title>
+           <link>http://<%= domain %>/<%= entry.key %></link>
+           <pubDate><%= entry.published.strftime('%a, %d %b %Y %H:%M:%S %z') %></pubDate>
+           <description>
+-            <%= format :content => entry.summary, :format => entry.format %>
++            <%= Erubis::XmlHelper.escape_xml entry.summary %>
+           </description>
+         </item>
+       <% end %>
+
+ </channel>
+

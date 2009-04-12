@@ -14,7 +14,7 @@ module Pages
       
           def assign( assigns )
             assigns[ :key ] = assigns['title'].downcase.gsub(/\s+/,'-').gsub(/[^\w\-]/,'') unless get( :key )
-            assigns[ :published ] = Date.today unless assigns['published']
+            assigns[ :published ] = Time.now unless assigns['published']
             super( assigns )
           end
           
@@ -30,8 +30,10 @@ module Pages
 			
 			def published
 			  rval = get( :published )
+			  return rval if rval.is_a? Time
 			  return rval if rval.is_a? Date
-			  return Date.today
+			  return Date.parse(rval) if rval.is_a? String
+			  return Time.now
 			end
 
 			def name ; get( :key ) ; end

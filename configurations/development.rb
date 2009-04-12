@@ -1,11 +1,11 @@
-require 'layers/rack/rack_cache'
+#require 'layers/rack/rack_cache'
 module Pages
   module Configurations
     class Development < Default
       
       reloadable [ Pages ]
 	          
-      include Waves::Cache::RackCache
+      #include Waves::Cache::RackCache
       application.use Rack::Session::Cookie, :key => 'rack.session',
         # :domain => 'foo.com',
         :path => '/',

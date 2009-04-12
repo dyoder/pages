@@ -1,26 +1,13 @@
 layout :admin, :name => 'admin', :title => 'Site Administration', 
   :subtitle => 'Click on a link or image below to edit it.',
   :styles => %w( base admin quick_add ), :scripts => %w( base admin quick_add ) do
+  view( :user, :logout )
+  admin_layouts = site.send(session[:role])
   div.main do
-    div.site.panel do
-      h2 'Site Properties'
-      view( :site, :editor )
-    end
-    div.stories.panel do
-      h2 'Stories'
-      view( :story, :list, :stories => all(:story) )
-    end
-    div.images.panel do
-      h2 'Images'
-      view( :image, :list, :images => all(:image) )
-    end
-    div.blogs.panel do
-      h2 'Blogs'
-      view( :blog, :list, :blogs => all(:blog) )
-    end
-    div.galleries.panel do
-      h2 'Galleries'
-      view( :gallery, :list, :galleries => all(:gallery) )
-    end
+	admin_layouts.each{ |layout|
+		view( :site, layout.to_sym )
+	}	
   end
 end
+
+

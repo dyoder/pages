@@ -1,0 +1,14 @@
+div.quick_add do 
+  a.open 'Add a new Calendar.', :href => '#'
+  form.calendar :action => '/admin/calendar/', :method => 'post' do
+    a.close do
+      img :src => '/images/icons/lime/16x16/box_closed.png',
+        :height => '16', :width => '16'end
+    properties do
+      property :label => 'Title', :name => 'calendar.title', :type => :text,
+        :value => '', :required => true,
+        :help => 'The title of the Calendar.'
+    end
+    buttons [{ :label => 'Add Calendar', :type => :submit }]
+  end
+end

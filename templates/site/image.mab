@@ -1,0 +1,4 @@
+div.images.panel do
+  h2 'Images'
+  view( :image, :list, :images => all(:image) )
+end

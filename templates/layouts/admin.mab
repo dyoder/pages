@@ -1,7 +1,7 @@
 doctype :html4_strict
 html do
   head do
-    title "Vixby Pages: #{@title}"
+    title "Pages CMS: #{@title}"
     ( @styles || [] ).each do | path |
       link :rel => 'stylesheet', :type => 'text/css', :href => "/css/#{path}.css"
     end

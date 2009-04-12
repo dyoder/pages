@@ -12,15 +12,18 @@ $(document).ready( function() {
       .addClass('error')
       .after("<p class='error'>Required field.</p>");
     if ( failed.size() == 0 ) {
+		// this is an hack!! horrible hack
 		if ($("ul.selected h3").length == 1) {
 	 		var tag = "";
 			if($('ul.selected h3')[0].textContent == "Gallery")
 				tag = "gallery.images";
-				else
+			else if($('ul.selected h3')[0].textContent == "Blog")
 				tag = "blog.entries";
-	    		$('ul.selected li').each( function() {
-		    		$(this).replaceWith("<input type=hidden name="+tag+" value="+$(this)[0].id+">");
-				});
+			else
+				tag = "calendar.events";
+	    	$('ul.selected li').each( function() {
+		    	$(this).replaceWith("<input type=hidden name="+tag+" value="+$(this)[0].id+">");
+			});
 		}
 		form.submit(); 
 	}

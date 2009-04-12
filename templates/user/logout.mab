@@ -1,0 +1,3 @@
+div.logout do
+	a 'Logout', :href => "logout/"
+end

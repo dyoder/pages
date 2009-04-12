@@ -1,0 +1,22 @@
+layout :admin, :title => 'Login', :name => 'login',
+  :styles => %w( base ), :scripts => %w( base ) do
+
+  div.main :id => 'login' do
+    p.warning 'Login failed. Please try again.' if @retry
+    form :action =>request.url, :method => 'POST' do
+      properties do
+        property :label => 'Email', :type => 'text', 
+          :name => 'user.email', :value => '',
+          :help => 'Your email address used as your login. <b>Example:</b> jdoe@gmail.com.'
+        property :label => 'Password', :type => 'password', 
+          :name => 'user.password', :value => '', 
+          :help => "If you've forgotten your password, " +
+            "<a href='mailto:support@zeraweb.com'>email us</a>."
+      end
+      buttons [{ :label => 'Login', :type => :submit }]
+    end
+  end
+  div.main :id => 'register' do
+  	a 'Register/Join', :href => "/user"
+  end
+end

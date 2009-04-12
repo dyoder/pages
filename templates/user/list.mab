@@ -1,0 +1,8 @@
+view :user, :quick_add
+ul do
+  @users.select { |user| user.format != 'mab' }.sort_by(&:date_joined).each do |user|
+    li do
+      a user.email, :href => "admin/user/#{user.username}/"
+    end
+  end
+end

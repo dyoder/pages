@@ -1,0 +1,4 @@
+div.galleries.panel do
+  h2 'Galleries'
+  view( :gallery, :list, :galleries => all(:gallery) )
+end

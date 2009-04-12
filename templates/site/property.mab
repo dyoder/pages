@@ -1,0 +1,4 @@
+div.site.panel do
+  h2 'Site Properties'
+  view( :site, :editor )
+end

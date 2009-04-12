@@ -1,0 +1,8 @@
+view :event, :quick_add
+ul do
+  @events.select { |ev| ev.format != 'mab' }.sort_by(&:title).each do |event|
+    li do
+      a event.title, :href => "/admin/event/#{event.name}/"
+    end
+  end
+end
