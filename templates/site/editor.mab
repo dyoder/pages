@@ -7,6 +7,10 @@ form.editor :action => '/admin', :method => 'post' do
       :value => site.description, :required => true, :size => :small,
       :help => 'The description displays in search results and helps ' <<
         'people determine whether to "click-through" to view your site.'
+	property :label => 'Twitter Account', :name => 'site.twitter_account', :type => :text,
+		:value => site.twitter_account, :required => false
+	property :label => 'Twitter Password', :name => 'site.twitter_password', :type => :password,
+		:value => site.twitter_password, :required => false
     buttons [{ :label => 'Save Changes', :type => :submit }]
   end
 end

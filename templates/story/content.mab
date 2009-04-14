@@ -4,7 +4,8 @@ unless @story.blog.nil? or @story.blog.empty?
   if @story.author and (Date === @story.published or Time === @story.published)
     p.byline do
       text 'by '; span.author @story.author
-      text ' on '; span.date @story.published.strftime('%A, %b %d, %Y %H:%m %z')
+      #text ' on '; span.date @story.published.strftime('%A, %b %d, %Y %H:%m %z')
+	  text ' on '; span.date @story.published.strftime('%b %d, %Y')
     end
   end
 end
