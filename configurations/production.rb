@@ -1,4 +1,4 @@
-require 'layers/rack/rack_cache'
+require 'waves/layers/rack/rack_cache'
 module Pages
 
   module Configurations
@@ -17,6 +17,8 @@ module Pages
         :path => '/',
         :expire_after => 2592000,
         :secret => 'Change it'
+        
+      application.run Waves::Dispatchers::Default.new
         
       server Waves::Servers::Mongrel
     end
