@@ -16,7 +16,8 @@ div.entries do
     if entry.author and (Date === entry.published or Time === entry.published)
       p.byline do
         text 'by '; span.author entry.author
-        text ' on '; span.date entry.published.strftime('%A, %b %d, %Y %H:%m %z')
+        #text ' on '; span.date entry.published.strftime('%A, %b %d, %Y %H:%m %z')
+		text ' on '; span.date entry.published.strftime('%b %d, %Y')
       end
 	end
 	  

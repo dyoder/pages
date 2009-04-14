@@ -29,7 +29,7 @@ module Pages
 
       private
       def show
-	if request.accept[0] == 'text/html-fragment'
+	      if request.accept[0] == 'text/html-fragment'
           view.content( :story => controller.find( captured.name ))
         else
           view.show( singular => controller.find( captured.name ))
