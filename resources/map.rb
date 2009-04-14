@@ -10,7 +10,7 @@ module Pages
       on( true, [ :resource, { :rest => true } ] ) { to( captured.resource ) }
       
       # matching against a resource
-      # on( true, [ :resource ] ) { to( captured.resource ) }
+      #on( true, [ :resource ] ) { to( captured.resource ) }
 
       # another url for accessing admin page and updating site info
       on( [ :get, :post ], [ 'admin' ] ) { to( :site ) }
@@ -18,7 +18,11 @@ module Pages
       # special URL just for login and authenticating
       on( [ :get, :post ], [ 'login' ] ) { to( :user ) }
       
+      # logout
       on( :get, [ 'logout' ] ) { to( :user ) }
+      
+      # register
+      on( :get, :register => [ 'user' ] ) { to( :user ) }
       
       # before anything else, check the accepts headers and route accordingly
       on( :get, [ 'images' , true ] ) { to( :image ) }
