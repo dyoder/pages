@@ -5,11 +5,13 @@ module Pages
 			def authenticate
 			  
 			  email_key = attributes[ :email ].gsub(/\s+/,'-').gsub(/[^\w\-]/,'-')
-			  user = find( email_key ) do |user|
-			    ( user['email'] == attributes[:email] )  && 
-						( user['password'] == attributes[:password] )
-				end
-				if user #user is present
+			  user = find( email_key )
+			  auth = false
+			  if(user && ( user['email'] == attributes[:email] )  && 
+					( user['password'] == attributes[:password] ))
+			    auth = true
+			  end
+				if auth #user is present and authenticated
   				session[:user] = email_key
   				session[:role] = user.role
   				redirect(paths( :site ).admin) if user.role == 'Admin'
