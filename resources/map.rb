@@ -8,9 +8,6 @@ module Pages
       
       # otherwise assume we are matching against a resource
       on( true, [ :resource, { :rest => true } ] ) { to( captured.resource ) }
-      
-      # matching against a resource
-      #on( true, [ :resource ] ) { to( captured.resource ) }
 
       # another url for accessing admin page and updating site info
       on( [ :get, :post ], [ 'admin' ] ) { to( :site ) }
@@ -28,8 +25,9 @@ module Pages
       on( :get, [ 'images' , true ] ) { to( :image ) }
       
       # whatever as an extension comes from public or theme directory.
-      on( :get, true, :ext => [ :css, :js, :swf, :gif, :png, :htm ] ) { to( :media ) }
-      on( :get, true, :accept => :rss ) { to( :blog ) }
+      #on( :get, true, :ext => [ :css, :js, :swf, :gif, :png, :htm ] ) { to( :media ) }
+      on( :get, true, :ext => [ 'css', 'js', 'swf', 'gif', 'png', 'htm' ] ) { to( :media ) }
+      #on( :get, true, :accept => :rss ) { to( :blog ) }
         
     end
   end
