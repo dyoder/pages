@@ -26,7 +26,7 @@ module Pages
       
       # whatever as an extension comes from public or theme directory.
       #on( :get, true, :ext => [ :css, :js, :swf, :gif, :png, :htm ] ) { to( :media ) }
-      on( :get, true, :ext => [ 'css', 'js', 'swf', 'gif', 'png', 'htm' ] ) { to( :media ) }
+      on( :get, true, :ext => [ 'css', 'js', 'swf', 'gif', 'png', 'htm', 'jpg' ] ) { to( :media ) }
       #on( :get, true, :accept => :rss ) { to( :blog ) }
         
     end
