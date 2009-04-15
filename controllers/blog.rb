@@ -9,9 +9,8 @@ module Pages
 			  #Hack for updating twitter status
 			  tw_acc = site.twitter_account || ""
         tw_pwd = site.twitter_password || ""
+       
         if(!tw_acc.empty? && !tw_pwd.empty?)
-        
-			  #if(site.twitter_account && site.twitter_password)
 			    require 'twitter'
 			    old = []
 			    self.find(name).entries.each{|s| old << s.key}
