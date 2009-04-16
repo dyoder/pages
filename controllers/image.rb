@@ -6,9 +6,12 @@ module Pages
 
       def get( path )
         path = resolve( path )
+        #hack for handling some javascript libraries which set text/html in the accept and wants html code back.
         if request.accept.default == 'text/html'
           response.content_type = request.accept.default
-          return "<img src='#{request['REQUEST_URI']}' />"
+          response['Cache-Control'] = 'no-cache'
+          size = ( params[:size] ? params[:size] : 'medium' )
+          return "<img src='#{resource.path}?size=#{size}' />"
         else
           ( params[:size] ? resize( path, params[:size] ) : ::Image.read( path ) ).to_blob
         end
