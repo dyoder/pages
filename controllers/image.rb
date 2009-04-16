@@ -8,7 +8,7 @@ module Pages
         path = resolve( path )
         if request.accept.default == 'text/html'
           response.content_type = request.accept.default
-          return "<img src='#{resource.path}' />"
+          return "<img src='#{request['REQUEST_URI']}' />"
         else
           ( params[:size] ? resize( path, params[:size] ) : ::Image.read( path ) ).to_blob
         end
