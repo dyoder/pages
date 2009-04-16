@@ -53,6 +53,7 @@ module Pages
           path or not_found
         else
           image = app::Models[ model_name ][ domain ].find( path )
+          response.content_type = image.attributes['file'][:type]
           image.filepath
         end
       end
