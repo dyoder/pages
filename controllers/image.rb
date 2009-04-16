@@ -7,7 +7,7 @@ module Pages
       def get( path )
         path = resolve( path )
         #hack for handling some javascript libraries which set text/html in the accept and wants html code back.
-        if request.accept.default == 'text/html'
+        if params[:random]
           response.content_type = request.accept.default
           response['Cache-Control'] = 'no-cache'
           size = ( params[:size] ? params[:size] : 'medium' )
