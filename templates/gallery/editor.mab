@@ -12,13 +12,13 @@ layout :admin, :title => 'Edit Gallery', :name => 'gallery-editor',
       { :label => 'Delete This Gallery', :type => :delete, :href => url }
     ]
     div.main do
+	  require 'ruby-debug' ; debugger
       properties do
         property :label => 'Title', :name => 'gallery.title', 
           :type => :text, :value => @gallery.title,
           :help => 'The title of the gallery will show up in captions.'
         property :label => 'Display', :name => 'gallery.display',	
-          :type => :choice, :value => @gallery.display,
-          :options => models('gallery').displays, 
+          :type => :choice, :options => models('gallery').displays, :value => @gallery['display'], 
           :help => 'This controls how you want to present the gallery - ' <<
             'as a photo album where you can click on an image to zoom in, ' <<
             'or as a slideshow, where the images display one at a time.'
