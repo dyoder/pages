@@ -6,9 +6,12 @@ module Pages
 
       def get( path )
         path = resolve( path )
-        if request.accept.default == 'text/html'
+        #hack for handling some javascript libraries which set text/html in the accept and wants html code back.
+        if params[:random]
           response.content_type = request.accept.default
-          return "<img src='#{resource.path}' />"
+          response['Cache-Control'] = 'no-cache'
+          size = ( params[:size] ? params[:size] : 'medium' )
+          return "<img src='#{resource.path}?size=#{size}' />"
         else
           ( params[:size] ? resize( path, params[:size] ) : ::Image.read( path ) ).to_blob
         end
@@ -53,6 +56,7 @@ module Pages
           path or not_found
         else
           image = app::Models[ model_name ][ domain ].find( path )
+          response.content_type = image.attributes['file'][:type]
           image.filepath
         end
       end
