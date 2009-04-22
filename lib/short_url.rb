@@ -1,39 +1,6 @@
 require 'net/http'
 require 'json'
 require 'logger'
-
-#js function executed by bit.ly before submitting the url for shortening
-#TODO add some of this logic in the client
-#function beforeCompress() {
-#   var url = $("#url").val();
-#   var keyword = $("#keyword").val();
-#   url = url.trim();
-#   keyword = keyword.trim();
-#   if (url == "") {
-#     showError('Please enter an URL to shorten.');
-#     return false;
-#   }
-#   re = new RegExp('^([a-zA-Z]+:\/\/)');
-#   if (!url.match(re)) {
-#     url = 'http://'+url;
-#   }
-#
-#   if (url.search(BITLY_UTILS.http_regexp) > -1) { // /http:\/\/bit.ly\//i
-#     showError('That is already a bitly URL.');
-#     return false;
-#   }
-#
-#   if (keyword != '') {
-#     re = new RegExp('^([0-9a-zA-Z_-]+)$');
-#     if (!keyword.match(re)) {
-#       showError('Keywords may only contain letters, numbers, underscores and dashes.');
-#       return false;
-#     }
-#   }
-#
-#   $("#s").val($("#tweet_body").val());
-#   return true;
-#};
   
 module ShortUrl
   class Client
@@ -47,7 +14,12 @@ module ShortUrl
     # the json returned looks like this: 
     # {"results"=>{"http://dev.zeraweb.com"=>{"userHash"=>"YrDMv", "hash"=>"AbLkr", "shortKeywordUrl"=>"", "shortUrl"=>"http://bit.ly/YrDMv"}}, "errorMessage"=>"", "errorCode"=>0, "statusCode"=>"OK"}
     def short_url( dest_url )
-      call( 'shorten', { :longUrl => dest_url, :version => '2.0.1', :format => 'json' } ) # this is not documented, but adding :history => 1 should add the short_url to your history.
+      return '' if dest_url.nil? or dest_url.empty?
+      http_reg = Regexp.new('^([a-zA-Z]+:\/\/)')
+      dest_url = 'http://' + dest_url if( !http_reg.match( dest_url ))
+      bit_reg = Regexp.new('^([a-zA-Z]+:\/\/bit.ly\/)')
+      return dest_url if bit_reg.match( dest_url ) 
+      call( 'shorten', { :longUrl => dest_url, :version => '2.0.1', :format => 'json' } ) # this is not documented, but adding :history => 1 should add the short_url to your history on bit.ly.
     end
     
     private
@@ -61,7 +33,7 @@ module ShortUrl
       end
       response.value # triggers error if not 2xx
       logger.info "Success!"
-      JSON.parse( response.body )
+      JSON.parse( response.body )['results'][params[:longUrl]]['shortUrl']
     end
     
     def url( path, params )
@@ -89,10 +61,28 @@ module ShortUrl
   
 end
 
-#begin
 #client = ShortUrl::Client.new
-#resp = client.short_url( 'http://dev.zeraweb.com' )
-#p resp['results']['shortUrl']
+#begin
+#  resp = client.short_url( 'http://www.google.com' )
+#  p resp
 #rescue Object => e
-#puts "Log to logger message: #{e.message}" 
+#  puts "Log to logger message: #{e.message}" 
+#end
+#begin
+#  resp = client.short_url( 'www.google.com' )
+#  p resp
+#rescue Object => e
+#  puts "Log to logger message: #{e.message}" 
+#end
+#begin
+#  resp = client.short_url( 'google.com' )
+#  p resp
+#rescue Object => e
+#  puts "Log to logger message: #{e.message}" 
+#end
+#begin
+#  resp = client.short_url( 'http://bit.ly/fICXX' )
+#  p resp
+#rescue Object => e
+#  puts "Log to logger message: #{e.message}" 
 #end

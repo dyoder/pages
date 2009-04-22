@@ -1,4 +1,3 @@
-require 'rubygems'
 require 'net/http'
 require 'json'
 require 'logger'
@@ -15,12 +14,11 @@ module Twitter
     def update_status( status ) # status = { :message => 'new post on ruby', :url => 'http://www.ruby-lang.com' }
       message = status[:message]
       short_url = ::ShortUrl::Client.new.short_url( status[:url] )
-      shorted = (short_url.is_a? Hash) ? short_url['results'][status[:url]]['shortUrl'].to_s : ''
       if message.nil? or message.empty?
-        posted = shorted unless ( shorted.nil? or shorted.empty? )
+        posted = shorted unless ( short_url.nil? or short_url.empty? )
       else
         posted = message
-        posted = posted + ': ' + shorted unless ( shorted.nil? or shorted.empty? )
+        posted = posted + ': ' + short_url unless ( short_url.nil? or short_url.empty? )
       end
       if posted.nil?
         logger.info "Invalid status for posting."
