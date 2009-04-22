@@ -25,9 +25,11 @@ module Pages
       on( :get, [ 'images' , true ] ) { to( :image ) }
       
       # whatever as an extension comes from public or theme directory.
-      #on( :get, true, :ext => [ :css, :js, :swf, :gif, :png, :htm ] ) { to( :media ) }
-      on( :get, true, :ext => [ 'css', 'js', 'swf', 'gif', 'png', 'htm', 'jpg' ] ) { to( :media ) }
-      #on( :get, true, :accept => :rss ) { to( :blog ) }
+      on( :get, true, :ext => [ :css, :js, :swf, :gif, :png, :jpg, :htm ] ) { to( :media ) }
+      on( :get, true, :accept => [ :rss ] ) { to( :blog ) }
+      
+      # updating status on social network
+      on( true, [ 'social' , :name ] ) { to( :social ) }
       
       # special URL just payment notification
       on( [ :get, :post ], [ 'payment' ] ) { to( :payment ) }
