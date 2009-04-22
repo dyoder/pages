@@ -1,6 +1,8 @@
+require 'rubygems'
 require 'net/http'
 require 'json'
 require 'logger'
+require 'short_url'
   
 module Twitter
   class Client
@@ -10,8 +12,21 @@ module Twitter
     end
     
     # public method for updating twitter status
-    def update_status( message )
-      call( 'statuses/update', {:status => message} , :post )
+    def update_status( status ) # status = { :message => 'new post on ruby', :url => 'http://www.ruby-lang.com' }
+      message = status[:message]
+      short_url = ::ShortUrl::Client.new.short_url( status[:url] )
+      shorted = (short_url.is_a? Hash) ? short_url['results'][status[:url]]['shortUrl'].to_s : ''
+      if message.nil? or message.empty?
+        posted = shorted unless ( shorted.nil? or shorted.empty? )
+      else
+        posted = message
+        posted = posted + ': ' + shorted unless ( shorted.nil? or shorted.empty? )
+      end
+      if posted.nil?
+        logger.info "Invalid status for posting."
+      else
+        call( 'statuses/update', { :status => posted } , :post )
+      end
     end
     
     # public method for getting public timelines
@@ -68,10 +83,28 @@ module Twitter
   
 end
 
+#client = Twitter::Client.new( :user => 'polymar', :password => 'aaa' )
 #begin
-#client = Twitter::Client.new( :user => 'polymar', :password => 'inella' )
-#resp = client.update_status( 'hallo' )
-#p resp
+#  resp = client.update_status( { :message => 'testing from' } )
+#  p resp
 #rescue Object => e
-#puts "Log to logger message: #{e.message}" 
+#  puts "Log to logger message: #{e.message}" 
+#end
+#begin
+#  resp = client.update_status( { :url => 'http://www.gazzetta.it' } )
+#  p resp
+#rescue Object => e
+#  puts "Log to logger message: #{e.message}" 
+#end
+#begin
+#  resp = client.update_status( { :message => 'testing from' , :url => 'http://www.google.com' } )
+#  p resp
+#rescue Object => e
+#  puts "Log to logger message: #{e.message}" 
+#end
+#begin
+#  resp = client.update_status( { :ciao => 'testing from' } )
+#  p resp
+#rescue Object => e
+#  puts "Log to logger message: #{e.message}" 
 #end
