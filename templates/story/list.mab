@@ -2,7 +2,7 @@ view :story, :quick_add
 ul do
   @stories.select { |story| story.format != 'mab' }.sort_by(&:title).each do |story|
     li do
-      a story.title, :href => "/admin/story/#{story.name}/"
+      a story.readable_key, :href => "/admin/story/#{story.name}/"
     end
   end
 end

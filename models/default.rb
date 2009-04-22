@@ -26,7 +26,11 @@ module Pages
 			def self.associate( domain ) ; end
 			
 		  
-			def title ;  get( :title ) or '' ; end
+			def title ; get( :title ) or '' ; end
+			
+			def readable_key 
+			  return get( :key ).to_s.gsub(/\b\w/){$&.upcase}.gsub('-',' ') 
+			end
 			
 			# we have to support old formats.
 			def published
