@@ -28,12 +28,13 @@ module Pages
 		  
 			def title ;  get( :title ) or '' ; end
 			
+			# we have to support old formats.
 			def published
 			  rval = get( :published )
-			  return rval if rval.is_a? Time
-			  return rval if rval.is_a? Date
+			  return Date.parse(rval.strftime('%Y/%m/%d')) if rval.is_a? Time
 			  return Date.parse(rval) if rval.is_a? String
-			  return Time.now
+			  return rval if rval.is_a? Date
+			  return Date.now
 			end
 
 			def name ; get( :key ) ; end
