@@ -15,14 +15,18 @@ module Pages
           
           # callback from filebase
           before_save do |obj|
-            rel_path = 'files'
-            dirpath = :db / domain / superclass.basename.snake_case / rel_path
-            ::FileUtils.mkdir_p(dirpath) unless File.exists?(dirpath)
-            filepath = File.join dirpath, obj.key
-            ::FileUtils.mv(obj.file.tempfile.path, filepath, :force => true)
-            obj.filepath = rel_path / obj.key
-            obj.content_type = obj.file['type']
-            obj.orig_name = obj.file['filename']
+            # Hack - for recognizing updating vs creating - file object in html contains a different value if set programatically.
+            if !obj.file.is_a? ::Filebase::YAML::DomainType 
+              rel_path = 'files'
+              dirpath = :db / domain / superclass.basename.snake_case / rel_path
+              ::FileUtils.mkdir_p(dirpath) unless File.exists?(dirpath)
+              filepath = File.join dirpath, obj.key
+              ::FileUtils.mv(obj.file.tempfile.path, filepath, :force => true)
+              obj.filepath = rel_path / obj.key
+              obj.content_type = obj.file['type']
+              obj.orig_name = obj.file['filename']
+            end
+            obj
           end
           
         end
