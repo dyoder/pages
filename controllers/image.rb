@@ -23,18 +23,18 @@ module Pages
         instance.delete
       end
 
-      def update( name )
-        img = find(name)
-        # updating relation with gallery
-        sel_b = query[ model_name ].to_h['gallery']
-        model_b = models('gallery').find(sel_b)
-        unless model_b.nil?
-          model_b.images.push(img)
-          model_b.save
-        end
-        # updating image entry
-        img.assign( query[ model_name ].to_h ).save
-      end
+      #def update( name )
+      #  img = find(name)
+      #  # updating relation with gallery
+      #  sel_b = query[ model_name ].to_h['gallery']
+      #  model_b = models('gallery').find(sel_b)
+      #  unless model_b.nil?
+      #    model_b.images.push(img)
+      #    model_b.save
+      #  end
+      #  # updating image entry
+      #  img.assign( query[ model_name ].to_h ).save
+      #end
 
       # TODO: Add file upload support to controller (or resource)
       #functor( :file=, Hash ) do | file |
@@ -55,7 +55,6 @@ module Pages
           end
           path or not_found
         else
-          require 'ruby-debug'; debugger
           image = app::Models[ model_name ][ domain ].find( path )
           response.content_type = image.content_type
           :db / domain / model_name / image.filepath

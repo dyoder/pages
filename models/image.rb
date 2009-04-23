@@ -8,14 +8,12 @@ module Pages
         has_one :gallery, :class => Pages::Models::Gallery[ domain ]
       end
 
-      def base_path
-        :db / domain / superclass.basename.snake_case
-      end
-
       def self.[]( domain )
         Class.new( self ) do
           include( Filebase::Model[ :db / domain / superclass.basename.snake_case ] )
           associate( domain )
+          
+          # callback from filebase
           before_save do |obj|
             rel_path = 'files'
             dirpath = :db / domain / superclass.basename.snake_case / rel_path
@@ -26,6 +24,7 @@ module Pages
             obj.content_type = obj.file['type']
             obj.orig_name = obj.file['filename']
           end
+          
         end
       end
 
