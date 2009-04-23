@@ -12,7 +12,6 @@ layout :admin, :title => 'Edit Gallery', :name => 'gallery-editor',
       { :label => 'Delete This Gallery', :type => :delete, :href => url }
     ]
     div.main do
-	  require 'ruby-debug' ; debugger
       properties do
         property :label => 'Title', :name => 'gallery.title', 
           :type => :text, :value => @gallery.title,

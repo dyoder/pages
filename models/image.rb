@@ -13,8 +13,9 @@ module Pages
           include( Filebase::Model[ :db / domain / superclass.basename.snake_case ] )
           associate( domain )
           
-          # callback from filebase
+          # callback from filebase before saving
           before_save do |obj|
+            # TODO Fix this...hack doesn't seem to work
             # Hack - for recognizing updating vs creating - file object in html contains a different value if set programatically.
             if !obj.file.is_a? ::Filebase::YAML::DomainType 
               rel_path = 'files'
@@ -25,6 +26,16 @@ module Pages
               obj.filepath = rel_path / obj.key
               obj.content_type = obj.file['type']
               obj.orig_name = obj.file['filename']
+            end
+            obj
+          end
+          
+          # callback from filebase before deleting
+          before_delete do |obj|
+            g = Pages::Models[ 'gallery' ][ domain ].find( obj.gallery )
+            if g
+              g.images.delete( obj.key )
+              g.save
             end
             obj
           end
