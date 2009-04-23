@@ -1,34 +1,38 @@
-layout :admin, :title => 'Edit Image', :name => 'image-editor', :styles => %w( base editor ), 
+layout :admin, :title => 'Edit Image', :name => 'image-editor', :styles => %w( base editor ),
   :scripts => %w( jquery.blockUI base editor ) do
-  form :action => url, :method => 'POST', :enctype => 'multipart/form-data' do 
+  form :action => url, :method => 'POST', :enctype => 'multipart/form-data' do
     buttons [
       { :label => 'Save Changes', :type => :submit },
       { :label => 'Delete This Image', :type => :delete, :href => url }
     ]
     div.main do
       properties do
-        property :label => 'Title', :name => 'image.title', 
+        property :label => 'Title', :name => 'image.title',
           :type => :text, :value => @image.title,
           :help => 'The title of the image will show up in captions.'
-           if @image.file
-          	div.property.preview do
-            	label 'Preview'
-				img :src => "/images/#{@image.key}?size=medium"
-          	end
+
+              property :label => 'Change image ...', :name => 'image.file',
+        :type => :file, :required => false, :options => { :size => 10 }
+
+          if @image.filepath
+            div.property.preview do
+              label 'Preview'
+        img :src => "/images/#{@image.key}?size=medium"
+            end
            end
-      	end
+        end
     end
     div.sidebar do
       properties do
-        property :label => 'Gallery', :name => 'image.gallery', 
-          :type => :choice, :value => @image.gallery, 
+        property :label => 'Gallery', :name => 'image.gallery',
+          :type => :choice, :value => @image.gallery,
           :options => ( [ [ 'None', '' ] ] + all(:gallery).map { |g| [ g.title, g.name ] }  ),
           :help => "Select a gallery for this image."
         property :label => 'Author', :name => 'image.author', :type => :choice,
           :value => @image.author, :options => site.authors.map { |author| [ author, author ] },
           :help => "'Author' is the person responsible for maintaining this content."
-        property :label => 'Published', :name => 'image.published', 
-          :type => 'date', :value => @image.published, 
+        property :label => 'Published', :name => 'image.published',
+          :type => 'date', :value => @image.published,
           :help => "When was this content first published? Just type in a date." <<
             " <b>Example:</b> apr 12, 2007."
         property :label => 'Tags', :type => 'text', :name => 'image.tags', :value => @image.tags,
@@ -41,4 +45,4 @@ layout :admin, :title => 'Edit Image', :name => 'image-editor', :styles => %w( b
     end
   end
 end
-  
+
