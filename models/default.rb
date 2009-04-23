@@ -30,7 +30,7 @@ module Pages
         return Date.parse(rval.strftime('%Y/%m/%d')) if rval.is_a? Time
         return Date.parse(rval) if rval.is_a? String
         return rval if rval.is_a? Date
-        return Date.new
+        return Date.today
       end
 
       def name ; get( :key ) ; end
