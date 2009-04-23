@@ -34,7 +34,7 @@ module Pages
           before_delete do |obj|
             g = Pages::Models[ 'gallery' ][ domain ].find( obj.gallery )
             if g
-              g.images.delete( obj.key )
+              g['images'].delete( obj.key )
               g.save
             end
             obj

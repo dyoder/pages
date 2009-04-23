@@ -10,19 +10,19 @@ layout :admin, :title => 'Edit Image', :name => 'image-editor', :styles => %w( b
         property :label => 'Title', :name => 'image.title', 
           :type => :text, :value => @image.title,
           :help => 'The title of the image will show up in captions.'
-        if @image.attributes['file']
-          div.property.preview do
-            label 'Preview'
-			img :src => "/images/#{@image.key}?size=medium"
-          end
-        end
-      end
+           if @image.file
+          	div.property.preview do
+            	label 'Preview'
+				img :src => "/images/#{@image.key}?size=medium"
+          	end
+           end
+      	end
     end
     div.sidebar do
       properties do
         property :label => 'Gallery', :name => 'image.gallery', 
           :type => :choice, :value => @image.gallery, 
-          :options => ( all(:gallery).map { |g| [ g.title, g.name ] } + [ [ 'None', '' ] ] ),
+          :options => ( [ [ 'None', '' ] ] + all(:gallery).map { |g| [ g.title, g.name ] }  ),
           :help => "Select a gallery for this image."
         property :label => 'Author', :name => 'image.author', :type => :choice,
           :value => @image.author, :options => site.authors.map { |author| [ author, author ] },

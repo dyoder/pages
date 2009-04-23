@@ -4,6 +4,25 @@ module Pages
 		
 		class Story < Default
 		  
+		  def self.[]( domain )
+        Class.new( self ) do
+          include( Filebase::Model[ :db / domain / superclass.basename.snake_case ] )
+          associate( domain )
+          
+          # callback from filebase before deleting
+          before_delete do |obj|
+            require 'ruby-debug' ; debugger
+            g = Pages::Models[ 'blog' ][ domain ].find( obj.blog )
+            if g
+              g['entries'].delete( obj.key )
+              g.save
+            end
+            obj
+          end
+          
+        end
+      end
+		  
 		  def associate( domain )
   		  has_one :blog, :class => Pages::Models::Blog[ domain ]
   		  has_many :comments, :class => Pages::Models::Comment[ domain ]
