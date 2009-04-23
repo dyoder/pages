@@ -31,7 +31,7 @@ layout :admin, :title => 'Edit Story', :name => 'story-editor', :styles => %w( b
           :options => ( [ [ 'None', '' ] ] + all(:blog).map { |blog| [ blog.title, blog.name ] } ),
           :help => "Select a blog if you want this story to appear as one of its entries."
         property :label => 'Published', :name => 'story.published',
-          :type => 'date', :value => @story.published,
+          :type => 'date', :value => @story.published.strftime('%b %d, %Y'),
           :help => "When was this content first published? Just type in a date." <<
             "<br/><b>Example:</b> apr 12, 2007."
         property :label => 'Tags', :type => 'text', :name => 'story.tags', :value => @story.tags,
