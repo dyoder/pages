@@ -1,9 +1,9 @@
 layout :admin, :title => 'Edit Story', :name => 'story-editor', :styles => %w( base editor ),
   :scripts => %w( jquery.blockUI tiny_mce/tiny_mce base editor wysiwyg ) do
   form :action => url, :method => 'POST' do
-#      { :label => 'Delete This Story', :type => :delete, :href => url }
     buttons [
       { :label => 'Save Changes', :type => :submit },
+	  { :label => 'Delete This Story', :type => :delete, :href => url },
       { :label => 'Preview', :type => :show, :target => '_blank',  :href => resource.paths.show(:name => @story.key) }
    ]
     div.main do
@@ -27,9 +27,9 @@ layout :admin, :title => 'Edit Story', :name => 'story-editor', :styles => %w( b
         property :label => 'Author', :name => 'story.author', :type => :choice,
           :value => @story.author, :options => site.authors.map { |author| [ author, author ] },
           :help => "'Author' is the person responsible for maintaining this content."
-       #property :label => 'Blog', :name => 'story.blog', :type => :choice, :value => @story.blog,
-       #   :options => ( [ [ 'None', '' ] ] + all(:blog).map { |blog| [ blog.title, blog.name ] } ),
-       #  :help => "Select a blog if you want this story to appear as one of its entries."
+       property :label => 'Blog', :name => 'story.blog', :type => :choice, :value => @story.blog,
+          :options => ( [ [ 'None', '' ] ] + all(:blog).map { |blog| [ blog.title, blog.name ] } ),
+          :help => "Select a blog if you want this story to appear as one of its entries."
         property :label => 'Published', :name => 'story.published',
           :type => 'date', :value => @story.published,
           :help => "When was this content first published? Just type in a date." <<
