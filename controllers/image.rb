@@ -55,9 +55,10 @@ module Pages
           end
           path or not_found
         else
+          require 'ruby-debug'; debugger
           image = app::Models[ model_name ][ domain ].find( path )
-          response.content_type = image.attributes['file'][:type]
-          image.filepath
+          response.content_type = image.content_type
+          :db / domain / model_name / image.filepath
         end
       end
 
