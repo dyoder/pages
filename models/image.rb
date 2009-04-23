@@ -25,8 +25,8 @@ module Pages
               obj.filepath = rel_path / obj.key
               obj.content_type = obj.file['type']
               obj.orig_name = obj.file['filename']
-              obj.file = nil
             end
+            obj.file = nil
             obj
           end
 
@@ -34,8 +34,7 @@ module Pages
           before_delete do |obj|
             g = Pages::Models[ 'gallery' ][ domain ].find( obj.gallery )
             if g
-              g['images'].delete( obj.key )
-              g.save
+              g.save if g['images'].delete( obj.key )
             end
             obj
           end

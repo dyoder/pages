@@ -11,11 +11,9 @@ module Pages
           
           # callback from filebase before deleting
           before_delete do |obj|
-            require 'ruby-debug' ; debugger
             g = Pages::Models[ 'blog' ][ domain ].find( obj.blog )
             if g
-              g['entries'].delete( obj.key )
-              g.save
+              g.save if g['entries'].delete( obj.key )
             end
             obj
           end

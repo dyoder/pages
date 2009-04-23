@@ -24,10 +24,10 @@ layout :admin, :title => 'Edit Image', :name => 'image-editor', :styles => %w( b
     end
     div.sidebar do
       properties do
-        property :label => 'Gallery', :name => 'image.gallery',
-          :type => :choice, :value => @image.gallery,
-          :options => ( [ [ 'None', '' ] ] + all(:gallery).map { |g| [ g.title, g.name ] }  ),
-          :help => "Select a gallery for this image."
+        #property :label => 'Gallery', :name => 'image.gallery',
+        #  :type => :choice, :value => @image.gallery,
+        #  :options => ( [ [ 'None', '' ] ] + all(:gallery).map { |g| [ g.title, g.name ] }  ),
+        #  :help => "Select a gallery for this image."
         property :label => 'Author', :name => 'image.author', :type => :choice,
           :value => @image.author, :options => site.authors.map { |author| [ author, author ] },
           :help => "'Author' is the person responsible for maintaining this content."

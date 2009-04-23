@@ -27,9 +27,9 @@ layout :admin, :title => 'Edit Story', :name => 'story-editor', :styles => %w( b
         property :label => 'Author', :name => 'story.author', :type => :choice,
           :value => @story.author, :options => site.authors.map { |author| [ author, author ] },
           :help => "'Author' is the person responsible for maintaining this content."
-       property :label => 'Blog', :name => 'story.blog', :type => :choice, :value => @story.blog,
-          :options => ( [ [ 'None', '' ] ] + all(:blog).map { |blog| [ blog.title, blog.name ] } ),
-          :help => "Select a blog if you want this story to appear as one of its entries."
+       #property :label => 'Blog', :name => 'story.blog', :type => :choice, :value => @story.blog,
+       #   :options => ( [ [ 'None', '' ] ] + all(:blog).map { |blog| [ blog.title, blog.name ] } ),
+       #   :help => "Select a blog if you want this story to appear as one of its entries."
         property :label => 'Published', :name => 'story.published',
           :type => 'date', :value => @story.published.strftime('%b %d, %Y'),
           :help => "When was this content first published? Just type in a date." <<

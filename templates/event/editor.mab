@@ -22,9 +22,6 @@ layout :admin, :title => 'Edit Event', :name => 'event-editor', :styles => %w( b
             :value => @event.format, :options => model( :event ).formats,
             :help => "Use 'Formatted Text' unless you know what you're doing. :)"
         end
-        #property :label => 'Blog', :name => 'story.blog', :type => :choice, :value => @story.blog, 
-        #  :options => ( all(:blog).map { |blog| [ blog.title, blog.name ] } + [ [ 'None', '' ] ] ),
-        #  :help => "Select a blog if you want this story to appear as one of its entries."
         property :label => 'Date', :name => 'event.date', 
           :type => 'date', :value => @event.date, 
           :help => "When this event happens? Just type in the date." <<
