@@ -16,7 +16,7 @@ layout :admin, :title => 'Login', :name => 'login',
       buttons [{ :label => 'Login', :type => :submit }]
     end
   end
-  div.main :id => 'register' do
-  	a 'Register/Join', :href => "/user"
-  end
+  #div.main :id => 'register' do
+  #	a 'Register/Join', :href => "/user"
+  #end
 end
