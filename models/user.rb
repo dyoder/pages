@@ -8,13 +8,13 @@ module Pages
 			  Class.new( self ) do
 			    include( Filebase::Model[ :db / domain / superclass.basename.snake_case ] )
           
-          alias_method :orig_assigns, :assign
+          #alias_method :orig_assigns, :assign
       
-          def assign( assigns )
-            assigns[ :key ] = assigns['email'].downcase.gsub(/\s+/,'-').gsub(/[^\w\-]/,'-') unless get( :key )
-            assigns[ :date_joined ] = Time.now unless assigns['date_joined']
-            super( assigns )
-          end
+          #def assign( assigns )
+          #  assigns[ :key ] = assigns['email'].downcase.gsub(/\s+/,'-').gsub(/[^\w\-]/,'-') unless get( :key )
+          #  assigns[ :date_joined ] = Time.now unless assigns['date_joined']
+          #  super( assigns )
+          #end
           
 			    associate( domain )
           
