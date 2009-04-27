@@ -16,6 +16,7 @@ module Pages
       end
 
       on( :get, :edit => [ 'admin', :resource, :name ] ) do
+        response.content_type = 'text/html' ; 
         view.editor( singular => controller.find( captured.name ) )
       end
 
@@ -29,6 +30,7 @@ module Pages
 
       private
       def show
+        response.content_type = 'text/html' ; 
 	      if request.accept[0] == 'text/html-fragment'
           view.content( :story => controller.find( captured.name ))
         else

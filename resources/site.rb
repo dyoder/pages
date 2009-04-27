@@ -7,7 +7,7 @@ module Pages
       include Waves::Resources::Mixin
       
       # admin access
-      on( :get, :admin => [ 'admin' ] ) { view.admin }
+      on( :get, :admin => [ 'admin' ] ) { response.content_type = 'text/html' ;  view.admin }
       
       # on( :put, :update => [ 'admin' ] ) { controller.update( captured.name ) ; redirect( paths.admin ) }
       # adding route missing - we could change /templates/site/editor.mab to do a put instead

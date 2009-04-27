@@ -26,13 +26,13 @@ module Pages
       on( :post, :authenticate => [ 'login' ] ) { controller.authenticate }
       
       # login page
-      on( :get, :login => [ 'login' ] ) { view.login }
+      on( :get, :login => [ 'login' ] ) { response.content_type = 'text/html' ; view.login }
       
       # logout
       on( :get, [ 'logout' ] ) { controller.logout }
       
       # register page
-      on( :get, :register => [ 'user' ] ) { view.register }
+      on( :get, :register => [ 'user' ] ) { response.content_type = 'text/html' ; view.register }
       
       # user accessing personal page
       on( :get, :role => [ 'user', :name ] ) { view.show( singular => controller.find( captured.name ) )} 
