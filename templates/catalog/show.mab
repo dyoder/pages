@@ -19,8 +19,8 @@ layout :show, :title => @catalog.title do
         h2 product.title
         
         image = find( :image, product.image )
-        a.image :href => "/images/#{image.file}" do
-          img :src => "/images/#{image.file}?size=thumb"
+        a.image :href => "/images/#{image.name}" do
+          img :src => "/images/#{image.name}?size=thumb"
           p 'Click to enlarge.'
         end
 
