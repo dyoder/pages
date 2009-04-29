@@ -1,0 +1,22 @@
+--- 
+twitter_password: none
+name: Pages.CMS
+roles: 
+- Admin
+- Member
+twitter_account: none
+title: hello world
+domain: localhost
+description: sample app.
+Admin: 
+- property
+- story
+- image
+- blog
+- gallery
+Member:
+- story
+- image
+authors: 
+- Example
+key: site

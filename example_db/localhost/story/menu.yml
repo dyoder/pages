@@ -1,0 +1,17 @@
+--- 
+format: mab
+blog: ""
+title: ""
+tags: ""
+published: "2009-04-17"
+author: Example
+summary: ""
+content: |-
+  ul.menu do
+   li { a "My Blog", :href => "/blog/test-blog" }
+   li { a "Twitter", :href => "www.twitter.com" }
+   li { a "Facebook" , :href => "www.facebook.com" }
+   li { a "Waves" , :href => "http://rubywaves.com"  }
+   li { a "Home" , :href => "/home"  }
+  end
+key: menu

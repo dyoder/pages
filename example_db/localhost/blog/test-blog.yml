@@ -1,0 +1,11 @@
+--- 
+title: test blog
+tags: ""
+published: Sun Apr 19 12:53:04 -0700 2009
+author: Example
+summary: my first blog.
+entries: 
+- test-story-1
+- test-story-2
+key: test-blog
+feed: http://localhost:4000/blog/test-blog.xml

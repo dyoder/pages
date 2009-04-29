@@ -1,0 +1,8 @@
+format: mab
+content: |
+  div.feed do
+      a :href => "#{@feed}" do
+            img :src => '/images/feed.png'
+            label 'Subscribe ...'
+      end
+  end

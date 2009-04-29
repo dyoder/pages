@@ -1,0 +1,15 @@
+--- 
+format: mab
+title: ""
+blog: ""
+published: "2009-04-16"
+tags: ""
+author: Example
+summary: ""
+content: |-
+  div.sidebar do
+    div.item do
+          view( :blog, :content, :blog => find( :blog, 'test-blog' ) )
+    end
+  end
+key: sidebar

@@ -1,0 +1,13 @@
+--- 
+format: mab
+blog: ""
+title: ""
+published: "2009-04-11"
+tags: ""
+author: Example
+summary: ""
+content: |-
+  p "Hello world."
+  
+  p "This is my first app.. :)"
+key: home
