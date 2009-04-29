@@ -9,8 +9,8 @@ summary: ""
 content: |-
   ul.menu do
    li { a "My Blog", :href => "/blog/test-blog" }
-   li { a "Twitter", :href => "www.twitter.com" }
-   li { a "Facebook" , :href => "www.facebook.com" }
+   li { a "Twitter", :href => "http://www.twitter.com" }
+   li { a "Facebook" , :href => "http://www.facebook.com" }
    li { a "Waves" , :href => "http://rubywaves.com"  }
    li { a "Home" , :href => "/home"  }
   end
