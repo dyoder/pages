@@ -29,3 +29,9 @@ div.images.panel li a:hover img { border: 1px solid #3c3; }
 div.stories.panel { height: 380px; }
 
 div.events.panel { height: 380px; }
+
+div.properties img { width: 125px; height: 40px; }
+
+/* just temporary.... before we get a nicer thickbox */
+/*div.social input { margin-left:120px; }*/
+/*div.social label { font-size: 16px; color: #666; }*/
