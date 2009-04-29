@@ -1,0 +1,18 @@
+link :type => 'text/css', :rel => 'stylesheet', :href => '/css/social.css'
+script :type => 'text/javascript', :src => '/javascript/social.js'
+div.social :id => 'twitter' do
+	p.warning 'Tweet failed. Please try again.' if @retry
+    form :action => request.url, :method => 'POST' do
+      properties do
+		property :label => 'Status', :type => 'text', :name => 'status', :value => @message || ''
+        property :label => 'Username', :type => 'text', :name => 'user', :value => @user || '', :required => true
+        property :label => 'Password', :type => 'password', :name => 'password', :value => @pwd || '', :required => true
+		property :label => 'Url', :type => 'text', :name => 'url', :value => @url || ''
+      end
+      buttons [{ :label => 'Twitter this!', :type => :submit }]
+	  p do
+		a 'Done' if @result == 'Completed'
+		a 'Done' if @result == 'Failed'
+	  end
+    end
+end

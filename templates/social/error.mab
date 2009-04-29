@@ -1,0 +1,3 @@
+div.thickbox :id => 'twitter_error'	 do
+	h3 "Twitter update failed"
+end

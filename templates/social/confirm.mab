@@ -1,0 +1,3 @@
+div.thickbox :id => 'twitter_updated' do
+	h3 "Twitter status updated"
+end

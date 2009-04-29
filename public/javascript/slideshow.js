@@ -24,11 +24,11 @@ $(document).ready( function(){
 
   // first, go ahead and center non-images - 
   // use of first-child ensures that we don't call it multiple times
-  $('div.slide > *:first-child:not(img)').each( centerSlide ); 
+  //$('div.slide > *:first-child:not(img)').each( centerSlide ); 
   
   // do the same thing for images on the load event to ensure that the
   // browser has the image actually loaded ...
-  //$('div.slide > img:first-child').load( centerSlide );
+  $('div.slide > img:first-child').load( centerSlide );
   
   // whent the img for the loading slide is itself loaded, go ahead
   // and show it while we wait for the rest of the images to load
@@ -38,8 +38,15 @@ $(document).ready( function(){
   // fewer than 3), go ahead and get rid of the loading slide and start
   // the slideshow, using the cycle plug-in ... note there must be at least
   // one image in the slideshow, which is okay, because it is for a gallery
-  var images = $('div.slide img'); var size = images.size();
-  images.eq( ( size > 3 )? 3 : size ).load( function() { 
+  var images = $('div.slide img'); 
+  console.log(images);
+  var size = images.size();
+  console.log(size);
+  var obj = images.eq( ( size > 3 )? 3 : size );
+  console.log(obj);
+  //images.eq( ( size > 3 )? 3 : size ).load( function() {
+	obj.load( function() {  
+	console.log('loading');
     $('div.slide.loading').fadeOut(3000, function() { 
       $(this).remove();
       $('div.slide:first-child').fadeIn(3000, function() {

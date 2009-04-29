@@ -7,5 +7,4 @@ $(document).ready( function() {
     $(this).find('h2, h3').css({color: '#999' });
     $(this).css({ border: '1px solid #999'});
   });
-  
 });

@@ -1,0 +1,11 @@
+div.social * { margin-top: 2px;}
+/*div.property input { float: right; margin-right: 10px; width: 250px; }
+div.property label { float: right; width: 100px; margin-top: 20px; }*/
+
+
+div.social form { padding: 10px; border: 1px solid #ccc; width: 300px; height: 260px;}
+div.social label { font-size: 15px; font-weight: bold; }
+div.social input.text, input.password { display: block; width: 280px; }
+div.social p.help { font-size: 13px; color: #666; }
+div.social a.submit { font-size: 13px; font-weight: bold; }
+div.social input.submit { text-align: center; width: 110px; margin-left: 95px;}

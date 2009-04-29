@@ -1,7 +1,7 @@
 require 'net/http'
 require 'json'
+require 'lib/short_url'
 require 'logger'
-require 'short_url'
   
 module Twitter
   class Client
@@ -21,7 +21,7 @@ module Twitter
         posted = posted + ': ' + short_url unless ( short_url.nil? or short_url.empty? )
       end
       if posted.nil?
-        logger.info "Invalid status for posting."
+        { :error => 'Invalid status.'}
       else
         call( 'statuses/update', { :status => posted } , :post )
       end
@@ -36,10 +36,10 @@ module Twitter
     
     def call( path, params = {}, method = :get )
       if method == :get
- 	      logger.info "Calling #{get_url( path, params ) } ..."
+        logger.info "Calling #{get_url( path, params ) } ..."
 	      request = Net::HTTP::Get.new( get_url( path, params ) )
       else
-	      logger.info "Calling #{post_url( path) } ..."
+        logger.info "Calling #{post_url( path ) } ..."
 	      request = Net::HTTP::Post.new( post_url( path ) )
 	      request.set_form_data( params )
       end
@@ -47,6 +47,7 @@ module Twitter
       response = Net::HTTP.start( 'twitter.com' ) do |h| 
         h.request( request )
       end
+      logger.info "tweet: " + response.code
       response.value # triggers error if not 2xx
       logger.info "Success!"
       JSON.parse( response.body )
@@ -81,28 +82,28 @@ module Twitter
   
 end
 
-#client = Twitter::Client.new( :user => 'polymar', :password => 'aaa' )
-#begin
+# client = Twitter::Client.new( :user => 'duckonice', :password => 'bolognasalvati' )
+# begin
 #  resp = client.update_status( { :message => 'testing from' } )
 #  p resp
-#rescue Object => e
+# rescue Object => e
 #  puts "Log to logger message: #{e.message}" 
-#end
-#begin
+# end
+# begin
 #  resp = client.update_status( { :url => 'http://www.gazzetta.it' } )
 #  p resp
-#rescue Object => e
+# rescue Object => e
 #  puts "Log to logger message: #{e.message}" 
-#end
-#begin
+# end
+# begin
 #  resp = client.update_status( { :message => 'testing from' , :url => 'http://www.google.com' } )
 #  p resp
-#rescue Object => e
+# rescue Object => e
 #  puts "Log to logger message: #{e.message}" 
-#end
-#begin
+# end
+# begin
 #  resp = client.update_status( { :ciao => 'testing from' } )
 #  p resp
-#rescue Object => e
+# rescue Object => e
 #  puts "Log to logger message: #{e.message}" 
-#end
+# end

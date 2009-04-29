@@ -1,0 +1,10 @@
+div.social :id => 'twitter' do
+    form :action => '/admin', :method => 'POST' do
+      properties do
+        property :label => 'Username', :type => 'text', :name => 'site.twitter_account', :value => @user || ''
+        property :label => 'Password', :type => 'password', :name => 'site.twitter_password', :value => @pwd || ''
+		#property :label => 'Url', :type => 'text', :name => 'url', :value => @url || ''
+      end
+      buttons [{ :label => 'Save', :type => :submit }]
+    end
+end
