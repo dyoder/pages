@@ -9,8 +9,9 @@ module Pages
       # otherwise assume we are matching against a resource
       on( true, [ :resource, { :rest => true } ] ) { to( captured.resource ) }
 
-      # another url for accessing admin page and updating site info
+      # for accessing admin page and updating site info -- requires authentication
       on( [ :get, :post ], [ 'admin' ] ) { to( :site ) }
+      on( [ :get, :post ], [ 'admin', { :rest => true } ] ) { to( :site ) }
 
       # special URL just for login and authenticating
       on( [ :get, :post ], [ 'login' ] ) { to( :user ) }
@@ -31,13 +32,10 @@ module Pages
       # updating status on social network
       on( true, [ 'social' , :name ] ) { to( :social ) }
       
-      # special URL just payment notification
-      on( [ :get, :post ], [ 'payment' ] ) { to( :payment ) }
-      on( [ :get, :post ], [ 'payment-notification' ] ) { to( :payment ) }
+      # # special URL just payment notification
+      #       on( [ :get, :post ], [ 'payment' ] ) { to( :payment ) }
+      #       on( [ :get, :post ], [ 'payment-notification' ] ) { to( :payment ) }
         
     end
   end
 end
-
-#http://californiaforlaquila.org/payment?transactionId=142LR23MB233D7D2QO3A4J2EOCFDAFAU19A&referenceId=California-For-Laquila&operation=pay&paymentReason=Donation+to+victims+of+Italian+earthquake+of+April+6.&transactionAmount=USD+10.0&transactionDate=1239831088&status=PI&paymentMethod=Credit+Card&recipientName=California+For+L%27Aquila+Earthquake+Fund&buyerName=Roberto&recipientEmail=danyb4%40yahoo.com&buyerEmail=roberto.gamboni%40gmail.com not found.
-#http://californiaforlaquila.org/payment?transactionId=142LR23MB233D7D2QO3A4J2EOCFDAFAU19A&referenceId=California-For-Laquila&operation=pay&paymentReason=Donation+to+victims+of+Italian+earthquake+of+April+6.&transactionAmount=USD+10.0&transactionDate=1239831088&status=PI&paymentMethod=Credit+Card&recipientName=California+For+L%27Aquila+Earthquake+Fund&buyerName=Roberto&recipientEmail=danyb4%40yahoo.com&buyerEmail=roberto.gamboni%40gmail.com

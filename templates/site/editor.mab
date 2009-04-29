@@ -1,3 +1,5 @@
+link :type => 'text/css', :rel => 'stylesheet', :href => '/css/thickbox.css'
+script :type => 'text/javascript', :src => '/javascript/thickbox-compressed.js'
 form.editor :action => '/admin', :method => 'post' do
   properties do
     property :label => 'Title', :name => 'site.title', :type => :text, 
@@ -7,10 +9,18 @@ form.editor :action => '/admin', :method => 'post' do
       :value => site.description, :required => true, :size => :small,
       :help => 'The description displays in search results and helps ' <<
         'people determine whether to "click-through" to view your site.'
-	property :label => 'Twitter Account', :name => 'site.twitter_account', :type => :text,
-		:value => site.twitter_account, :required => false
-	property :label => 'Twitter Password', :name => 'site.twitter_password', :type => :password,
-		:value => site.twitter_password, :required => false
+	# property :label => 'Twitter Account', :name => 'site.twitter_account', :type => :text,
+	# 		:value => site.twitter_account, :required => false
+	# 	property :label => 'Twitter Password', :name => 'site.twitter_password', :type => :password,
+	# 		:value => site.twitter_password, :required => false
+	a.thickbox :href => "/admin/social/twitter?" do
+      
+    end
+	div.twitter do
+		p do
+			a 'Configure Twitter', :href => "/admin/twitter?height=280&amp;width=325", :class => "thickbox", :title => "Configure your twitter account."
+		end
+	end
     buttons [{ :label => 'Save Changes', :type => :submit }]
   end
 end

@@ -2,5 +2,5 @@ case @type
 when :submit
   input.submit :type => :submit, :value => @label
 else
-  a @label, :class => @type, :href => ( @href || '#' ), :target => @target || ''
+  a @label, :class => @type, :href => ( @href || '#' ), :target => @target || '', :onclick => @onclick || ''
 end

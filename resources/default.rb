@@ -5,6 +5,7 @@ module Pages
     class Default
 
       include Waves::Resources::Mixin
+      include Pages::ResponseMixin
 
       on( :get, [ :resource, { :name => 'home' }] ) { show }
 

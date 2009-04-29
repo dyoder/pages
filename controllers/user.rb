@@ -1,9 +1,14 @@
 module Pages
   module Controllers
     class User < Default
-      	
+      
+      def assign( assigns )
+        assigns[ :key ] ||= assigns['email'].downcase.gsub(/\s+/,'-').gsub(/[^\w\-]/,'-')
+        assigns[ :date_joined ] ||= Time.now
+        assigns
+      end
+      
 			def authenticate
-			  
 			  email_key = attributes[ :email ].gsub(/\s+/,'-').gsub(/[^\w\-]/,'-')
 			  user = find( email_key )
 			  auth = false

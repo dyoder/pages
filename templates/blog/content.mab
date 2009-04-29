@@ -1,7 +1,7 @@
 # feed icon at the top
 story( :feed, :feed => @blog.feed ) if @blog.feed
 
-#h1 @blog.title
+h1 @blog.title
 
 p.subtitle @blog.summary if @blog.summary
 
