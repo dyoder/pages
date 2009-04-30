@@ -10,8 +10,13 @@ $(document).ready( function() {
     $('ul.container:first').css({clear: 'both'})
     $('ul.container li').draggable({helper:'clone'});
     $('ul.container').droppable({
-     accept: 'li', tolerance: 'touch', 
+     accept: 'li', tolerance: 'pointer', 
      drop: function(ev,ui) { $(this).append( ui.draggable.element ); }
     });
   }
+  var excluded = $(".excluded").css('height');
+  var selected = $(".selected").css('height');
+  var ht = ( excluded > selected ) ? excluded : selected;
+  $(".selected").css('height', ht);
+  $(".excluded").css('height', ht);
 });
