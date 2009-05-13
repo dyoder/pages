@@ -33,7 +33,7 @@ module Pages
       on( true, [ 'social' , :name ] ) { to( :social ) }
       
       # # special URL just payment notification
-      #       on( [ :get, :post ], [ 'payment' ] ) { to( :payment ) }
+      on( :post, [ 'donation' ] ) { to( :payment ) }
       #       on( [ :get, :post ], [ 'payment-notification' ] ) { to( :payment ) }
         
     end

@@ -24,3 +24,6 @@ form.editor :action => '/admin', :method => 'post' do
     buttons [{ :label => 'Save Changes', :type => :submit }]
   end
 end
+p do
+	view( :user, :logout )
+end

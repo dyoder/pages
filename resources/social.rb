@@ -5,12 +5,12 @@ module Pages
     
     class Social < Default
 
-      # on( :post, [ 'social' , 'twitter' ] ) { 
-      #         resp = tweet
-      #         tweet_result = (resp[:error]) ? 'Failed' : 'Completed'
-      #         view.spread( :result => tweet_result )
-      #       }
-      #       
+      on( :post, [ 'social' , 'twitter' ] ) { 
+          resp = tweet
+          tweet_result = (resp[:error]) ? 'Failed' : 'Completed'
+          redirect('/home')
+      }
+                  
       #       on( :post, [ 'admin', 'social' , 'twitter' ] ) {
       #         resp = tweet
       #         tweet_result = (resp[:error]) ? 'Failed' : 'Completed'

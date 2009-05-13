@@ -1,11 +1,10 @@
 layout :admin, :name => 'admin', :title => 'Site Administration', 
   :subtitle => 'Click on a link or image below to edit it.',
   :styles => %w( base admin quick_add social), :scripts => %w( base admin quick_add ) do
-  view( :user, :logout )
   admin_layouts = site.send(session[:role])
   div.main do
 	admin_layouts.each{ |layout|
-		view( :site, layout.to_sym, assigns )
+		view( :site, layout.to_sym )
 	}	
   end
 end
