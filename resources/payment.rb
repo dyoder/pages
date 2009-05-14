@@ -21,7 +21,7 @@ module Pages
       #status == PI : indicates the payment has been initiated.
       #status == PS : indicates that the payment transaction was successful.
       #status == PR : indicates the reserve transaction was successful. 
-      if params['status'] == 'PI' || params['status'] == 'PS' || params['status'] == 'PR'
+      if (params['status'] == 'PI' || params['status'] == 'PS' || params['status'] == 'PR')
         redirect('/thank-you')
       else
         #something wrong happened
@@ -46,6 +46,11 @@ module Pages
       controller.notification( info ) #updating the payment info with the new information.
       #redirect('/thank-you') #just return something.
     }
+    
+    #placeholder for a fake donation
+     on( :post, [ 'donation' ] ) { 
+       redirect('/thank-you')
+     }
       
     end
   end
