@@ -6,7 +6,7 @@ module Pages
   		  data = [ :public / media / name, 
   		            :db / domain / :file / name, 
   		            :db / domain / :theme / name ].each do |path|
-          return File.read( path ) if File.exists?( path )
+          return File.read( path ) if File.exist?( path )
         end
         not_found
       end
