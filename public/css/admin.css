@@ -1,5 +1,5 @@
-@import url(/css/base.css);
-@import url(/css/quick_add.css);
+@import url(/media/css/base.css);
+@import url(/media/css/quick_add.css);
 div.page { width: 1200px; }
 
 div.panel { float: left; width: 250px; height: 622px; 

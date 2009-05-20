@@ -27,7 +27,7 @@ module Pages
       
       # whatever as an extension comes from public or theme directory.
       # on( :get, true, :ext => [ :css, :js, :swf, :gif, :png, :jpg, :htm, :ico ] ) { to( :media ) }
-      on( :get, true, :ext => [ :* ] ) { to( :media ) }
+      # on( :get, true, :ext => [ :* ] ) { to( :media ) }
       on( true, [ :resource, { :rest => true } ], :ext => [ :rss, :xml ] ) { to( captured.resource ) }
       
       # before anything else, check the accepts headers and route accordingly

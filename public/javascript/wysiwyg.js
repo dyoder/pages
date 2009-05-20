@@ -1,5 +1,5 @@
 tinyMCE.init({ mode : "none", theme : "advanced",
-  content_css: "/css/wysiwyg.css",
+  content_css: "/media/css/wysiwyg.css",
 	theme_advanced_blockformats : "p,h1,h2,h3,blockquote",
   theme_advanced_toolbar_location : "top",
   theme_advanced_buttons1: [

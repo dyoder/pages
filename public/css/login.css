@@ -1,4 +1,4 @@
-@import url(/css/base.css);
+@import url(/media/css/base.css);
 form { padding: 10px; border: 1px solid #ccc; width: 400px; }
 label { font-size: 15px; font-weight: bold; }
 input.text, input.password { display: block; width: 200px; }
