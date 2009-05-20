@@ -44,10 +44,16 @@ module Pages
         ['HTML','html'], 
         ['Textile','textile']
       ]
+      
+      LAYOUTS = [ 'home', 'head', 'menu', 'banner', 'sidebar', 'footer', 'feed']
             
 			def self.formats
 			  FORMATS
 			end
+			
+			def self.layouts
+			  LAYOUTS
+		  end
 							
 		end
 		
