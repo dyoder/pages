@@ -18,11 +18,19 @@ module Pages
       def self.associate( domain ) ; end
 
 
-      def title ; get( :title ) or '' ; end
+      def title ; get( :title ) or ''; end
 
-      def readable_key
-        return get( :key ).to_s.gsub(/\b\w/){$&.upcase}.gsub('-',' ')
+      # def readable_key
+      #   return get( :key ).to_s.gsub(/\b\w/){$&.upcase}.gsub('-',' ')
+      # end
+      
+      # used whenever we want to display a human readable
+      # name for this object ... 
+      def label
+        return name.titlecase if title.nil? or title.empty?
+        title
       end
+      
 
       # we have to support old formats.
       def published
