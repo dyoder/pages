@@ -1,7 +1,7 @@
 # feed icon at the top
 story( :feed, :feed => @calendar.feed ) if @calendar.feed
 
-#h1 @calendar.title
+h1 @calendar.title
 
 p.subtitle @calendar.summary if @calendar.summary
 

@@ -1,0 +1,11 @@
+div.layout.panel do
+  h2 'Layout'
+  ul do
+  layout = model( :story ).layouts
+  layout.select { |name| model( :story ).keys.include? name }.each do |story|
+    li do
+      a story, :href => "/admin/story/#{story}/"
+    end
+  end
+end
+end

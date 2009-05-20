@@ -3,11 +3,11 @@ html do
   head do
     title "Pages CMS: #{@title}"
     ( @styles || [] ).each do | path |
-      link :rel => 'stylesheet', :type => 'text/css', :href => "/css/#{path}.css"
+      link :rel => 'stylesheet', :type => 'text/css', :href => "/media/css/#{path}.css"
     end
-    script :type => 'text/javascript', :src => '/javascript/jquery-1.2.1.pack.js'
+    script :type => 'text/javascript', :src => '/media/javascript/jquery-1.2.1.pack.js'
     ( @scripts || [] ).each do | path |
-      script :type => 'text/javascript', :src => "/javascript/#{path}.js"
+      script :type => 'text/javascript', :src => "/media/javascript/#{path}.js"
     end
   end
   body do

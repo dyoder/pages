@@ -1,8 +1,8 @@
 view :gallery, :quick_add
 ul do
-  @galleries.select { |gallery| gallery.format != 'mab' }.sort_by(&:title).each do |gallery|
+  @galleries.select { |gallery| gallery.format != 'mab' }.sort_by(&:label).each do |gallery|
     li do
-      a gallery.title, :href => "/admin/gallery/#{gallery.name}/"
+      a gallery.label, :href => "/admin/gallery/#{gallery.name}/"
     end
   end
 end

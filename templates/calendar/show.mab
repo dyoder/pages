@@ -1,4 +1,4 @@
-layout :show, :title => @calendar.title do
+layout :show, :title => @calendar.label do
 
   div.main.calendar :id => @name do
   

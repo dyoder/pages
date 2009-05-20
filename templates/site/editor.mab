@@ -1,5 +1,5 @@
-link :type => 'text/css', :rel => 'stylesheet', :href => '/css/thickbox.css'
-script :type => 'text/javascript', :src => '/javascript/thickbox-compressed.js'
+link :type => 'text/css', :rel => 'stylesheet', :href => '/media/css/thickbox.css'
+script :type => 'text/javascript', :src => '/media/javascript/thickbox-compressed.js'
 form.editor :action => '/admin', :method => 'post' do
   properties do
     property :label => 'Title', :name => 'site.title', :type => :text, 

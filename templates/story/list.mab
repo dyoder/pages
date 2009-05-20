@@ -1,8 +1,8 @@
 view :story, :quick_add
 ul do
-  @stories.select { |story| story.format != 'mab' }.sort_by(&:title).each do |story|
+  @stories.select { |story| not model( :story ).layouts.include? story.key }.sort_by(&:label).each do |story|
     li do
-      a story.readable_key, :href => "/admin/story/#{story.name}/"
+      a story.label, :href => "/admin/story/#{story.name}/"
     end
   end
 end

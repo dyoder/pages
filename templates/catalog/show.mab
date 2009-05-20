@@ -36,7 +36,7 @@ layout :show, :title => @catalog.title do
           end
 
           form :method => 'post', :action => @checkout_url do
-            input :type => 'hidden', :name => 'item_name_1', :value => product.title
+            input :type => 'hidden', :name => 'item_name_1', :value => product.label
             input :type => 'hidden', :name => 'item_description_1', :value => product.summary
             input :type => 'hidden', :name => 'item_quantity_1', :value => '1'
             input :type => 'hidden', :name => 'item_price_1', 

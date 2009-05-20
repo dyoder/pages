@@ -25,7 +25,7 @@ layout :admin, :title => 'Edit Calendar', :name => 'calendar-editor',
               h3 title
               events.each do | event |
                 li(:id => "#{event.key}") do
-                  a event.title, :href => "/admin/event/#{event.name}/"
+                  a event.label, :href => "/admin/event/#{event.name}/"
                 end
               end # events
             end # ul.container

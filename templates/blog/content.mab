@@ -1,5 +1,5 @@
 # feed icon at the top
-story( :feed, :feed => @blog.feed ) if @blog.feed
+story( :feed, :feed => @blog.feed ) if @blog.feed && @showfeed
 
 h1 @blog.title
 

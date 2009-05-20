@@ -1,8 +1,8 @@
 view :calendar, :quick_add
 ul do
-  @calendars.select { |cal| cal.format != 'mab' }.sort_by(&:title).each do |calendar|
+  @calendars.select { |cal| cal.format != 'mab' }.sort_by(&:label).each do |calendar|
     li do
-      a calendar.title, :href => "/admin/calendar/#{calendar.name}/"
+      a calendar.label, :href => "/admin/calendar/#{calendar.name}/"
     end
   end
 end

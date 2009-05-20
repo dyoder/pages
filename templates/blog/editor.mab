@@ -26,7 +26,7 @@ layout :admin, :title => 'Edit Blog', :name => 'blog-editor',
               h3 title
               stories.each do | story |
                 li(:id => "#{story.key}") do
-                  a story.readable_key, :href => "/admin/story/#{story.name}/"
+                  a story.label, :href => "/admin/story/#{story.name}/"
                 end
               end # stories
             end # ul.container

@@ -1,4 +1,4 @@
-h1 @event.title unless @event.title.empty?
+h1 @event.title unless @event.label.title?
 
 
 if (Date === @event.date or Time === @event.date)
