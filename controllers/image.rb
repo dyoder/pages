@@ -49,8 +49,8 @@ module Pages
       private
 
       def resolve( path )
-        unless File.extname( path ).empty?
-          path = [ :db / domain / :file / path, :public / :images / path  ].find do | path |
+        unless request.extension.nil?
+          path = [ :db / domain / :file / "#{path}.#{extension}", :public / :images / "#{path}.#{extension}"  ].find do | path |
             File.exist?( path )
           end
           path or not_found

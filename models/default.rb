@@ -1,5 +1,6 @@
 require 'filebase/drivers/yaml'
 Filebase.storage = Filebase::Drivers::YAML
+
 module Pages
 
   module Models

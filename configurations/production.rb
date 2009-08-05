@@ -19,7 +19,7 @@ module Pages
         :secret => 'Change it'
         
       application.run Waves::Dispatchers::Default.new
-        
+      
       server Waves::Servers::Mongrel
     end
   end
